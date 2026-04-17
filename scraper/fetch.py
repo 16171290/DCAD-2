@@ -1,12 +1,12 @@
 """
-Dallas County Motivated Seller Lead Scraper
-Targets: Lis Pendens (LP), Notice of Foreclosure (NOFC), Probate (PRO)
-Sources: dallas.tx.publicsearch.us  +  dallascad.org bulk parcel DBF
-
-v2 – rewrote Playwright logic to match actual publicsearch.us UI:
-  - Tries REST API first (no browser needed)
-  - Playwright navigates directly via URL params — skips broken nav click
-  - Falls back to form-fill using force=True clicks
+Dallas County Motivated Seller Lead Scraper  v3
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Sources:
+  LP   – dallas.tx.publicsearch.us  (REST API + Playwright, doc type "LP")
+  NOFC – dallascounty.org/foreclosures PDF files by city/month  +
+         dallas.tx.publicsearch.us dropdown "Foreclosure" (post Feb 24 2026)
+  PRO  – courtsportal.dallascounty.org probate court search
+  Parcel – dallascad.org bulk DBF for owner→address lookup
 """
 
 import asyncio
@@ -39,26 +39,14 @@ logging.basicConfig(
 )
 log = logging.getLogger("dallas_scraper")
 
-CLERK_BASE = "https://dallas.tx.publicsearch.us"
-CAD_URL    = "https://www.dallascad.org/DataProducts.aspx"
-LOOK_BACK  = 7
+CLERK_BASE      = "https://dallas.tx.publicsearch.us"
+FORECLOSURE_URL = "https://www.dallascounty.org/government/county-clerk/recording/foreclosures.php"
+PROBATE_URL     = "https://courtsportal.dallascounty.org/DALLASPROD/Home/WorkSpace/25"
+CAD_URL         = "https://www.dallascad.org/DataProducts.aspx"
+
+LOOK_BACK   = 7
 MAX_RETRIES = 3
 RETRY_WAIT  = 4
-
-DOC_TYPE_CODES = {
-    "LP": {
-        "label": "Lis Pendens",
-        "codes": ["LP", "LISP", "LIS PENDENS"],
-    },
-    "NOFC": {
-        "label": "Notice of Foreclosure",
-        "codes": ["NOFC", "NOF", "NOTS", "FORECLOSURE NOTICE"],
-    },
-    "PRO": {
-        "label": "Probate / Estate",
-        "codes": ["PROB", "PRO", "WILL", "LTTR", "LTAD"],
-    },
-}
 
 ROOT = Path(__file__).resolve().parent.parent
 for d in ["dashboard", "data", "scraper/tmp"]:
@@ -66,12 +54,15 @@ for d in ["dashboard", "data", "scraper/tmp"]:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# SECTION 1 – REST API (primary — no browser needed)
+# SECTION 1 – LIS PENDENS  (dallas.tx.publicsearch.us)
 # ═══════════════════════════════════════════════════════════════════════════
 
-def scrape_via_api(date_from: str, date_to: str) -> list:
-    """Try the publicsearch.us JSON REST API directly with requests."""
-    all_records = []
+def scrape_lis_pendens(date_from: str, date_to: str) -> list:
+    """
+    Try REST API first; fall back to Playwright.
+    LP is reliably on the publicsearch.us portal.
+    """
+    log.info("=== Scraping Lis Pendens ===")
     sess = _session_with_retries()
 
     try:
@@ -80,57 +71,39 @@ def scrape_via_api(date_from: str, date_to: str) -> list:
     except Exception:
         dt_from, dt_to = date_from, date_to
 
-    api_endpoints = [
+    # Try known API endpoints
+    for endpoint in [
         f"{CLERK_BASE}/api/instrument/search",
         f"{CLERK_BASE}/api/search/instrument",
         f"{CLERK_BASE}/search/api/instrument",
-        f"{CLERK_BASE}/api/search",
-    ]
+    ]:
+        for code in ["LP", "LISP", "LIS PENDENS"]:
+            for params in [
+                {"countyId":"dallas","state":"TX","docTypeCode":code,
+                 "startDate":dt_from,"endDate":dt_to,"page":1,"pageSize":500},
+                {"county":"dallas","documentType":code,
+                 "recordedDateFrom":dt_from,"recordedDateTo":dt_to,"page":1,"size":500},
+            ]:
+                try:
+                    r = sess.get(endpoint, params=params, timeout=30)
+                    if r.status_code == 200 and "json" in r.headers.get("Content-Type",""):
+                        records = _parse_api_results(r.json(), "LP", "Lis Pendens")
+                        if records:
+                            log.info("LP API: %d records via %s code=%s", len(records), endpoint, code)
+                            return records
+                except Exception as exc:
+                    log.debug("LP API attempt: %s", exc)
 
-    for cat_key, cat_info in DOC_TYPE_CODES.items():
-        for code in cat_info["codes"]:
-            found = False
-            for endpoint in api_endpoints:
-                for params in [
-                    {"countyId":"dallas","state":"TX","docTypeCode":code,
-                     "startDate":dt_from,"endDate":dt_to,"page":1,"pageSize":500},
-                    {"county":"dallas","documentType":code,
-                     "recordedDateFrom":dt_from,"recordedDateTo":dt_to,"page":1,"size":500},
-                ]:
-                    try:
-                        r = sess.get(endpoint, params=params, timeout=30)
-                        if r.status_code == 200 and "json" in r.headers.get("Content-Type",""):
-                            data = r.json()
-                            records = _parse_api_results(data, cat_key, cat_info["label"])
-                            if records:
-                                log.info("API hit: cat=%s code=%s → %d records", cat_key, code, len(records))
-                                all_records.extend(records)
-                                found = True
-                                break
-                    except Exception as exc:
-                        log.debug("API attempt failed: %s", exc)
-                if found:
-                    break
-            if found:
-                break
-
-    log.info("API total: %d records", len(all_records))
-    return all_records
+    log.info("LP: API returned 0, using Playwright...")
+    return []   # Playwright fallback handled in main
 
 
-# ═══════════════════════════════════════════════════════════════════════════
-# SECTION 2 – PLAYWRIGHT (fallback — direct URL navigation)
-# ═══════════════════════════════════════════════════════════════════════════
-
-async def scrape_via_playwright(date_from: str, date_to: str) -> list:
-    """Navigate directly to search results — bypasses the broken nav click."""
-    all_records = []
-
+async def scrape_lis_pendens_playwright(date_from: str, date_to: str) -> list:
+    records = []
     async with async_playwright() as pw:
         browser = await pw.chromium.launch(
             headless=True,
-            args=["--no-sandbox","--disable-dev-shm-usage",
-                  "--disable-blink-features=AutomationControlled"]
+            args=["--no-sandbox","--disable-dev-shm-usage"]
         )
         ctx = await browser.new_context(
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
@@ -138,211 +111,572 @@ async def scrape_via_playwright(date_from: str, date_to: str) -> list:
             viewport={"width":1280,"height":900},
         )
         page = await ctx.new_page()
-
-        # Intercept XHR/fetch responses to capture API calls the portal makes
         captured: list = []
 
-        async def handle_response(response):
+        async def on_response(resp):
             try:
-                if "instrument" in response.url.lower() or "search" in response.url.lower():
-                    ct = response.headers.get("content-type","")
-                    if "json" in ct:
-                        try:
-                            data = await response.json()
-                            captured.append(data)
-                        except Exception:
-                            pass
+                if any(k in resp.url for k in ["instrument","search","result"]):
+                    if "json" in resp.headers.get("content-type",""):
+                        data = await resp.json()
+                        captured.append(data)
             except Exception:
                 pass
 
-        page.on("response", handle_response)
+        page.on("response", on_response)
 
-        # Load homepage to get session cookies
         try:
             await page.goto(CLERK_BASE, wait_until="domcontentloaded", timeout=25_000)
             await asyncio.sleep(2)
-        except Exception as exc:
-            log.warning("Homepage load failed: %s", exc)
+        except Exception:
+            pass
 
-        for cat_key, cat_info in DOC_TYPE_CODES.items():
-            for code in cat_info["codes"]:
-                captured.clear()
-                records = await _playwright_search(
-                    page, code, cat_key, cat_info["label"], date_from, date_to, captured
-                )
+        for code in ["LP", "LISP"]:
+            captured.clear()
+
+            # Direct URL approach
+            url = f"{CLERK_BASE}/results/index?docTypeCode={code}&startDate={date_from}&endDate={date_to}"
+            try:
+                await page.goto(url, wait_until="networkidle", timeout=20_000)
+                await asyncio.sleep(2)
+
+                for data in captured:
+                    r = _parse_api_results(data, "LP", "Lis Pendens")
+                    if r:
+                        records.extend(r)
+
+                if not records:
+                    content = await page.content()
+                    records = _parse_clerk_html(content, "LP", "Lis Pendens")
+                    if not records:
+                        records = _extract_json_from_page(content, "LP", "Lis Pendens")
+
                 if records:
-                    log.info("Playwright: cat=%s code=%s → %d records", cat_key, code, len(records))
-                    all_records.extend(records)
                     break
-                await asyncio.sleep(1)
+            except Exception as exc:
+                log.warning("LP Playwright URL failed: %s", exc)
+
+            # JS-injection form fill
+            if not records:
+                records = await _js_form_search(page, code, "LP", "Lis Pendens",
+                                                 date_from, date_to, captured)
+            if records:
+                break
 
         await browser.close()
 
+    log.info("LP Playwright: %d records", len(records))
+    return records
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# SECTION 2 – FORECLOSURES
+# Two sources:
+#   A) dallascounty.org PDF files (current month + next month)
+#   B) dallas.tx.publicsearch.us "Foreclosure" dropdown (post Feb 24 2026)
+# ═══════════════════════════════════════════════════════════════════════════
+
+def scrape_foreclosures(date_from: str, date_to: str) -> list:
+    log.info("=== Scraping Foreclosures ===")
+    records = []
+
+    # Source A: PDF files from dallascounty.org
+    records.extend(_scrape_foreclosure_pdfs())
+
+    # Source B: publicsearch.us "Foreclosure" search
+    records.extend(_scrape_foreclosure_portal(date_from, date_to))
+
     # Deduplicate
     seen, deduped = set(), []
-    for r in all_records:
-        k = r.get("doc_num","")
+    for r in records:
+        k = r.get("doc_num","") or r.get("owner","") + r.get("prop_address","")
         if k and k not in seen:
             seen.add(k)
             deduped.append(r)
         elif not k:
             deduped.append(r)
 
-    log.info("Playwright total (deduped): %d records", len(deduped))
+    log.info("Foreclosures total: %d", len(deduped))
     return deduped
 
 
-async def _playwright_search(page, code, cat_key, cat_label, date_from, date_to, captured):
-    """Try multiple search strategies."""
+def _scrape_foreclosure_pdfs() -> list:
+    """
+    Scrape dallascounty.org foreclosure PDF listing page.
+    PDFs are organised by city and month. We grab current + next month PDFs,
+    then parse each PDF for owner name and address using pdfplumber if available,
+    otherwise store the PDF URL as the record link.
+    """
+    records = []
+    sess = _session_with_retries()
 
-    # Strategy 1: direct URL with query params
-    search_urls = [
-        f"{CLERK_BASE}/results/index?docTypeCode={code}&startDate={date_from}&endDate={date_to}",
-        f"{CLERK_BASE}/search?docType={code}&startDate={date_from}&endDate={date_to}",
-        f"{CLERK_BASE}/instrument/search?documentType={code}&recordedDateFrom={date_from}&recordedDateTo={date_to}",
-    ]
-
-    for url in search_urls:
-        try:
-            log.info("  Playwright URL: %s", url[:90])
-            await page.goto(url, wait_until="networkidle", timeout=20_000)
-            await asyncio.sleep(2)
-
-            if "login" in page.url.lower():
-                break
-
-            content = await page.content()
-
-            # Check captured XHR calls first
-            for data in captured:
-                records = _parse_api_results(data, cat_key, cat_label)
-                if records:
-                    return records
-
-            # Parse HTML table
-            records = _parse_clerk_html(content, cat_key, cat_label)
-            if records:
-                return records
-
-            # Check for embedded JSON
-            records = _extract_json_from_page(content, cat_key, cat_label)
-            if records:
-                return records
-
-        except Exception as exc:
-            log.debug("URL strategy failed: %s", exc)
-            continue
-
-    # Strategy 2: use the search form — click workspace tab with force
     try:
-        await page.goto(CLERK_BASE, wait_until="domcontentloaded", timeout=20_000)
-        await asyncio.sleep(2)
+        r = sess.get(FORECLOSURE_URL, timeout=30)
+        r.raise_for_status()
+    except Exception as exc:
+        log.warning("Foreclosure PDF page fetch failed: %s", exc)
+        return records
 
-        # Click the search/document workspace tab using JS to bypass overlay
-        await page.evaluate("""
-            () => {
-                const tabs = document.querySelectorAll('li[data-tourid], li.workspaces__tab, [class*="workspaces__tab"]');
-                for (const tab of tabs) {
-                    if (tab.innerText && /search|document/i.test(tab.innerText)) {
-                        tab.click();
-                        return;
-                    }
-                }
-                // Try any tab
-                if (tabs.length > 0) tabs[0].click();
-            }
-        """)
-        await asyncio.sleep(2)
+    soup = BeautifulSoup(r.text, "lxml")
 
-        # Fill document type via JS
-        await page.evaluate(f"""
-            () => {{
-                const inputs = document.querySelectorAll('input');
-                for (const inp of inputs) {{
-                    const id = (inp.id || '').toLowerCase();
-                    const name = (inp.name || '').toLowerCase();
-                    const ph = (inp.placeholder || '').toLowerCase();
-                    if (id.includes('doc') || name.includes('doc') || ph.includes('type')) {{
-                        inp.value = '{code}';
-                        inp.dispatchEvent(new Event('input', {{bubbles:true}}));
-                        inp.dispatchEvent(new Event('change', {{bubbles:true}}));
-                        return;
-                    }}
-                }}
-            }}
-        """)
-        await asyncio.sleep(1)
+    # Current month name and next month
+    today = datetime.now()
+    target_months = {today.strftime("%B"), (today + timedelta(days=32)).strftime("%B")}
 
-        # Fill dates via JS
-        await page.evaluate(f"""
-            () => {{
-                const inputs = document.querySelectorAll('input[type="text"], input[type="date"]');
-                let startDone = false;
-                for (const inp of inputs) {{
-                    const id = (inp.id || '').toLowerCase();
-                    const name = (inp.name || '').toLowerCase();
-                    const ph = (inp.placeholder || '').toLowerCase();
-                    if (!startDone && (id.includes('start') || name.includes('start') || ph.includes('start') || ph.includes('from'))) {{
-                        inp.value = '{date_from}';
-                        inp.dispatchEvent(new Event('input', {{bubbles:true}}));
-                        inp.dispatchEvent(new Event('change', {{bubbles:true}}));
-                        startDone = true;
-                    }} else if (startDone && (id.includes('end') || name.includes('end') || ph.includes('end') || ph.includes('to'))) {{
-                        inp.value = '{date_to}';
-                        inp.dispatchEvent(new Event('input', {{bubbles:true}}));
-                        inp.dispatchEvent(new Event('change', {{bubbles:true}}));
-                        return;
-                    }}
-                }}
-            }}
-        """)
-        await asyncio.sleep(1)
+    # Find all PDF links
+    pdf_links = []
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
+        if ".pdf" in href.lower() and "foreclosure" in href.lower():
+            full_url = href if href.startswith("http") else "https://www.dallascounty.org" + href
+            # Check if it's for a target month
+            for month in target_months:
+                if month.lower() in full_url.lower() or month.lower() in a.get_text("").lower():
+                    pdf_links.append(full_url)
+                    break
 
-        # Submit via JS
-        await page.evaluate("""
-            () => {
-                const btns = document.querySelectorAll('button[type="submit"], input[type="submit"], button');
-                for (const btn of btns) {
-                    if (/search/i.test(btn.innerText || btn.value || '')) {
-                        btn.click();
-                        return;
-                    }
-                }
-            }
-        """)
-        await page.wait_for_load_state("networkidle", timeout=15_000)
-        await asyncio.sleep(2)
+    log.info("Foreclosure PDFs found: %d", len(pdf_links))
 
-        content = await page.content()
+    for pdf_url in pdf_links:
+        # Extract city name from URL
+        city = re.sub(r'[-_]\d+\.pdf$', '', pdf_url.split("/")[-1]).replace("-", " ").replace("_", " ").strip()
 
-        for data in captured:
-            records = _parse_api_results(data, cat_key, cat_label)
-            if records:
-                return records
+        # Try to parse PDF text if pdfplumber is available
+        pdf_records = _parse_foreclosure_pdf(pdf_url, city, sess)
+        if pdf_records:
+            records.extend(pdf_records)
+        else:
+            # At minimum store a placeholder record with the PDF link
+            records.append({
+                "doc_num":   pdf_url.split("/")[-1].replace(".pdf",""),
+                "doc_type":  "Notice of Substitute Trustee Sale",
+                "filed":     datetime.now().strftime("%Y-%m-%d"),
+                "cat":       "NOFC",
+                "cat_label": "Notice of Foreclosure",
+                "owner":     "",
+                "grantee":   "Substitute Trustee",
+                "amount":    None,
+                "legal":     f"See PDF: {city}",
+                "prop_address": "",
+                "clerk_url": pdf_url,
+            })
 
-        records = _parse_clerk_html(content, cat_key, cat_label)
-        if records:
-            return records
+    return records
 
-        records = _extract_json_from_page(content, cat_key, cat_label)
-        if records:
-            return records
+
+def _parse_foreclosure_pdf(pdf_url: str, city: str, sess) -> list:
+    """Download and parse a foreclosure notice PDF."""
+    records = []
+
+    try:
+        import pdfplumber
+    except ImportError:
+        log.debug("pdfplumber not installed; storing PDF URL only")
+        return records
+
+    try:
+        r = sess.get(pdf_url, timeout=60)
+        r.raise_for_status()
+        pdf_bytes = io.BytesIO(r.content)
+
+        with pdfplumber.open(pdf_bytes) as pdf:
+            for page in pdf.pages:
+                text = page.extract_text() or ""
+                # Each notice in the PDF follows a pattern:
+                # Grantor name, property address, legal description, trustee sale date
+                # Split by common separators
+                blocks = re.split(r'\n{2,}', text)
+                for block in blocks:
+                    if not block.strip():
+                        continue
+                    try:
+                        lines = [l.strip() for l in block.split("\n") if l.strip()]
+                        if len(lines) < 2:
+                            continue
+
+                        # Look for an address line
+                        addr_line = ""
+                        owner_line = ""
+                        amount = None
+                        for line in lines:
+                            if re.search(r'\b\d{1,5}\s+[A-Z]', line) and not owner_line:
+                                addr_line = line
+                            elif re.search(r'^\s*[A-Z][A-Z\s,\.]+$', line) and not owner_line:
+                                owner_line = line
+                            amt_m = re.search(r'\$[\d,]+(?:\.\d{2})?', line)
+                            if amt_m:
+                                amount = _parse_amount(amt_m.group(0))
+
+                        if not owner_line and lines:
+                            owner_line = lines[0]
+
+                        prop_city = city.title()
+                        prop_addr = addr_line or ""
+
+                        records.append({
+                            "doc_num":    f"FC-{pdf_url.split('/')[-1].replace('.pdf','')}-{len(records)}",
+                            "doc_type":   "Notice of Substitute Trustee Sale",
+                            "filed":      datetime.now().strftime("%Y-%m-%d"),
+                            "cat":        "NOFC",
+                            "cat_label":  "Notice of Foreclosure",
+                            "owner":      owner_line,
+                            "grantee":    "Substitute Trustee",
+                            "amount":     amount,
+                            "legal":      " ".join(lines[:3]),
+                            "prop_address": prop_addr,
+                            "prop_city":  prop_city,
+                            "clerk_url":  pdf_url,
+                        })
+                    except Exception:
+                        continue
 
     except Exception as exc:
-        log.warning("Form strategy failed for %s: %s", code, exc)
+        log.warning("PDF parse error for %s: %s", pdf_url, exc)
 
-    return []
+    return records
+
+
+def _scrape_foreclosure_portal(date_from: str, date_to: str) -> list:
+    """
+    dallas.tx.publicsearch.us has a 'Foreclosure' option in its dropdown
+    (for records filed after Feb 24, 2026).
+    """
+    records = []
+    sess = _session_with_retries()
+
+    try:
+        dt_from = datetime.strptime(date_from, "%m/%d/%Y").strftime("%Y-%m-%d")
+        dt_to   = datetime.strptime(date_to,   "%m/%d/%Y").strftime("%Y-%m-%d")
+    except Exception:
+        dt_from, dt_to = date_from, date_to
+
+    # Try API with foreclosure-specific codes
+    for endpoint in [f"{CLERK_BASE}/api/instrument/search", f"{CLERK_BASE}/api/search"]:
+        for code in ["NSTS", "FORECLOSURE", "STS", "NOTS", "SUBTS", "TRUSTEE SALE"]:
+            try:
+                r = sess.get(endpoint, params={
+                    "countyId":"dallas","docTypeCode":code,
+                    "startDate":dt_from,"endDate":dt_to,"page":1,"pageSize":500,
+                }, timeout=30)
+                if r.status_code == 200 and "json" in r.headers.get("Content-Type",""):
+                    parsed = _parse_api_results(r.json(), "NOFC", "Notice of Foreclosure")
+                    if parsed:
+                        log.info("Foreclosure portal API: %d records (code=%s)", len(parsed), code)
+                        records.extend(parsed)
+                        break
+            except Exception:
+                continue
+        if records:
+            break
+
+    return records
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# SECTION 3 – PARCEL DATA (Dallas CAD)
+# SECTION 3 – PROBATE  (courtsportal.dallascounty.org)
+# ═══════════════════════════════════════════════════════════════════════════
+
+async def scrape_probate(date_from: str, date_to: str) -> list:
+    """
+    Scrape Dallas County Courts Portal for probate filings.
+    URL: courtsportal.dallascounty.org
+    This is a separate portal from the recording search.
+    """
+    log.info("=== Scraping Probate ===")
+    records = []
+
+    # Try REST API on courts portal first
+    sess = _session_with_retries()
+    try:
+        dt_from = datetime.strptime(date_from, "%m/%d/%Y").strftime("%Y-%m-%d")
+        dt_to   = datetime.strptime(date_to,   "%m/%d/%Y").strftime("%Y-%m-%d")
+    except Exception:
+        dt_from, dt_to = date_from, date_to
+
+    courts_base = "https://courtsportal.dallascounty.org/DALLASPROD"
+
+    # Try the courts portal search API
+    for endpoint in [
+        f"{courts_base}/api/search",
+        f"{courts_base}/Home/Dashboard/Search",
+        f"{courts_base}/Search/Results",
+    ]:
+        try:
+            r = sess.get(endpoint, params={
+                "courtType": "probate",
+                "filedFrom": dt_from,
+                "filedTo":   dt_to,
+                "caseType":  "ESTATE",
+                "page":      1,
+                "pageSize":  200,
+            }, timeout=20)
+            if r.status_code == 200 and "json" in r.headers.get("Content-Type",""):
+                data = r.json()
+                parsed = _parse_probate_api(data)
+                if parsed:
+                    log.info("Probate API: %d records", len(parsed))
+                    records.extend(parsed)
+                    break
+        except Exception as exc:
+            log.debug("Probate API attempt: %s", exc)
+
+    # Playwright scrape of courts portal if API failed
+    if not records:
+        records = await _scrape_probate_playwright(date_from, date_to)
+
+    # Also check publicsearch.us for probate-related recorded documents
+    # (letters testamentary, affidavits of heirship, etc.)
+    portal_records = _scrape_probate_recording_portal(dt_from, dt_to)
+    records.extend(portal_records)
+
+    log.info("Probate total: %d records", len(records))
+    return records
+
+
+def _parse_probate_api(data: Any) -> list:
+    records = []
+    items = []
+    if isinstance(data, list):
+        items = data
+    elif isinstance(data, dict):
+        for key in ["cases","results","data","items","records"]:
+            if key in data and isinstance(data[key], list):
+                items = data[key]
+                break
+
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        try:
+            case_num  = str(item.get("caseNumber") or item.get("caseNo") or item.get("id") or "")
+            case_type = str(item.get("caseType") or item.get("type") or "PROBATE")
+            filed     = str(item.get("filedDate") or item.get("fileDate") or item.get("date") or "")
+            party     = ""
+            parties   = item.get("parties") or item.get("party") or []
+            if isinstance(parties, list) and parties:
+                party = str(parties[0].get("name","") if isinstance(parties[0], dict) else parties[0])
+            elif isinstance(parties, str):
+                party = parties
+            if not party:
+                party = str(item.get("petitioner") or item.get("decedent") or item.get("name") or "")
+
+            link = str(item.get("url") or item.get("link") or "")
+            if not link and case_num:
+                link = f"{PROBATE_URL}?caseNumber={case_num}"
+
+            records.append({
+                "doc_num":   case_num,
+                "doc_type":  case_type,
+                "filed":     _normalise_date(filed),
+                "cat":       "PRO",
+                "cat_label": "Probate / Estate",
+                "owner":     party,
+                "grantee":   str(item.get("attorney") or item.get("executor") or ""),
+                "amount":    _parse_amount(item.get("amount") or item.get("estateValue") or ""),
+                "legal":     str(item.get("description") or item.get("style") or ""),
+                "prop_address": "",
+                "clerk_url": link,
+            })
+        except Exception:
+            continue
+    return records
+
+
+async def _scrape_probate_playwright(date_from: str, date_to: str) -> list:
+    """Use Playwright to search the Dallas courts portal for probate cases."""
+    records = []
+    courts_base = "https://courtsportal.dallascounty.org/DALLASPROD"
+
+    async with async_playwright() as pw:
+        browser = await pw.chromium.launch(
+            headless=True, args=["--no-sandbox","--disable-dev-shm-usage"]
+        )
+        ctx = await browser.new_context(
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                       "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            viewport={"width":1280,"height":900},
+        )
+        page = await ctx.new_page()
+        captured: list = []
+
+        async def on_response(resp):
+            try:
+                if "json" in resp.headers.get("content-type",""):
+                    data = await resp.json()
+                    captured.append(data)
+            except Exception:
+                pass
+
+        page.on("response", on_response)
+
+        try:
+            # Go to probate search workspace
+            await page.goto(f"{courts_base}/Home/WorkSpace/25",
+                            wait_until="domcontentloaded", timeout=25_000)
+            await asyncio.sleep(3)
+
+            content = await page.content()
+
+            # Check for captured JSON
+            for data in captured:
+                r = _parse_probate_api(data)
+                if r:
+                    records.extend(r)
+
+            if not records:
+                # Try filling date range and searching
+                await page.evaluate(f"""
+                    () => {{
+                        const inputs = document.querySelectorAll('input');
+                        let startDone = false;
+                        for (const inp of inputs) {{
+                            const id = (inp.id||'').toLowerCase();
+                            const name = (inp.name||'').toLowerCase();
+                            const ph = (inp.placeholder||'').toLowerCase();
+                            if (!startDone && (id.includes('start')||id.includes('from')||ph.includes('from'))) {{
+                                inp.value = '{date_from}';
+                                inp.dispatchEvent(new Event('input',{{bubbles:true}}));
+                                inp.dispatchEvent(new Event('change',{{bubbles:true}}));
+                                startDone = true;
+                            }} else if (startDone && (id.includes('end')||id.includes('to')||ph.includes('to'))) {{
+                                inp.value = '{date_to}';
+                                inp.dispatchEvent(new Event('input',{{bubbles:true}}));
+                                inp.dispatchEvent(new Event('change',{{bubbles:true}}));
+                            }}
+                        }}
+                        // Click search button
+                        const btns = document.querySelectorAll('button,input[type=submit]');
+                        for (const btn of btns) {{
+                            if (/search/i.test(btn.innerText||btn.value||'')) {{
+                                btn.click(); return;
+                            }}
+                        }}
+                    }}
+                """)
+                await page.wait_for_load_state("networkidle", timeout=15_000)
+                await asyncio.sleep(2)
+
+                for data in captured:
+                    r = _parse_probate_api(data)
+                    if r:
+                        records.extend(r)
+
+                if not records:
+                    content = await page.content()
+                    records = _parse_probate_html(content)
+
+        except Exception as exc:
+            log.warning("Probate Playwright failed: %s", exc)
+        finally:
+            await browser.close()
+
+    return records
+
+
+def _parse_probate_html(html: str) -> list:
+    """Parse probate case results from HTML table."""
+    records = []
+    soup = BeautifulSoup(html, "lxml")
+
+    for table in soup.find_all("table"):
+        headers = [th.get_text(strip=True).lower() for th in table.find_all("th")]
+        if not any(k in " ".join(headers) for k in ["case","party","filed","estate","probate"]):
+            continue
+
+        for tr in table.find_all("tr")[1:]:
+            cells = tr.find_all("td")
+            if len(cells) < 2:
+                continue
+            try:
+                row = {}
+                for i, td in enumerate(cells):
+                    key = headers[i] if i < len(headers) else str(i)
+                    row[key] = td.get_text(strip=True)
+
+                link = ""
+                a_tag = tr.find("a", href=True)
+                if a_tag:
+                    href = a_tag["href"]
+                    link = href if href.startswith("http") \
+                        else "https://courtsportal.dallascounty.org" + href
+
+                def col(*keys):
+                    for k in keys:
+                        for hk in row:
+                            if k in hk:
+                                return row[hk]
+                    return ""
+
+                case_num = col("case","number","cause")
+                filed    = col("filed","date","file")
+                party    = col("party","petitioner","decedent","name","style")
+
+                if not case_num and not party:
+                    continue
+
+                records.append({
+                    "doc_num":   case_num,
+                    "doc_type":  col("type","case type") or "Probate",
+                    "filed":     _normalise_date(filed),
+                    "cat":       "PRO",
+                    "cat_label": "Probate / Estate",
+                    "owner":     party,
+                    "grantee":   col("attorney","executor","admin"),
+                    "amount":    _parse_amount(col("amount","value","estate")),
+                    "legal":     col("style","description","legal"),
+                    "prop_address": "",
+                    "clerk_url": link,
+                })
+            except Exception:
+                continue
+    return records
+
+
+def _scrape_probate_recording_portal(dt_from: str, dt_to: str) -> list:
+    """
+    Check publicsearch.us for probate-related *recorded* documents:
+    Affidavit of Heirship, Letters Testamentary, Muniment of Title, etc.
+    These are different from probate court cases — they're recorded at the clerk.
+    """
+    records = []
+    sess = _session_with_retries()
+
+    # These are document types actually recorded in the Official Public Records
+    recorded_probate_codes = [
+        ("AFHR", "Affidavit of Heirship"),
+        ("LTTR", "Letters Testamentary"),
+        ("LTAD", "Letters of Administration"),
+        ("MUNT", "Muniment of Title"),
+        ("WILL", "Will / Testament"),
+    ]
+
+    for code, label in recorded_probate_codes:
+        for endpoint in [f"{CLERK_BASE}/api/instrument/search", f"{CLERK_BASE}/api/search"]:
+            try:
+                r = sess.get(endpoint, params={
+                    "countyId":"dallas","docTypeCode":code,
+                    "startDate":dt_from,"endDate":dt_to,"page":1,"pageSize":200,
+                }, timeout=20)
+                if r.status_code == 200 and "json" in r.headers.get("Content-Type",""):
+                    parsed = _parse_api_results(r.json(), "PRO", f"Probate / Estate ({label})")
+                    if parsed:
+                        log.info("Probate recording portal: %d records (code=%s)", len(parsed), code)
+                        records.extend(parsed)
+                        break
+            except Exception:
+                continue
+
+    return records
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+# SECTION 4 – PARCEL DATA (Dallas CAD)
 # ═══════════════════════════════════════════════════════════════════════════
 
 def _session_with_retries() -> requests.Session:
     sess = requests.Session()
     sess.headers.update({
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept": "text/html,application/xhtml+xml,*/*;q=0.8",
     })
     return sess
 
@@ -385,7 +719,7 @@ def download_parcel_dbf() -> dict:
         for a in soup.find_all("a", href=True):
             if "__doPostBack" in (a.get("href") or ""):
                 text = a.get_text(strip=True).lower()
-                if any(k in text for k in ["parcel","appraisal","property","res","download"]):
+                if any(k in text for k in ["parcel","appraisal","property","download"]):
                     m = re.search(r"__doPostBack\('([^']+)','([^']*)'\)", a["href"])
                     if m:
                         viewstate = soup.find("input", {"id":"__VIEWSTATE"})
@@ -396,7 +730,6 @@ def download_parcel_dbf() -> dict:
                             "__VIEWSTATE":       viewstate["value"] if viewstate else "",
                             "__EVENTVALIDATION": eventval["value"] if eventval else "",
                         }
-                        log.info("Trying __doPostBack: %s", m.group(1))
                         for attempt in range(1, MAX_RETRIES + 1):
                             try:
                                 pr = sess.post(CAD_URL, data=post_data, timeout=180)
@@ -405,7 +738,7 @@ def download_parcel_dbf() -> dict:
                                 if "zip" in ct or "octet" in ct or len(pr.content) > 10_000:
                                     return _parse_parcel_zip(pr.content)
                             except Exception as exc:
-                                log.warning("PostBack attempt %d failed: %s", attempt, exc)
+                                log.warning("PostBack attempt %d: %s", attempt, exc)
                                 if attempt < MAX_RETRIES:
                                     time.sleep(RETRY_WAIT * attempt)
 
@@ -415,7 +748,7 @@ def download_parcel_dbf() -> dict:
         if r:
             return _parse_parcel_zip(r.content)
 
-    log.warning("Could not locate parcel DBF; parcel lookup will be empty.")
+    log.warning("Could not locate parcel DBF.")
     return {}
 
 
@@ -436,7 +769,6 @@ def _parse_parcel_zip(raw_bytes: bytes) -> dict:
             dbf_path = tmp_dir / "parcels.dbf"
             dbf_path.write_bytes(raw_bytes)
 
-        log.info("Parsing DBF: %s", dbf_path)
         lookup = _build_lookup_from_dbf(str(dbf_path))
         log.info("Parcel lookup: %d entries", len(lookup))
     except Exception as exc:
@@ -518,7 +850,7 @@ def lookup_owner(name: str, parcel_lookup: dict) -> dict:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# SECTION 4 – PARSERS
+# SECTION 5 – PARSERS (shared)
 # ═══════════════════════════════════════════════════════════════════════════
 
 def _parse_api_results(data: Any, cat_key: str, cat_label: str) -> list:
@@ -575,15 +907,14 @@ def _extract_json_from_page(html: str, cat_key: str, cat_label: str) -> list:
     soup = BeautifulSoup(html, "lxml")
     for script in soup.find_all("script"):
         text = script.string or ""
-        state_match = re.search(
+        m = re.search(
             r'(?:window\.__(?:INITIAL_STATE|DATA|RESULTS|STATE)__|var\s+\w+Data)\s*=\s*({.*?});',
             text, re.DOTALL
         )
-        if state_match:
+        if m:
             try:
-                data = json.loads(state_match.group(1))
-                parsed = _parse_api_results(data, cat_key, cat_label)
-                records.extend(parsed)
+                data = json.loads(m.group(1))
+                records.extend(_parse_api_results(data, cat_key, cat_label))
             except Exception:
                 pass
     return records
@@ -592,14 +923,12 @@ def _extract_json_from_page(html: str, cat_key: str, cat_label: str) -> list:
 def _parse_clerk_html(html: str, cat_key: str, cat_label: str) -> list:
     records = []
     soup = BeautifulSoup(html, "lxml")
-
     for table in soup.find_all("table"):
         headers = [th.get_text(strip=True).lower() for th in table.find_all("th")]
         if not headers:
             continue
         if not any(k in " ".join(headers) for k in ["doc","instrument","grantor","type","date","record"]):
             continue
-
         for tr in table.find_all("tr")[1:]:
             cells = tr.find_all("td")
             if len(cells) < 2:
@@ -609,7 +938,6 @@ def _parse_clerk_html(html: str, cat_key: str, cat_label: str) -> list:
                 for i, td in enumerate(cells):
                     key = headers[i] if i < len(headers) else str(i)
                     row[key] = td.get_text(strip=True)
-
                 link = ""
                 a_tag = tr.find("a", href=True)
                 if a_tag:
@@ -623,27 +951,20 @@ def _parse_clerk_html(html: str, cat_key: str, cat_label: str) -> list:
                                 return row[hk]
                     return ""
 
-                doc_num  = col("instrument","doc number","record","number")
-                doc_type = col("type","document","doc type")
-                filed    = col("date","filed","recorded")
-                grantor  = col("grantor","owner","seller","party1")
-                grantee  = col("grantee","buyer","party2")
-                legal    = col("legal","description")
-                amount   = _parse_amount(col("amount","consideration","value"))
-
+                doc_num = col("instrument","doc number","record","number")
+                grantor = col("grantor","owner","seller","party1")
                 if not doc_num and not grantor:
                     continue
-
                 records.append({
                     "doc_num":   doc_num,
-                    "doc_type":  doc_type or cat_label,
-                    "filed":     _normalise_date(filed),
+                    "doc_type":  col("type","document","doc type") or cat_label,
+                    "filed":     _normalise_date(col("date","filed","recorded")),
                     "cat":       cat_key,
                     "cat_label": cat_label,
                     "owner":     grantor,
-                    "grantee":   grantee,
-                    "amount":    amount,
-                    "legal":     legal,
+                    "grantee":   col("grantee","buyer","party2"),
+                    "amount":    _parse_amount(col("amount","consideration","value")),
+                    "legal":     col("legal","description"),
                     "clerk_url": link,
                 })
             except Exception:
@@ -651,8 +972,93 @@ def _parse_clerk_html(html: str, cat_key: str, cat_label: str) -> list:
     return records
 
 
+async def _js_form_search(page, code, cat_key, cat_label, date_from, date_to, captured) -> list:
+    """Fill search form via JavaScript injection."""
+    records = []
+    try:
+        await page.evaluate(f"""
+            () => {{
+                const tabs = document.querySelectorAll(
+                    'li[data-tourid], li.workspaces__tab, [class*="workspaces__tab"]'
+                );
+                for (const tab of tabs) {{
+                    if (/search|document/i.test(tab.innerText||'')) {{ tab.click(); return; }}
+                }}
+                if (tabs.length) tabs[0].click();
+            }}
+        """)
+        await asyncio.sleep(2)
+
+        await page.evaluate(f"""
+            () => {{
+                for (const inp of document.querySelectorAll('input')) {{
+                    const id = (inp.id||'').toLowerCase();
+                    const name = (inp.name||'').toLowerCase();
+                    const ph = (inp.placeholder||'').toLowerCase();
+                    if (id.includes('doc')||name.includes('doc')||ph.includes('type')) {{
+                        inp.value = '{code}';
+                        inp.dispatchEvent(new Event('input',{{bubbles:true}}));
+                        inp.dispatchEvent(new Event('change',{{bubbles:true}}));
+                        return;
+                    }}
+                }}
+            }}
+        """)
+        await asyncio.sleep(0.5)
+
+        await page.evaluate(f"""
+            () => {{
+                const inputs = document.querySelectorAll('input[type="text"],input[type="date"]');
+                let startDone = false;
+                for (const inp of inputs) {{
+                    const id = (inp.id||'').toLowerCase();
+                    const name = (inp.name||'').toLowerCase();
+                    const ph = (inp.placeholder||'').toLowerCase();
+                    if (!startDone && (id.includes('start')||name.includes('start')||ph.includes('start')||ph.includes('from'))) {{
+                        inp.value = '{date_from}';
+                        inp.dispatchEvent(new Event('input',{{bubbles:true}}));
+                        inp.dispatchEvent(new Event('change',{{bubbles:true}}));
+                        startDone = true;
+                    }} else if (startDone && (id.includes('end')||name.includes('end')||ph.includes('end')||ph.includes('to'))) {{
+                        inp.value = '{date_to}';
+                        inp.dispatchEvent(new Event('input',{{bubbles:true}}));
+                        inp.dispatchEvent(new Event('change',{{bubbles:true}}));
+                        return;
+                    }}
+                }}
+            }}
+        """)
+        await asyncio.sleep(0.5)
+
+        await page.evaluate("""
+            () => {
+                for (const btn of document.querySelectorAll('button,input[type=submit]')) {
+                    if (/search/i.test(btn.innerText||btn.value||'')) { btn.click(); return; }
+                }
+            }
+        """)
+        await page.wait_for_load_state("networkidle", timeout=15_000)
+        await asyncio.sleep(2)
+
+        for data in captured:
+            r = _parse_api_results(data, cat_key, cat_label)
+            if r:
+                records.extend(r)
+
+        if not records:
+            content = await page.content()
+            records = _parse_clerk_html(content, cat_key, cat_label)
+            if not records:
+                records = _extract_json_from_page(content, cat_key, cat_label)
+
+    except Exception as exc:
+        log.warning("JS form search failed for %s: %s", code, exc)
+
+    return records
+
+
 # ═══════════════════════════════════════════════════════════════════════════
-# SECTION 5 – SCORING & ENRICHMENT
+# SECTION 6 – SCORING & ENRICHMENT
 # ═══════════════════════════════════════════════════════════════════════════
 
 def build_flags(rec: dict, week_ago: str) -> list:
@@ -678,8 +1084,8 @@ def calc_score(rec: dict, flags: list) -> int:
     has_fc = any("pre-foreclosure" in f.lower() for f in flags)
     if has_lp and has_fc: score += 20
     amt = float(rec.get("amount") or 0)
-    if amt > 100_000:   score += 15
-    elif amt > 50_000:  score += 10
+    if amt > 100_000:  score += 15
+    elif amt > 50_000: score += 10
     if "New this week" in flags: score += 5
     if rec.get("prop_address"):  score += 5
     return min(score, 100)
@@ -688,7 +1094,9 @@ def calc_score(rec: dict, flags: list) -> int:
 def enrich_record(raw: dict, parcel_lookup: dict, week_ago: str) -> dict:
     owner  = (raw.get("owner") or "").strip()
     parcel = lookup_owner(owner, parcel_lookup)
-    prop_addr = parcel.get("prop_address","") or _extract_address_from_legal(raw.get("legal",""))
+    prop_addr = (raw.get("prop_address","") or
+                 parcel.get("prop_address","") or
+                 _extract_address_from_legal(raw.get("legal","")))
 
     rec = {
         "doc_num":      raw.get("doc_num",""),
@@ -701,9 +1109,9 @@ def enrich_record(raw: dict, parcel_lookup: dict, week_ago: str) -> dict:
         "amount":       raw.get("amount") or 0,
         "legal":        (raw.get("legal") or "").strip(),
         "prop_address": prop_addr,
-        "prop_city":    parcel.get("prop_city","") or "DALLAS",
+        "prop_city":    raw.get("prop_city","") or parcel.get("prop_city","") or "DALLAS",
         "prop_state":   "TX",
-        "prop_zip":     parcel.get("prop_zip",""),
+        "prop_zip":     raw.get("prop_zip","") or parcel.get("prop_zip",""),
         "mail_address": parcel.get("mail_address",""),
         "mail_city":    parcel.get("mail_city",""),
         "mail_state":   parcel.get("mail_state","") or "TX",
@@ -758,7 +1166,7 @@ def split_owner_name(name: str) -> tuple:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# SECTION 6 – GHL CSV
+# SECTION 7 – GHL CSV
 # ═══════════════════════════════════════════════════════════════════════════
 
 def export_ghl_csv(records: list, path: Path) -> None:
@@ -795,11 +1203,11 @@ def export_ghl_csv(records: list, path: Path) -> None:
                 "Source":                 "Dallas County Clerk",
                 "Public Records URL":     rec.get("clerk_url",""),
             })
-    log.info("GHL CSV saved: %s (%d rows)", path, len(records))
+    log.info("GHL CSV: %s (%d rows)", path, len(records))
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# SECTION 7 – MAIN
+# SECTION 8 – MAIN
 # ═══════════════════════════════════════════════════════════════════════════
 
 async def main() -> None:
@@ -809,23 +1217,40 @@ async def main() -> None:
     date_to      = today.strftime("%m/%d/%Y")
     week_ago_iso = week_ago.strftime("%Y-%m-%d")
 
-    log.info("━━━ Dallas County Motivated Seller Scraper v2 ━━━")
+    log.info("━━━ Dallas County Motivated Seller Scraper v3 ━━━")
     log.info("Date range: %s → %s", date_from, date_to)
 
     # 1. Parcel lookup
     parcel_lookup = download_parcel_dbf()
 
-    # 2. Try REST API first
-    raw_records = scrape_via_api(date_from, date_to)
+    # 2. LP – try REST API; Playwright if needed
+    lp_records = scrape_lis_pendens(date_from, date_to)
+    if not lp_records:
+        lp_records = await scrape_lis_pendens_playwright(date_from, date_to)
 
-    # 3. Fall back to Playwright if needed
-    if not raw_records:
-        log.info("API returned 0 — falling back to Playwright...")
-        raw_records = await scrape_via_playwright(date_from, date_to)
+    # 3. NOFC – PDF scraper + portal
+    nofc_records = scrape_foreclosures(date_from, date_to)
 
-    # 4. Enrich
+    # 4. PRO – courts portal + recorded docs
+    pro_records = await scrape_probate(date_from, date_to)
+
+    # 5. Combine & deduplicate
+    all_raw = lp_records + nofc_records + pro_records
+    seen, deduped = set(), []
+    for r in all_raw:
+        k = r.get("doc_num","")
+        if k and k not in seen:
+            seen.add(k)
+            deduped.append(r)
+        elif not k:
+            deduped.append(r)
+
+    log.info("Combined: LP=%d  NOFC=%d  PRO=%d  Total=%d",
+             len(lp_records), len(nofc_records), len(pro_records), len(deduped))
+
+    # 6. Enrich
     enriched = []
-    for raw in raw_records:
+    for raw in deduped:
         try:
             enriched.append(enrich_record(raw, parcel_lookup, week_ago_iso))
         except Exception as exc:
@@ -836,7 +1261,7 @@ async def main() -> None:
 
     output = {
         "fetched_at":   today.isoformat(),
-        "source":       "Dallas County Clerk + Dallas CAD",
+        "source":       "Dallas County Clerk + Dallas CAD + Courts Portal",
         "date_range":   {"from": date_from, "to": date_to},
         "total":        len(enriched),
         "with_address": with_address,
