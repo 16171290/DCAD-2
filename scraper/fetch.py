@@ -449,84 +449,79 @@ async def _scrape_probate_odyssey(date_from: str, date_to: str,
             title = await page.title()
             log.info("Probate portal page title: %s", title)
 
-            # The Odyssey Smart Search has a "Filed Date" range and a court selector.
-            # Strategy: use JS to find and fill the inputs, then submit.
+            # We know the exact field IDs from inspecting the portal:
+            #   caseCriteria.FileDateStart  / caseCriteria.FileDateEnd
+            #   caseCriteria.CaseType       (Odyssey Kendo dropdown)
+            #   btnSSSubmit                 (input[type=submit], name=Search)
+            # Note: Odyssey uses Kendo UI — visible inputs are paired with hidden
+            # inputs. We set the visible input value AND trigger Kendo's change.
+
             filled = await page.evaluate(f"""
                 () => {{
-                    let report = [];
-
-                    // Log all inputs for debugging
-                    const allInputs = document.querySelectorAll('input, select');
-                    allInputs.forEach(el => {{
-                        report.push(el.tagName + ' id=' + el.id + ' name=' + el.name +
-                                    ' type=' + el.type + ' placeholder=' + el.placeholder);
-                    }});
-
-                    // Try to fill date range
-                    let startFilled = false, endFilled = false;
-                    for (const inp of document.querySelectorAll('input')) {{
-                        const id   = (inp.id   || '').toLowerCase();
-                        const name = (inp.name || '').toLowerCase();
-                        const ph   = (inp.placeholder || '').toLowerCase();
-                        const lbl  = (document.querySelector('label[for="' + inp.id + '"]') || {{}}).innerText || '';
-                        const lblL = lbl.toLowerCase();
-
-                        if (!startFilled && (
-                            id.includes('start') || id.includes('begin') || id.includes('from') ||
-                            name.includes('start') || ph.includes('start') || ph.includes('from') ||
-                            lblL.includes('start') || lblL.includes('from') || lblL.includes('filed')
-                        )) {{
-                            inp.value = '{date_from}';
-                            inp.dispatchEvent(new Event('input',  {{bubbles:true}}));
-                            inp.dispatchEvent(new Event('change', {{bubbles:true}}));
-                            startFilled = true;
-                        }} else if (startFilled && !endFilled && (
-                            id.includes('end') || id.includes('to') ||
-                            name.includes('end') || ph.includes('end') || ph.includes('to') ||
-                            lblL.includes('end') || lblL.includes('to')
-                        )) {{
-                            inp.value = '{date_to}';
-                            inp.dispatchEvent(new Event('input',  {{bubbles:true}}));
-                            inp.dispatchEvent(new Event('change', {{bubbles:true}}));
-                            endFilled = true;
+                    function setVal(id, value) {{
+                        // Try by exact id first (dots in id need querySelector escaping)
+                        let el = document.getElementById(id) ||
+                                 document.querySelector('[name="' + id + '"]');
+                        if (el) {{
+                            el.value = value;
+                            el.dispatchEvent(new Event('input',  {{bubbles:true}}));
+                            el.dispatchEvent(new Event('change', {{bubbles:true}}));
+                            el.dispatchEvent(new KeyboardEvent('keyup', {{bubbles:true}}));
+                            return true;
                         }}
+                        return false;
                     }}
 
-                    // Try to select "Probate" in any court-type dropdown
+                    // Fill date range using exact IDs observed in the portal
+                    const startOk = setVal('caseCriteria.FileDateStart', '{date_from}');
+                    const endOk   = setVal('caseCriteria.FileDateEnd',   '{date_to}');
+
+                    // Set CaseType to Probate using the Kendo hidden input
+                    // The visible autocomplete input has name caseCriteria.CaseType_input
+                    // The hidden bound input has name caseCriteria.CaseType
+                    const ctVisible = document.querySelector('input[name="caseCriteria.CaseType_input"]');
+                    const ctHidden  = document.getElementById('caseCriteria_CaseType') ||
+                                      document.querySelector('input[name="caseCriteria.CaseType"]');
+                    if (ctVisible) {{
+                        ctVisible.value = 'Probate';
+                        ctVisible.dispatchEvent(new Event('input',  {{bubbles:true}}));
+                        ctVisible.dispatchEvent(new Event('change', {{bubbles:true}}));
+                    }}
+                    // Try all select dropdowns for a Probate option
+                    let caseTypeSet = false;
                     for (const sel of document.querySelectorAll('select')) {{
                         for (const opt of sel.options) {{
                             if (/probate/i.test(opt.text || opt.value)) {{
                                 sel.value = opt.value;
                                 sel.dispatchEvent(new Event('change', {{bubbles:true}}));
+                                caseTypeSet = true;
                                 break;
                             }}
                         }}
+                        if (caseTypeSet) break;
                     }}
 
-                    return {{startFilled, endFilled, inputs: report}};
+                    return {{startOk, endOk, caseTypeSet}};
                 }}
             """)
             log.info("Probate form fill result: %s", filled)
             await asyncio.sleep(1)
 
-            # Click Search button
+            # Click the submit button — exact id is btnSSSubmit (input[type=submit])
             clicked = await page.evaluate("""
                 () => {
-                    const btns = document.querySelectorAll('button, input[type=submit], a');
-                    for (const btn of btns) {
-                        const txt = (btn.innerText || btn.value || btn.textContent || '').trim();
-                        if (/^search$/i.test(txt) || /search cases/i.test(txt)) {
-                            btn.click();
-                            return txt;
-                        }
-                    }
-                    // Fallback: click any button with 'search' anywhere in its text
-                    for (const btn of document.querySelectorAll('button')) {
-                        if (/search/i.test(btn.innerText || '')) {
-                            btn.click();
-                            return 'fallback: ' + btn.innerText;
-                        }
-                    }
+                    // Try exact id first
+                    const byId = document.getElementById('btnSSSubmit');
+                    if (byId) { byId.click(); return 'btnSSSubmit by id'; }
+
+                    // Try by name
+                    const byName = document.querySelector('input[name="Search"][type="submit"]');
+                    if (byName) { byName.click(); return 'input[name=Search]'; }
+
+                    // Fallback: any submit input or button
+                    const anySubmit = document.querySelector('input[type="submit"], button[type="submit"]');
+                    if (anySubmit) { anySubmit.click(); return 'any submit: ' + (anySubmit.value || anySubmit.innerText); }
+
                     return 'not found';
                 }
             """)
