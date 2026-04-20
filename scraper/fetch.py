@@ -41,7 +41,8 @@ log = logging.getLogger("dallas_scraper")
 
 CLERK_BASE      = "https://dallas.tx.publicsearch.us"
 FORECLOSURE_URL = "https://www.dallascounty.org/government/county-clerk/recording/foreclosures.php"
-PROBATE_URL     = "https://courtsportal.dallascounty.org/DALLASPROD/Home/WorkSpace/25"
+COURTS_BASE     = "https://courtsportal.dallascounty.org/DALLASPROD"
+PROBATE_SEARCH  = "https://courtsportal.dallascounty.org/DALLASPROD/Home/Dashboard/29"
 CAD_URL         = "https://www.dallascad.org/DataProducts.aspx"
 
 LOOK_BACK   = 7
@@ -372,214 +373,309 @@ def _scrape_foreclosure_portal(date_from: str, date_to: str) -> list:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# SECTION 3 – PROBATE  (courtsportal.dallascounty.org)
+# SECTION 3 – PROBATE
+# Two sources:
+#   A) courtsportal.dallascounty.org  – Odyssey "Smart Search" (Dashboard/29)
+#      Uses Playwright to load the page, intercept the Odyssey API XHR calls,
+#      and parse whatever JSON the portal fires when searching by date range
+#      and court type = Probate.
+#   B) dallas.tx.publicsearch.us  – recorded probate documents (Affidavit of
+#      Heirship, Muniment of Title, etc.) searched by keyword because exact
+#      Odyssey doc-type codes are not publicly documented.
 # ═══════════════════════════════════════════════════════════════════════════
 
 async def scrape_probate(date_from: str, date_to: str) -> list:
-    """
-    Scrape Dallas County Courts Portal for probate filings.
-    URL: courtsportal.dallascounty.org
-    This is a separate portal from the recording search.
-    """
     log.info("=== Scraping Probate ===")
-    records = []
 
-    # Try REST API on courts portal first
-    sess = _session_with_retries()
     try:
         dt_from = datetime.strptime(date_from, "%m/%d/%Y").strftime("%Y-%m-%d")
         dt_to   = datetime.strptime(date_to,   "%m/%d/%Y").strftime("%Y-%m-%d")
     except Exception:
         dt_from, dt_to = date_from, date_to
 
-    courts_base = "https://courtsportal.dallascounty.org/DALLASPROD"
+    # Source A – Odyssey courts portal (probate court cases)
+    court_records = await _scrape_probate_odyssey(date_from, date_to, dt_from, dt_to)
 
-    # Try the courts portal search API
-    for endpoint in [
-        f"{courts_base}/api/search",
-        f"{courts_base}/Home/Dashboard/Search",
-        f"{courts_base}/Search/Results",
-    ]:
-        try:
-            r = sess.get(endpoint, params={
-                "courtType": "probate",
-                "filedFrom": dt_from,
-                "filedTo":   dt_to,
-                "caseType":  "ESTATE",
-                "page":      1,
-                "pageSize":  200,
-            }, timeout=20)
-            if r.status_code == 200 and "json" in r.headers.get("Content-Type",""):
-                data = r.json()
-                parsed = _parse_probate_api(data)
-                if parsed:
-                    log.info("Probate API: %d records", len(parsed))
-                    records.extend(parsed)
-                    break
-        except Exception as exc:
-            log.debug("Probate API attempt: %s", exc)
+    # Source B – publicsearch.us recorded probate documents
+    recorded_records = _scrape_probate_recorded(dt_from, dt_to)
 
-    # Playwright scrape of courts portal if API failed
-    if not records:
-        records = await _scrape_probate_playwright(date_from, date_to)
-
-    # Also check publicsearch.us for probate-related recorded documents
-    # (letters testamentary, affidavits of heirship, etc.)
-    portal_records = _scrape_probate_recording_portal(dt_from, dt_to)
-    records.extend(portal_records)
-
-    log.info("Probate total: %d records", len(records))
+    records = court_records + recorded_records
+    log.info("Probate total: %d (%d court cases, %d recorded docs)",
+             len(records), len(court_records), len(recorded_records))
     return records
 
 
-def _parse_probate_api(data: Any) -> list:
+async def _scrape_probate_odyssey(date_from: str, date_to: str,
+                                   dt_from: str, dt_to: str) -> list:
+    """
+    Load the Dallas County Courts Portal Smart Search (Dashboard/29),
+    select Probate courts, set date range, submit, and intercept the
+    Odyssey API responses which return JSON case data.
+    """
     records = []
-    items = []
-    if isinstance(data, list):
-        items = data
-    elif isinstance(data, dict):
-        for key in ["cases","results","data","items","records"]:
-            if key in data and isinstance(data[key], list):
-                items = data[key]
-                break
-
-    for item in items:
-        if not isinstance(item, dict):
-            continue
-        try:
-            case_num  = str(item.get("caseNumber") or item.get("caseNo") or item.get("id") or "")
-            case_type = str(item.get("caseType") or item.get("type") or "PROBATE")
-            filed     = str(item.get("filedDate") or item.get("fileDate") or item.get("date") or "")
-            party     = ""
-            parties   = item.get("parties") or item.get("party") or []
-            if isinstance(parties, list) and parties:
-                party = str(parties[0].get("name","") if isinstance(parties[0], dict) else parties[0])
-            elif isinstance(parties, str):
-                party = parties
-            if not party:
-                party = str(item.get("petitioner") or item.get("decedent") or item.get("name") or "")
-
-            link = str(item.get("url") or item.get("link") or "")
-            if not link and case_num:
-                link = f"{PROBATE_URL}?caseNumber={case_num}"
-
-            records.append({
-                "doc_num":   case_num,
-                "doc_type":  case_type,
-                "filed":     _normalise_date(filed),
-                "cat":       "PRO",
-                "cat_label": "Probate / Estate",
-                "owner":     party,
-                "grantee":   str(item.get("attorney") or item.get("executor") or ""),
-                "amount":    _parse_amount(item.get("amount") or item.get("estateValue") or ""),
-                "legal":     str(item.get("description") or item.get("style") or ""),
-                "prop_address": "",
-                "clerk_url": link,
-            })
-        except Exception:
-            continue
-    return records
-
-
-async def _scrape_probate_playwright(date_from: str, date_to: str) -> list:
-    """Use Playwright to search the Dallas courts portal for probate cases."""
-    records = []
-    courts_base = "https://courtsportal.dallascounty.org/DALLASPROD"
 
     async with async_playwright() as pw:
         browser = await pw.chromium.launch(
-            headless=True, args=["--no-sandbox","--disable-dev-shm-usage"]
+            headless=True,
+            args=["--no-sandbox", "--disable-dev-shm-usage"]
         )
         ctx = await browser.new_context(
             user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
                        "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-            viewport={"width":1280,"height":900},
+            viewport={"width": 1280, "height": 900},
         )
         page = await ctx.new_page()
         captured: list = []
 
         async def on_response(resp):
             try:
-                if "json" in resp.headers.get("content-type",""):
+                ct = resp.headers.get("content-type", "")
+                if "json" in ct and resp.status == 200:
                     data = await resp.json()
-                    captured.append(data)
+                    captured.append((resp.url, data))
+                    log.debug("Captured JSON from: %s", resp.url)
             except Exception:
                 pass
 
         page.on("response", on_response)
 
         try:
-            # Go to probate search workspace
-            await page.goto(f"{courts_base}/Home/WorkSpace/25",
-                            wait_until="domcontentloaded", timeout=25_000)
-            await asyncio.sleep(3)
+            log.info("Probate: loading courts portal Smart Search...")
+            await page.goto(PROBATE_SEARCH, wait_until="domcontentloaded", timeout=30_000)
+            await asyncio.sleep(4)
 
-            content = await page.content()
+            # Log what we landed on so we can debug if needed
+            log.info("Probate portal URL after load: %s", page.url)
+            title = await page.title()
+            log.info("Probate portal page title: %s", title)
 
-            # Check for captured JSON
-            for data in captured:
-                r = _parse_probate_api(data)
-                if r:
-                    records.extend(r)
+            # The Odyssey Smart Search has a "Filed Date" range and a court selector.
+            # Strategy: use JS to find and fill the inputs, then submit.
+            filled = await page.evaluate(f"""
+                () => {{
+                    let report = [];
 
-            if not records:
-                # Try filling date range and searching
-                await page.evaluate(f"""
-                    () => {{
-                        const inputs = document.querySelectorAll('input');
-                        let startDone = false;
-                        for (const inp of inputs) {{
-                            const id = (inp.id||'').toLowerCase();
-                            const name = (inp.name||'').toLowerCase();
-                            const ph = (inp.placeholder||'').toLowerCase();
-                            if (!startDone && (id.includes('start')||id.includes('from')||ph.includes('from'))) {{
-                                inp.value = '{date_from}';
-                                inp.dispatchEvent(new Event('input',{{bubbles:true}}));
-                                inp.dispatchEvent(new Event('change',{{bubbles:true}}));
-                                startDone = true;
-                            }} else if (startDone && (id.includes('end')||id.includes('to')||ph.includes('to'))) {{
-                                inp.value = '{date_to}';
-                                inp.dispatchEvent(new Event('input',{{bubbles:true}}));
-                                inp.dispatchEvent(new Event('change',{{bubbles:true}}));
-                            }}
+                    // Log all inputs for debugging
+                    const allInputs = document.querySelectorAll('input, select');
+                    allInputs.forEach(el => {{
+                        report.push(el.tagName + ' id=' + el.id + ' name=' + el.name +
+                                    ' type=' + el.type + ' placeholder=' + el.placeholder);
+                    }});
+
+                    // Try to fill date range
+                    let startFilled = false, endFilled = false;
+                    for (const inp of document.querySelectorAll('input')) {{
+                        const id   = (inp.id   || '').toLowerCase();
+                        const name = (inp.name || '').toLowerCase();
+                        const ph   = (inp.placeholder || '').toLowerCase();
+                        const lbl  = (document.querySelector('label[for="' + inp.id + '"]') || {{}}).innerText || '';
+                        const lblL = lbl.toLowerCase();
+
+                        if (!startFilled && (
+                            id.includes('start') || id.includes('begin') || id.includes('from') ||
+                            name.includes('start') || ph.includes('start') || ph.includes('from') ||
+                            lblL.includes('start') || lblL.includes('from') || lblL.includes('filed')
+                        )) {{
+                            inp.value = '{date_from}';
+                            inp.dispatchEvent(new Event('input',  {{bubbles:true}}));
+                            inp.dispatchEvent(new Event('change', {{bubbles:true}}));
+                            startFilled = true;
+                        }} else if (startFilled && !endFilled && (
+                            id.includes('end') || id.includes('to') ||
+                            name.includes('end') || ph.includes('end') || ph.includes('to') ||
+                            lblL.includes('end') || lblL.includes('to')
+                        )) {{
+                            inp.value = '{date_to}';
+                            inp.dispatchEvent(new Event('input',  {{bubbles:true}}));
+                            inp.dispatchEvent(new Event('change', {{bubbles:true}}));
+                            endFilled = true;
                         }}
-                        // Click search button
-                        const btns = document.querySelectorAll('button,input[type=submit]');
-                        for (const btn of btns) {{
-                            if (/search/i.test(btn.innerText||btn.value||'')) {{
-                                btn.click(); return;
+                    }}
+
+                    // Try to select "Probate" in any court-type dropdown
+                    for (const sel of document.querySelectorAll('select')) {{
+                        for (const opt of sel.options) {{
+                            if (/probate/i.test(opt.text || opt.value)) {{
+                                sel.value = opt.value;
+                                sel.dispatchEvent(new Event('change', {{bubbles:true}}));
+                                break;
                             }}
                         }}
                     }}
-                """)
-                await page.wait_for_load_state("networkidle", timeout=15_000)
-                await asyncio.sleep(2)
 
-                for data in captured:
-                    r = _parse_probate_api(data)
-                    if r:
-                        records.extend(r)
+                    return {{startFilled, endFilled, inputs: report}};
+                }}
+            """)
+            log.info("Probate form fill result: %s", filled)
+            await asyncio.sleep(1)
 
-                if not records:
-                    content = await page.content()
-                    records = _parse_probate_html(content)
+            # Click Search button
+            clicked = await page.evaluate("""
+                () => {
+                    const btns = document.querySelectorAll('button, input[type=submit], a');
+                    for (const btn of btns) {
+                        const txt = (btn.innerText || btn.value || btn.textContent || '').trim();
+                        if (/^search$/i.test(txt) || /search cases/i.test(txt)) {
+                            btn.click();
+                            return txt;
+                        }
+                    }
+                    // Fallback: click any button with 'search' anywhere in its text
+                    for (const btn of document.querySelectorAll('button')) {
+                        if (/search/i.test(btn.innerText || '')) {
+                            btn.click();
+                            return 'fallback: ' + btn.innerText;
+                        }
+                    }
+                    return 'not found';
+                }
+            """)
+            log.info("Probate search button click: %s", clicked)
+
+            await page.wait_for_load_state("networkidle", timeout=20_000)
+            await asyncio.sleep(3)
+
+            # Parse all captured JSON responses
+            for url, data in captured:
+                parsed = _parse_odyssey_response(data)
+                if parsed:
+                    log.info("Probate Odyssey JSON from %s → %d records", url[:80], len(parsed))
+                    records.extend(parsed)
+
+            # If nothing captured, try HTML parse of results
+            if not records:
+                content = await page.content()
+                log.info("Probate: no JSON captured, trying HTML parse...")
+                records = _parse_probate_html(content)
+                if records:
+                    log.info("Probate HTML parse: %d records", len(records))
+                else:
+                    # Log a snippet of the page for debugging
+                    snippet = content[:2000].replace("\n", " ")
+                    log.info("Probate page snippet: %s", snippet)
 
         except Exception as exc:
-            log.warning("Probate Playwright failed: %s", exc)
+            log.warning("Probate Odyssey scrape failed: %s", exc)
         finally:
             await browser.close()
 
     return records
 
 
+def _parse_odyssey_response(data: Any) -> list:
+    """
+    Parse the JSON structure that Odyssey / Tyler Technologies returns
+    for case search results. The structure varies but common patterns are:
+      { "cases": [...] }
+      { "data": { "cases": [...] } }
+      [ { "caseNumber": ..., "style": ..., "fileDate": ... }, ... ]
+    """
+    records = []
+    cases = []
+
+    if isinstance(data, list):
+        cases = data
+    elif isinstance(data, dict):
+        # Try common Odyssey response keys
+        for key in ["cases", "Cases", "results", "Results", "data", "items",
+                    "CaseList", "caseList", "searchResults"]:
+            val = data.get(key)
+            if isinstance(val, list):
+                cases = val
+                break
+            elif isinstance(val, dict):
+                # One level deeper
+                for inner_key in ["cases", "Cases", "results", "items"]:
+                    inner = val.get(inner_key)
+                    if isinstance(inner, list):
+                        cases = inner
+                        break
+                if cases:
+                    break
+
+    for item in cases:
+        if not isinstance(item, dict):
+            continue
+        try:
+            # Odyssey uses various field names across versions
+            case_num = str(
+                item.get("caseNumber") or item.get("CaseNumber") or
+                item.get("causeNumber") or item.get("CauseNumber") or
+                item.get("id") or item.get("ID") or ""
+            )
+            style = str(
+                item.get("style") or item.get("Style") or
+                item.get("caseStyle") or item.get("CaseStyle") or
+                item.get("name") or item.get("Name") or ""
+            )
+            case_type = str(
+                item.get("caseType") or item.get("CaseType") or
+                item.get("type") or item.get("Type") or "Probate"
+            )
+            filed = str(
+                item.get("fileDate") or item.get("FileDate") or
+                item.get("filedDate") or item.get("FiledDate") or
+                item.get("dateField") or item.get("createdDate") or ""
+            )
+            court = str(
+                item.get("court") or item.get("Court") or
+                item.get("courtName") or item.get("CourtName") or ""
+            )
+
+            # Extract party name — Odyssey nests parties in a sub-array
+            owner = ""
+            parties = (item.get("parties") or item.get("Parties") or
+                       item.get("partyList") or item.get("PartyList") or [])
+            if isinstance(parties, list):
+                for p in parties:
+                    if isinstance(p, dict):
+                        ptype = (p.get("partyType") or p.get("PartyType") or "").lower()
+                        pname = (p.get("name") or p.get("Name") or
+                                 p.get("partyName") or p.get("PartyName") or "")
+                        # Prefer decedent/petitioner/applicant
+                        if any(k in ptype for k in ["decedent","petitioner","applicant","testator"]):
+                            owner = pname
+                            break
+                        elif not owner and pname:
+                            owner = pname
+            if not owner:
+                owner = style  # Use case style as fallback owner name
+
+            if not case_num and not owner:
+                continue
+
+            link = str(item.get("url") or item.get("link") or "")
+            if not link and case_num:
+                link = f"{COURTS_BASE}/Case/CaseDetail?odeCaseNo={case_num}"
+
+            records.append({
+                "doc_num":      case_num,
+                "doc_type":     case_type,
+                "filed":        _normalise_date(filed),
+                "cat":          "PRO",
+                "cat_label":    "Probate / Estate",
+                "owner":        owner,
+                "grantee":      court,
+                "amount":       _parse_amount(item.get("amount") or item.get("estateValue") or ""),
+                "legal":        style,
+                "prop_address": "",
+                "clerk_url":    link,
+            })
+        except Exception:
+            continue
+
+    return records
+
+
 def _parse_probate_html(html: str) -> list:
-    """Parse probate case results from HTML table."""
+    """Parse probate case results from HTML table — Odyssey portal layout."""
     records = []
     soup = BeautifulSoup(html, "lxml")
 
     for table in soup.find_all("table"):
         headers = [th.get_text(strip=True).lower() for th in table.find_all("th")]
-        if not any(k in " ".join(headers) for k in ["case","party","filed","estate","probate"]):
+        joined  = " ".join(headers)
+        if not any(k in joined for k in ["case","party","filed","estate","probate","style","cause"]):
             continue
 
         for tr in table.find_all("tr")[1:]:
@@ -597,7 +693,7 @@ def _parse_probate_html(html: str) -> list:
                 if a_tag:
                     href = a_tag["href"]
                     link = href if href.startswith("http") \
-                        else "https://courtsportal.dallascounty.org" + href
+                        else COURTS_BASE + "/" + href.lstrip("/")
 
                 def col(*keys):
                     for k in keys:
@@ -608,64 +704,133 @@ def _parse_probate_html(html: str) -> list:
 
                 case_num = col("case","number","cause")
                 filed    = col("filed","date","file")
-                party    = col("party","petitioner","decedent","name","style")
+                party    = col("style","party","petitioner","decedent","name","applicant")
 
                 if not case_num and not party:
                     continue
 
                 records.append({
-                    "doc_num":   case_num,
-                    "doc_type":  col("type","case type") or "Probate",
-                    "filed":     _normalise_date(filed),
-                    "cat":       "PRO",
-                    "cat_label": "Probate / Estate",
-                    "owner":     party,
-                    "grantee":   col("attorney","executor","admin"),
-                    "amount":    _parse_amount(col("amount","value","estate")),
-                    "legal":     col("style","description","legal"),
+                    "doc_num":      case_num,
+                    "doc_type":     col("type","case type") or "Probate",
+                    "filed":        _normalise_date(filed),
+                    "cat":          "PRO",
+                    "cat_label":    "Probate / Estate",
+                    "owner":        party,
+                    "grantee":      col("attorney","executor","admin","court"),
+                    "amount":       _parse_amount(col("amount","value","estate")),
+                    "legal":        col("style","description","legal"),
                     "prop_address": "",
-                    "clerk_url": link,
+                    "clerk_url":    link,
                 })
             except Exception:
                 continue
     return records
 
 
-def _scrape_probate_recording_portal(dt_from: str, dt_to: str) -> list:
+def _scrape_probate_recorded(dt_from: str, dt_to: str) -> list:
     """
-    Check publicsearch.us for probate-related *recorded* documents:
-    Affidavit of Heirship, Letters Testamentary, Muniment of Title, etc.
-    These are different from probate court cases — they're recorded at the clerk.
+    Search dallas.tx.publicsearch.us for probate-related RECORDED documents.
+    Dallas County confirmed: Affidavit of Heirship is filed with the Recording
+    Division (not probate court). We search by keyword since exact Odyssey
+    doc-type codes are undocumented.
+
+    Keywords tried against the portal's keyword/name search endpoint.
     """
     records = []
     sess = _session_with_retries()
 
-    # These are document types actually recorded in the Official Public Records
-    recorded_probate_codes = [
-        ("AFHR", "Affidavit of Heirship"),
-        ("LTTR", "Letters Testamentary"),
-        ("LTAD", "Letters of Administration"),
-        ("MUNT", "Muniment of Title"),
-        ("WILL", "Will / Testament"),
+    # Keyword searches against the recording portal
+    # Each tuple: (search_keyword, human_label)
+    keyword_searches = [
+        ("HEIRSHIP",          "Affidavit of Heirship"),
+        ("MUNIMENT",          "Muniment of Title"),
+        ("LETTERS TESTAMENTARY", "Letters Testamentary"),
+        ("LETTERS OF ADMINISTRATION", "Letters of Administration"),
+        ("AFFIDAVIT OF HEIRSHIP", "Affidavit of Heirship"),
     ]
 
-    for code, label in recorded_probate_codes:
-        for endpoint in [f"{CLERK_BASE}/api/instrument/search", f"{CLERK_BASE}/api/search"]:
+    # Also try direct doc-type code guesses for the recording portal
+    # (Odyssey recording uses short codes; these are common TX county variants)
+    code_searches = [
+        ("AH",    "Affidavit of Heirship"),
+        ("AOH",   "Affidavit of Heirship"),
+        ("AFFH",  "Affidavit of Heirship"),
+        ("MT",    "Muniment of Title"),
+        ("MNT",   "Muniment of Title"),
+        ("LT",    "Letters Testamentary"),
+        ("LA",    "Letters of Administration"),
+        ("PROB",  "Probate"),
+    ]
+
+    endpoints = [
+        f"{CLERK_BASE}/api/instrument/search",
+        f"{CLERK_BASE}/api/search/instrument",
+    ]
+
+    # Try doc-type codes first
+    for code, label in code_searches:
+        found = False
+        for endpoint in endpoints:
             try:
                 r = sess.get(endpoint, params={
-                    "countyId":"dallas","docTypeCode":code,
-                    "startDate":dt_from,"endDate":dt_to,"page":1,"pageSize":200,
+                    "countyId":  "dallas",
+                    "docTypeCode": code,
+                    "startDate": dt_from,
+                    "endDate":   dt_to,
+                    "page":      1,
+                    "pageSize":  500,
                 }, timeout=20)
-                if r.status_code == 200 and "json" in r.headers.get("Content-Type",""):
+                if r.status_code == 200 and "json" in r.headers.get("Content-Type", ""):
                     parsed = _parse_api_results(r.json(), "PRO", f"Probate / Estate ({label})")
                     if parsed:
                         log.info("Probate recording portal: %d records (code=%s)", len(parsed), code)
                         records.extend(parsed)
+                        found = True
                         break
-            except Exception:
-                continue
+            except Exception as exc:
+                log.debug("Probate code search %s: %s", code, exc)
+        if found:
+            break  # One working code is enough
 
+    # Try keyword searches if codes yielded nothing
+    if not records:
+        for keyword, label in keyword_searches:
+            for endpoint in endpoints:
+                try:
+                    # Some publicsearch.us instances support a 'keyword' or 'name' param
+                    for param_name in ["keyword", "name", "grantorName", "searchTerm", "q"]:
+                        r = sess.get(endpoint, params={
+                            "countyId":  "dallas",
+                            param_name:  keyword,
+                            "startDate": dt_from,
+                            "endDate":   dt_to,
+                            "page":      1,
+                            "pageSize":  200,
+                        }, timeout=20)
+                        if r.status_code == 200 and "json" in r.headers.get("Content-Type", ""):
+                            parsed = _parse_api_results(r.json(), "PRO", f"Probate / Estate ({label})")
+                            if parsed:
+                                log.info("Probate keyword '%s': %d records", keyword, len(parsed))
+                                records.extend(parsed)
+                                break
+                except Exception as exc:
+                    log.debug("Probate keyword search %s: %s", keyword, exc)
+
+    log.info("Probate recorded docs: %d", len(records))
     return records
+
+
+def _scrape_probate_recording_portal(dt_from: str, dt_to: str) -> list:
+    """Legacy shim — calls the new function."""
+    return _scrape_probate_recorded(dt_from, dt_to)
+
+
+def _parse_probate_api(data: Any) -> list:
+    """Legacy shim — try both Odyssey and generic parsers."""
+    result = _parse_odyssey_response(data)
+    if not result:
+        result = _parse_api_results(data, "PRO", "Probate / Estate")
+    return result
 
 
 # ═══════════════════════════════════════════════════════════════════════════
