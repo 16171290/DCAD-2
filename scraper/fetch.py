@@ -452,7 +452,7 @@ def _scrape_probate_researchTX(dt_from: str, dt_to: str) -> list:
             "SearchIndexType":        "Cases",
             "hearingListView":        True,
             "isCalendarView":         False,
-            "isNewestFirst":          True,   # newest first so we can stop early
+            "isNewestFirst":          True,
             "isReturningFromDetails": False,
             "sortFieldOrder":         0,
             "sortFields":             3,
@@ -462,11 +462,8 @@ def _scrape_probate_researchTX(dt_from: str, dt_to: str) -> list:
                     "excludeSelf":     False,
                     "selectedBuckets": [{"bucketKey": k} for k in probate_court_buckets],
                 },
-                {
-                    "facetKey":        "Case Category",
-                    "excludeSelf":     False,
-                    "selectedBuckets": [{"bucketKey": "probate"}],
-                },
+                # NOTE: Case Category facet removed — bucket key was incorrect.
+                # Location filter alone scopes to county clerk probate cases.
             ],
         }
 
@@ -482,8 +479,25 @@ def _scrape_probate_researchTX(dt_from: str, dt_to: str) -> list:
                 break
 
             data = r.json()
+
+            # Log top-level keys to understand response structure
+            if isinstance(data, dict):
+                keys = list(data.keys())
+                log.info("re:SearchTX response keys: %s", keys)
+                for k in keys:
+                    v = data[k]
+                    if isinstance(v, list):
+                        log.info("  key='%s' list len=%d", k, len(v))
+                    elif isinstance(v, dict):
+                        log.info("  key='%s' dict keys=%s", k, list(v.keys())[:5])
+                    else:
+                        log.info("  key='%s' value=%s", k, str(v)[:80])
+            elif isinstance(data, list):
+                log.info("re:SearchTX response is list len=%d", len(data))
+
             cases = (data.get("cases") or data.get("results") or
-                     data.get("data") or [])
+                     data.get("data") or data.get("items") or
+                     data.get("searchResults") or [])
             if isinstance(data, list):
                 cases = data
 
