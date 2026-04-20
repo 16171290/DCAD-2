@@ -408,173 +408,152 @@ async def scrape_probate(date_from: str, date_to: str) -> list:
 async def _scrape_probate_odyssey(date_from: str, date_to: str,
                                    dt_from: str, dt_to: str) -> list:
     """
-    Load the Dallas County Courts Portal Smart Search (Dashboard/29),
-    select Probate courts, set date range, submit, and intercept the
-    Odyssey API responses which return JSON case data.
+    Call the Odyssey portal REST API directly with requests — no browser needed.
+    The Tyler Technologies Odyssey portal exposes a POST endpoint at:
+      /Home/Dashboard/29   (SmartSearch workspace)
+    which accepts form-encoded case search criteria and returns HTML or JSON.
+
+    We POST directly with a real session (cookie jar) established by a GET first,
+    then parse the response. This bypasses the JavaScript/cookie bot detection
+    because we handle cookies properly with requests.Session.
     """
     records = []
+    sess = _session_with_retries()
 
-    async with async_playwright() as pw:
-        browser = await pw.chromium.launch(
-            headless=True,
-            args=["--no-sandbox", "--disable-dev-shm-usage"]
+    base = "https://courtsportal.dallascounty.org/DALLASPROD"
+
+    # Step 1: GET the search page to establish session cookies and get
+    # the anti-forgery token (Odyssey uses ASP.NET MVC __RequestVerificationToken)
+    try:
+        log.info("Probate: establishing session with courts portal...")
+        r = sess.get(f"{base}/Home/Dashboard/29", timeout=30)
+        r.raise_for_status()
+
+        # Extract anti-forgery token from the HTML
+        token = ""
+        token_match = re.search(
+            r'__RequestVerificationToken["\s]+value="([^"]+)"', r.text
         )
-        ctx = await browser.new_context(
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-                       "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-            viewport={"width": 1280, "height": 900},
-        )
-        page = await ctx.new_page()
-        captured: list = []
+        if token_match:
+            token = token_match.group(1)
+            log.info("Probate: got anti-forgery token (%d chars)", len(token))
+        else:
+            log.info("Probate: no anti-forgery token found — proceeding anyway")
 
-        async def on_response(resp):
-            try:
-                ct = resp.headers.get("content-type", "")
-                if "json" in ct and resp.status == 200:
-                    data = await resp.json()
-                    captured.append((resp.url, data))
-                    log.debug("Captured JSON from: %s", resp.url)
-            except Exception:
-                pass
+    except Exception as exc:
+        log.warning("Probate: failed to establish session: %s", exc)
+        return records
 
-        page.on("response", on_response)
+    # Step 2: POST the search form with probate court criteria
+    # Odyssey SmartSearch form field names (from the input list we captured earlier)
+    search_payloads = [
+        # Search by file date range only — cast wide net, filter for probate courts
+        {
+            "__RequestVerificationToken": token,
+            "caseCriteria.SearchCriteria":       "",
+            "caseCriteria.NameLast":             "",
+            "caseCriteria.NameFirst":            "",
+            "caseCriteria.NameMiddle":           "",
+            "caseCriteria.NameSuffix":           "",
+            "caseCriteria.SearchByPartyName":    "true",
+            "caseCriteria.SearchCases":          "true",
+            "caseCriteria.CaseType":             "Probate",
+            "caseCriteria.FileDateStart":        date_from,
+            "caseCriteria.FileDateEnd":          date_to,
+            "caseCriteria.CourtLocation":        "",
+            "caseCriteria.SearchBy":             "",
+            "btnSSSubmit":                       "Search",
+        },
+        # Fallback: search without CaseType filter
+        {
+            "__RequestVerificationToken": token,
+            "caseCriteria.SearchCriteria":       "",
+            "caseCriteria.NameLast":             "",
+            "caseCriteria.NameFirst":            "",
+            "caseCriteria.SearchByPartyName":    "true",
+            "caseCriteria.SearchCases":          "true",
+            "caseCriteria.FileDateStart":        date_from,
+            "caseCriteria.FileDateEnd":          date_to,
+            "btnSSSubmit":                       "Search",
+        },
+    ]
 
+    for i, payload in enumerate(search_payloads):
         try:
-            log.info("Probate: loading courts portal Smart Search...")
-            await page.goto(PROBATE_SEARCH, wait_until="domcontentloaded", timeout=30_000)
-            await asyncio.sleep(4)
+            log.info("Probate: POST search attempt %d (CaseType=%s)...",
+                     i + 1, payload.get("caseCriteria.CaseType", "none"))
+            resp = sess.post(
+                f"{base}/Home/Dashboard/29",
+                data=payload,
+                headers={
+                    "Content-Type":  "application/x-www-form-urlencoded",
+                    "Referer":       f"{base}/Home/Dashboard/29",
+                    "X-Requested-With": "XMLHttpRequest",
+                },
+                timeout=30,
+            )
+            log.info("Probate POST status: %d, content-type: %s",
+                     resp.status_code, resp.headers.get("Content-Type", ""))
 
-            # Log what we landed on so we can debug if needed
-            log.info("Probate portal URL after load: %s", page.url)
-            title = await page.title()
-            log.info("Probate portal page title: %s", title)
+            if resp.status_code != 200:
+                continue
 
-            # We know the exact field IDs from inspecting the portal:
-            #   caseCriteria.FileDateStart  / caseCriteria.FileDateEnd
-            #   caseCriteria.CaseType       (Odyssey Kendo dropdown)
-            #   btnSSSubmit                 (input[type=submit], name=Search)
-            # Note: Odyssey uses Kendo UI — visible inputs are paired with hidden
-            # inputs. We set the visible input value AND trigger Kendo's change.
+            ct = resp.headers.get("Content-Type", "")
 
-            filled = await page.evaluate(f"""
-                () => {{
-                    function setVal(id, value) {{
-                        // Try by exact id first (dots in id need querySelector escaping)
-                        let el = document.getElementById(id) ||
-                                 document.querySelector('[name="' + id + '"]');
-                        if (el) {{
-                            el.value = value;
-                            el.dispatchEvent(new Event('input',  {{bubbles:true}}));
-                            el.dispatchEvent(new Event('change', {{bubbles:true}}));
-                            el.dispatchEvent(new KeyboardEvent('keyup', {{bubbles:true}}));
-                            return true;
-                        }}
-                        return false;
-                    }}
+            # JSON response
+            if "json" in ct:
+                try:
+                    data = resp.json()
+                    parsed = _parse_odyssey_response(data)
+                    if parsed:
+                        log.info("Probate POST JSON: %d records", len(parsed))
+                        records.extend(parsed)
+                        break
+                except Exception as exc:
+                    log.debug("Probate JSON parse: %s", exc)
 
-                    // Fill date range using exact IDs observed in the portal
-                    const startOk = setVal('caseCriteria.FileDateStart', '{date_from}');
-                    const endOk   = setVal('caseCriteria.FileDateEnd',   '{date_to}');
-
-                    // Set CaseType to Probate using the Kendo hidden input
-                    // The visible autocomplete input has name caseCriteria.CaseType_input
-                    // The hidden bound input has name caseCriteria.CaseType
-                    const ctVisible = document.querySelector('input[name="caseCriteria.CaseType_input"]');
-                    const ctHidden  = document.getElementById('caseCriteria_CaseType') ||
-                                      document.querySelector('input[name="caseCriteria.CaseType"]');
-                    if (ctVisible) {{
-                        ctVisible.value = 'Probate';
-                        ctVisible.dispatchEvent(new Event('input',  {{bubbles:true}}));
-                        ctVisible.dispatchEvent(new Event('change', {{bubbles:true}}));
-                    }}
-                    // Try all select dropdowns for a Probate option
-                    let caseTypeSet = false;
-                    for (const sel of document.querySelectorAll('select')) {{
-                        for (const opt of sel.options) {{
-                            if (/probate/i.test(opt.text || opt.value)) {{
-                                sel.value = opt.value;
-                                sel.dispatchEvent(new Event('change', {{bubbles:true}}));
-                                caseTypeSet = true;
-                                break;
-                            }}
-                        }}
-                        if (caseTypeSet) break;
-                    }}
-
-                    return {{startOk, endOk, caseTypeSet}};
-                }}
-            """)
-            log.info("Probate form fill result: %s", filled)
-            await asyncio.sleep(1)
-
-            # Click the submit button — exact id is btnSSSubmit (input[type=submit])
-            clicked = await page.evaluate("""
-                () => {
-                    // Try exact id first
-                    const byId = document.getElementById('btnSSSubmit');
-                    if (byId) { byId.click(); return 'btnSSSubmit by id'; }
-
-                    // Try by name
-                    const byName = document.querySelector('input[name="Search"][type="submit"]');
-                    if (byName) { byName.click(); return 'input[name=Search]'; }
-
-                    // Fallback: any submit input or button
-                    const anySubmit = document.querySelector('input[type="submit"], button[type="submit"]');
-                    if (anySubmit) { anySubmit.click(); return 'any submit: ' + (anySubmit.value || anySubmit.innerText); }
-
-                    return 'not found';
-                }
-            """)
-            log.info("Probate search button click: %s", clicked)
-
-            # Odyssey is an AngularJS SPA — results load via AJAX in-page.
-            # Do NOT wait for navigation; instead wait for the results div to appear.
-            try:
-                await page.wait_for_selector(
-                    '.search-results, #gridCases, table.k-grid-table, '
-                    '[id*="result"], [class*="result"], [ng-repeat]',
-                    timeout=20_000
-                )
-                log.info("Probate: results selector appeared")
-            except Exception:
-                log.info("Probate: results selector timeout — waiting fixed 10s")
-                await asyncio.sleep(10)
-
-            await asyncio.sleep(3)  # let Angular finish rendering
-
-            # Log every captured JSON response for diagnostics
-            log.info("Probate: captured %d JSON responses", len(captured))
-            for url, data in captured:
-                dtype = type(data).__name__
-                keys  = list(data.keys())[:8] if isinstance(data, dict) else "list"
-                log.info("  Captured JSON: url=%s type=%s keys=%s", url[-80:], dtype, keys)
-
-            # Parse captured XHR responses
-            for url, data in captured:
-                parsed = _parse_odyssey_response(data)
+            # HTML response — parse results table
+            if "html" in ct or not ct:
+                parsed = _parse_probate_html(resp.text)
                 if parsed:
-                    log.info("Probate Odyssey JSON from %s → %d records", url[:80], len(parsed))
+                    log.info("Probate POST HTML: %d records", len(parsed))
                     records.extend(parsed)
-
-            # If no XHR captured, try reading the rendered DOM
-            if not records:
-                content = await page.content()
-                log.info("Probate: no JSON captured, trying HTML parse...")
-                records = _parse_probate_html(content)
-                if records:
-                    log.info("Probate HTML parse: %d records", len(records))
+                    break
                 else:
-                    # Log a longer snippet focused on the body content
-                    body_match = re.search(r'<body[^>]*>(.*)', content, re.DOTALL)
-                    snippet = (body_match.group(1) if body_match else content)[500:3000]
-                    snippet = re.sub(r'<[^>]+>', ' ', snippet)  # strip tags
-                    snippet = re.sub(r'\s+', ' ', snippet).strip()
-                    log.info("Probate body text snippet: %s", snippet[:1500])
+                    # Log snippet to understand what came back
+                    text = re.sub(r'<[^>]+>', ' ', resp.text)
+                    text = re.sub(r'\s+', ' ', text).strip()
+                    log.info("Probate POST response snippet: %s", text[:800])
 
         except Exception as exc:
-            log.warning("Probate Odyssey scrape failed: %s", exc)
-        finally:
-            await browser.close()
+            log.warning("Probate POST attempt %d failed: %s", i + 1, exc)
+
+    # Step 3: Also try the dedicated SmartSearch API endpoint that Odyssey
+    # AngularJS calls internally — found in Tyler Tech deployments as:
+    #   POST /Home/SmartSearch  or  GET /Home/GetCaseList
+    if not records:
+        for endpoint in [
+            f"{base}/Home/SmartSearch",
+            f"{base}/Home/GetCaseList",
+            f"{base}/api/Cases/GetCases",
+            f"{base}/Case/SearchCases",
+        ]:
+            try:
+                r = sess.post(endpoint, json={
+                    "fileDateStart": dt_from,
+                    "fileDateEnd":   dt_to,
+                    "caseType":      "Probate",
+                    "pageSize":      200,
+                    "page":          1,
+                }, timeout=20)
+                if r.status_code == 200 and "json" in r.headers.get("Content-Type", ""):
+                    parsed = _parse_odyssey_response(r.json())
+                    if parsed:
+                        log.info("Probate internal API %s: %d records", endpoint, len(parsed))
+                        records.extend(parsed)
+                        break
+            except Exception:
+                continue
 
     return records
 
