@@ -527,17 +527,36 @@ async def _scrape_probate_odyssey(date_from: str, date_to: str,
             """)
             log.info("Probate search button click: %s", clicked)
 
-            await page.wait_for_load_state("networkidle", timeout=20_000)
-            await asyncio.sleep(3)
+            # Odyssey is an AngularJS SPA — results load via AJAX in-page.
+            # Do NOT wait for navigation; instead wait for the results div to appear.
+            try:
+                await page.wait_for_selector(
+                    '.search-results, #gridCases, table.k-grid-table, '
+                    '[id*="result"], [class*="result"], [ng-repeat]',
+                    timeout=20_000
+                )
+                log.info("Probate: results selector appeared")
+            except Exception:
+                log.info("Probate: results selector timeout — waiting fixed 10s")
+                await asyncio.sleep(10)
 
-            # Parse all captured JSON responses
+            await asyncio.sleep(3)  # let Angular finish rendering
+
+            # Log every captured JSON response for diagnostics
+            log.info("Probate: captured %d JSON responses", len(captured))
+            for url, data in captured:
+                dtype = type(data).__name__
+                keys  = list(data.keys())[:8] if isinstance(data, dict) else "list"
+                log.info("  Captured JSON: url=%s type=%s keys=%s", url[-80:], dtype, keys)
+
+            # Parse captured XHR responses
             for url, data in captured:
                 parsed = _parse_odyssey_response(data)
                 if parsed:
                     log.info("Probate Odyssey JSON from %s → %d records", url[:80], len(parsed))
                     records.extend(parsed)
 
-            # If nothing captured, try HTML parse of results
+            # If no XHR captured, try reading the rendered DOM
             if not records:
                 content = await page.content()
                 log.info("Probate: no JSON captured, trying HTML parse...")
@@ -545,9 +564,12 @@ async def _scrape_probate_odyssey(date_from: str, date_to: str,
                 if records:
                     log.info("Probate HTML parse: %d records", len(records))
                 else:
-                    # Log a snippet of the page for debugging
-                    snippet = content[:2000].replace("\n", " ")
-                    log.info("Probate page snippet: %s", snippet)
+                    # Log a longer snippet focused on the body content
+                    body_match = re.search(r'<body[^>]*>(.*)', content, re.DOTALL)
+                    snippet = (body_match.group(1) if body_match else content)[500:3000]
+                    snippet = re.sub(r'<[^>]+>', ' ', snippet)  # strip tags
+                    snippet = re.sub(r'\s+', ' ', snippet).strip()
+                    log.info("Probate body text snippet: %s", snippet[:1500])
 
         except Exception as exc:
             log.warning("Probate Odyssey scrape failed: %s", exc)
