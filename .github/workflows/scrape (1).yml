@@ -42,11 +42,47 @@ jobs:
 
       # ── 5. Run scraper ───────────────────────────────────────────────────
       - name: Run Dallas County scraper
-        run: python scraper/fetch.py
+        id: scraper
+        run: |
+          python scraper/fetch.py 2>&1 | tee /tmp/scraper_output.txt
+          # Check if cookie expired warning appeared
+          if grep -q "cookie expired" /tmp/scraper_output.txt; then
+            echo "cookie_expired=true" >> $GITHUB_OUTPUT
+          else
+            echo "cookie_expired=false" >> $GITHUB_OUTPUT
+          fi
         env:
-          PYTHONUNBUFFERED: "1"
+          PYTHONUNBUFFERED:    "1"
+          RESEARCH_TX_COOKIE:  ${{ secrets.RESEARCH_TX_COOKIE }}
 
-      # ── 6. Commit updated records.json files ────────────────────────────
+      # ── 6. Email alert if cookie expired ────────────────────────────────
+      - name: Send cookie expiry alert
+        if: steps.scraper.outputs.cookie_expired == 'true'
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port:    465
+          secure:         true
+          username:       ${{ secrets.ALERT_EMAIL_ADDRESS }}
+          password:       ${{ secrets.ALERT_EMAIL_PASSWORD }}
+          to:             ${{ secrets.ALERT_EMAIL_ADDRESS }}
+          from:           Dallas County Scraper <${{ secrets.ALERT_EMAIL_ADDRESS }}>
+          subject:        "⚠️ Action Required: re:SearchTX Cookie Expired"
+          body: |
+            Your Dallas County lead scraper ran today but the re:SearchTX
+            cookie has expired — probate records will be missing until you
+            update it.
+
+            To fix:
+            1. Go to https://research.txcourts.gov and log in
+            2. Open DevTools (F12) → Network tab → run any search
+            3. Click the search request → Headers → copy the Cookie value
+            4. Go to your GitHub repo → Settings → Secrets → Actions
+            5. Update the RESEARCH_TX_COOKIE secret with the new value
+
+            Your dashboard: https://16171290.github.io/DCAD-2/
+
+      # ── 7. Commit updated records.json files ────────────────────────────
       - name: Commit updated records
         run: |
           git config user.name  "github-actions[bot]"
