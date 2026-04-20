@@ -14,6 +14,7 @@ import csv
 import io
 import json
 import logging
+import os
 import re
 import sys
 import time
@@ -385,7 +386,7 @@ def _scrape_foreclosure_portal(date_from: str, date_to: str) -> list:
 # ═══════════════════════════════════════════════════════════════════════════
 
 async def scrape_probate(date_from: str, date_to: str) -> list:
-    log.info("=== Scraping Probate ===")
+    log.info("=== Scraping Probate (re:SearchTX API) ===")
 
     try:
         dt_from = datetime.strptime(date_from, "%m/%d/%Y").strftime("%Y-%m-%d")
@@ -393,273 +394,193 @@ async def scrape_probate(date_from: str, date_to: str) -> list:
     except Exception:
         dt_from, dt_to = date_from, date_to
 
-    # Source A – Odyssey courts portal (probate court cases)
-    court_records = await _scrape_probate_odyssey(date_from, date_to, dt_from, dt_to)
-
-    # Source B – publicsearch.us recorded probate documents
+    court_records    = _scrape_probate_researchTX(dt_from, dt_to)
     recorded_records = _scrape_probate_recorded(dt_from, dt_to)
-
     records = court_records + recorded_records
+
     log.info("Probate total: %d (%d court cases, %d recorded docs)",
              len(records), len(court_records), len(recorded_records))
     return records
 
 
-async def _scrape_probate_odyssey(date_from: str, date_to: str,
-                                   dt_from: str, dt_to: str) -> list:
+def _scrape_probate_researchTX(dt_from: str, dt_to: str) -> list:
     """
-    Call the Odyssey portal REST API directly with requests — no browser needed.
-    The Tyler Technologies Odyssey portal exposes a POST endpoint at:
-      /Home/Dashboard/29   (SmartSearch workspace)
-    which accepts form-encoded case search criteria and returns HTML or JSON.
+    Call the re:SearchTX API directly.
+    Endpoint: POST https://research.txcourts.gov/CourtRecordsSearch/search?timeZoneOffsetInMinutes=-300
+    Auth: FedAuth cookie from RESEARCH_TX_COOKIE environment variable (GitHub Secret).
+    Facet: Location = "dallas county - county clerk"
+    We search a wildcard query and filter by filed date client-side since the API
+    doesn't expose a date range param — instead we page through results sorted
+    newest-first and stop when we're past our date window.
+    """
+    cookie = os.environ.get("RESEARCH_TX_COOKIE", "")
+    if not cookie:
+        log.warning("Probate: RESEARCH_TX_COOKIE secret not set — skipping re:SearchTX")
+        return []
 
-    We POST directly with a real session (cookie jar) established by a GET first,
-    then parse the response. This bypasses the JavaScript/cookie bot detection
-    because we handle cookies properly with requests.Session.
-    """
     records = []
     sess = _session_with_retries()
+    sess.headers.update({
+        "Content-Type":          "application/json",
+        "Accept":                "application/json, text/plain, */*",
+        "Cookie":                cookie,
+        "Origin":                "https://research.txcourts.gov",
+        "Referer":               "https://research.txcourts.gov/CourtRecordsSearch/ui/search?q=",
+        "x-show-loading-spinner": "true",
+        "User-Agent":            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                                 "(KHTML, like Gecko) Chrome/147.0.0.0 Safari/537.36",
+    })
 
-    base = "https://courtsportal.dallascounty.org/DALLASPROD"
+    url = "https://research.txcourts.gov/CourtRecordsSearch/search?timeZoneOffsetInMinutes=-300"
 
-    # Step 1: GET the search page to establish session cookies and get
-    # the anti-forgery token (Odyssey uses ASP.NET MVC __RequestVerificationToken)
-    try:
-        log.info("Probate: establishing session with courts portal...")
-        r = sess.get(f"{base}/Home/Dashboard/29", timeout=30)
-        r.raise_for_status()
-
-        # Extract anti-forgery token from the HTML
-        token = ""
-        token_match = re.search(
-            r'__RequestVerificationToken["\s]+value="([^"]+)"', r.text
-        )
-        if token_match:
-            token = token_match.group(1)
-            log.info("Probate: got anti-forgery token (%d chars)", len(token))
-        else:
-            log.info("Probate: no anti-forgery token found — proceeding anyway")
-
-    except Exception as exc:
-        log.warning("Probate: failed to establish session: %s", exc)
-        return records
-
-    # Step 2: POST the search form with probate court criteria
-    # Odyssey SmartSearch form field names (from the input list we captured earlier)
-    search_payloads = [
-        # Search by file date range only — cast wide net, filter for probate courts
-        {
-            "__RequestVerificationToken": token,
-            "caseCriteria.SearchCriteria":       "",
-            "caseCriteria.NameLast":             "",
-            "caseCriteria.NameFirst":            "",
-            "caseCriteria.NameMiddle":           "",
-            "caseCriteria.NameSuffix":           "",
-            "caseCriteria.SearchByPartyName":    "true",
-            "caseCriteria.SearchCases":          "true",
-            "caseCriteria.CaseType":             "Probate",
-            "caseCriteria.FileDateStart":        date_from,
-            "caseCriteria.FileDateEnd":          date_to,
-            "caseCriteria.CourtLocation":        "",
-            "caseCriteria.SearchBy":             "",
-            "btnSSSubmit":                       "Search",
-        },
-        # Fallback: search without CaseType filter
-        {
-            "__RequestVerificationToken": token,
-            "caseCriteria.SearchCriteria":       "",
-            "caseCriteria.NameLast":             "",
-            "caseCriteria.NameFirst":            "",
-            "caseCriteria.SearchByPartyName":    "true",
-            "caseCriteria.SearchCases":          "true",
-            "caseCriteria.FileDateStart":        date_from,
-            "caseCriteria.FileDateEnd":          date_to,
-            "btnSSSubmit":                       "Search",
-        },
+    # Probate case types filed in Dallas County clerk
+    # We search using wildcard and filter to probate courts via facets
+    # Then filter results by filed date
+    probate_court_buckets = [
+        "dallas county - county clerk",
     ]
 
-    for i, payload in enumerate(search_payloads):
-        try:
-            log.info("Probate: POST search attempt %d (CaseType=%s)...",
-                     i + 1, payload.get("caseCriteria.CaseType", "none"))
-            resp = sess.post(
-                f"{base}/Home/Dashboard/29",
-                data=payload,
-                headers={
-                    "Content-Type":  "application/x-www-form-urlencoded",
-                    "Referer":       f"{base}/Home/Dashboard/29",
-                    "X-Requested-With": "XMLHttpRequest",
+    page_index = 0
+    page_size  = 100
+    found_old  = False  # flag to stop paging once we're past our date window
+
+    while not found_old:
+        payload = {
+            "queryString":            "*",
+            "pageSize":               page_size,
+            "pageIndex":              page_index,
+            "SearchIndexType":        "Cases",
+            "hearingListView":        True,
+            "isCalendarView":         False,
+            "isNewestFirst":          True,   # newest first so we can stop early
+            "isReturningFromDetails": False,
+            "sortFieldOrder":         0,
+            "sortFields":             3,
+            "selectedFacets": [
+                {
+                    "facetKey":        "Location",
+                    "excludeSelf":     False,
+                    "selectedBuckets": [{"bucketKey": k} for k in probate_court_buckets],
                 },
-                timeout=30,
-            )
-            log.info("Probate POST status: %d, content-type: %s",
-                     resp.status_code, resp.headers.get("Content-Type", ""))
+                {
+                    "facetKey":        "Case Category",
+                    "excludeSelf":     False,
+                    "selectedBuckets": [{"bucketKey": "probate"}],
+                },
+            ],
+        }
 
-            if resp.status_code != 200:
-                continue
+        try:
+            r = sess.post(url, json=payload, timeout=30)
+            log.info("re:SearchTX page %d status: %d", page_index, r.status_code)
 
-            ct = resp.headers.get("Content-Type", "")
+            if r.status_code == 401:
+                log.warning("Probate: re:SearchTX cookie expired — update RESEARCH_TX_COOKIE secret")
+                break
+            if r.status_code != 200:
+                log.warning("Probate: re:SearchTX returned %d", r.status_code)
+                break
 
-            # JSON response
-            if "json" in ct:
+            data = r.json()
+            cases = (data.get("cases") or data.get("results") or
+                     data.get("data") or [])
+            if isinstance(data, list):
+                cases = data
+
+            if not cases:
+                log.info("Probate: no more cases at page %d", page_index)
+                break
+
+            log.info("Probate: page %d returned %d cases", page_index, len(cases))
+
+            for item in cases:
+                if not isinstance(item, dict):
+                    continue
                 try:
-                    data = resp.json()
-                    parsed = _parse_odyssey_response(data)
-                    if parsed:
-                        log.info("Probate POST JSON: %d records", len(parsed))
-                        records.extend(parsed)
-                        break
-                except Exception as exc:
-                    log.debug("Probate JSON parse: %s", exc)
+                    filed = str(
+                        item.get("filedDate") or item.get("fileDate") or
+                        item.get("caseFiledDate") or item.get("date") or ""
+                    )
+                    filed_norm = _normalise_date(filed)
 
-            # HTML response — parse results table
-            if "html" in ct or not ct:
-                parsed = _parse_probate_html(resp.text)
-                if parsed:
-                    log.info("Probate POST HTML: %d records", len(parsed))
-                    records.extend(parsed)
-                    break
-                else:
-                    # Log snippet to understand what came back
-                    text = re.sub(r'<[^>]+>', ' ', resp.text)
-                    text = re.sub(r'\s+', ' ', text).strip()
-                    log.info("Probate POST response snippet: %s", text[:800])
+                    # Stop paging if we've gone past our date window
+                    if filed_norm and filed_norm < dt_from:
+                        found_old = True
+                        break
+
+                    # Skip if outside our window
+                    if filed_norm and (filed_norm < dt_from or filed_norm > dt_to):
+                        continue
+
+                    # Extract case details
+                    case_num = str(
+                        item.get("caseNumber") or item.get("causeNumber") or
+                        item.get("id") or ""
+                    )
+                    style = str(
+                        item.get("caseStyle") or item.get("style") or
+                        item.get("name") or item.get("description") or ""
+                    )
+                    case_type = str(
+                        item.get("caseType") or item.get("type") or "Probate"
+                    )
+                    court = str(item.get("court") or item.get("location") or "")
+
+                    # Extract party name
+                    owner = ""
+                    parties = (item.get("parties") or item.get("partyList") or [])
+                    if isinstance(parties, list):
+                        for p in parties:
+                            if isinstance(p, dict):
+                                ptype = (p.get("partyType") or "").lower()
+                                pname = (p.get("name") or p.get("partyName") or "")
+                                if any(k in ptype for k in
+                                       ["decedent","petitioner","applicant","testator","deceased"]):
+                                    owner = pname
+                                    break
+                                elif not owner and pname:
+                                    owner = pname
+                    if not owner:
+                        owner = style
+
+                    link = str(item.get("url") or item.get("link") or "")
+                    if not link and case_num:
+                        link = (f"https://research.txcourts.gov/CourtRecordsSearch/"
+                                f"ui/case/{case_num}/details")
+
+                    if not case_num and not owner:
+                        continue
+
+                    records.append({
+                        "doc_num":      case_num,
+                        "doc_type":     case_type,
+                        "filed":        filed_norm,
+                        "cat":          "PRO",
+                        "cat_label":    "Probate / Estate",
+                        "owner":        owner,
+                        "grantee":      court,
+                        "amount":       _parse_amount(
+                            item.get("amount") or item.get("estateValue") or ""
+                        ),
+                        "legal":        style,
+                        "prop_address": "",
+                        "clerk_url":    link,
+                    })
+
+                except Exception as exc:
+                    log.debug("Probate case parse error: %s", exc)
+                    continue
+
+            page_index += 1
+            # Safety cap — don't page forever
+            if page_index > 20:
+                break
 
         except Exception as exc:
-            log.warning("Probate POST attempt %d failed: %s", i + 1, exc)
+            log.warning("Probate re:SearchTX request failed: %s", exc)
+            break
 
-    # Step 3: Also try the dedicated SmartSearch API endpoint that Odyssey
-    # AngularJS calls internally — found in Tyler Tech deployments as:
-    #   POST /Home/SmartSearch  or  GET /Home/GetCaseList
-    if not records:
-        for endpoint in [
-            f"{base}/Home/SmartSearch",
-            f"{base}/Home/GetCaseList",
-            f"{base}/api/Cases/GetCases",
-            f"{base}/Case/SearchCases",
-        ]:
-            try:
-                r = sess.post(endpoint, json={
-                    "fileDateStart": dt_from,
-                    "fileDateEnd":   dt_to,
-                    "caseType":      "Probate",
-                    "pageSize":      200,
-                    "page":          1,
-                }, timeout=20)
-                if r.status_code == 200 and "json" in r.headers.get("Content-Type", ""):
-                    parsed = _parse_odyssey_response(r.json())
-                    if parsed:
-                        log.info("Probate internal API %s: %d records", endpoint, len(parsed))
-                        records.extend(parsed)
-                        break
-            except Exception:
-                continue
-
-    return records
-
-
-def _parse_odyssey_response(data: Any) -> list:
-    """
-    Parse the JSON structure that Odyssey / Tyler Technologies returns
-    for case search results. The structure varies but common patterns are:
-      { "cases": [...] }
-      { "data": { "cases": [...] } }
-      [ { "caseNumber": ..., "style": ..., "fileDate": ... }, ... ]
-    """
-    records = []
-    cases = []
-
-    if isinstance(data, list):
-        cases = data
-    elif isinstance(data, dict):
-        # Try common Odyssey response keys
-        for key in ["cases", "Cases", "results", "Results", "data", "items",
-                    "CaseList", "caseList", "searchResults"]:
-            val = data.get(key)
-            if isinstance(val, list):
-                cases = val
-                break
-            elif isinstance(val, dict):
-                # One level deeper
-                for inner_key in ["cases", "Cases", "results", "items"]:
-                    inner = val.get(inner_key)
-                    if isinstance(inner, list):
-                        cases = inner
-                        break
-                if cases:
-                    break
-
-    for item in cases:
-        if not isinstance(item, dict):
-            continue
-        try:
-            # Odyssey uses various field names across versions
-            case_num = str(
-                item.get("caseNumber") or item.get("CaseNumber") or
-                item.get("causeNumber") or item.get("CauseNumber") or
-                item.get("id") or item.get("ID") or ""
-            )
-            style = str(
-                item.get("style") or item.get("Style") or
-                item.get("caseStyle") or item.get("CaseStyle") or
-                item.get("name") or item.get("Name") or ""
-            )
-            case_type = str(
-                item.get("caseType") or item.get("CaseType") or
-                item.get("type") or item.get("Type") or "Probate"
-            )
-            filed = str(
-                item.get("fileDate") or item.get("FileDate") or
-                item.get("filedDate") or item.get("FiledDate") or
-                item.get("dateField") or item.get("createdDate") or ""
-            )
-            court = str(
-                item.get("court") or item.get("Court") or
-                item.get("courtName") or item.get("CourtName") or ""
-            )
-
-            # Extract party name — Odyssey nests parties in a sub-array
-            owner = ""
-            parties = (item.get("parties") or item.get("Parties") or
-                       item.get("partyList") or item.get("PartyList") or [])
-            if isinstance(parties, list):
-                for p in parties:
-                    if isinstance(p, dict):
-                        ptype = (p.get("partyType") or p.get("PartyType") or "").lower()
-                        pname = (p.get("name") or p.get("Name") or
-                                 p.get("partyName") or p.get("PartyName") or "")
-                        # Prefer decedent/petitioner/applicant
-                        if any(k in ptype for k in ["decedent","petitioner","applicant","testator"]):
-                            owner = pname
-                            break
-                        elif not owner and pname:
-                            owner = pname
-            if not owner:
-                owner = style  # Use case style as fallback owner name
-
-            if not case_num and not owner:
-                continue
-
-            link = str(item.get("url") or item.get("link") or "")
-            if not link and case_num:
-                link = f"{COURTS_BASE}/Case/CaseDetail?odeCaseNo={case_num}"
-
-            records.append({
-                "doc_num":      case_num,
-                "doc_type":     case_type,
-                "filed":        _normalise_date(filed),
-                "cat":          "PRO",
-                "cat_label":    "Probate / Estate",
-                "owner":        owner,
-                "grantee":      court,
-                "amount":       _parse_amount(item.get("amount") or item.get("estateValue") or ""),
-                "legal":        style,
-                "prop_address": "",
-                "clerk_url":    link,
-            })
-        except Exception:
-            continue
-
+    log.info("Probate re:SearchTX: %d records in date range", len(records))
     return records
 
 
