@@ -441,10 +441,9 @@ def _scrape_probate_researchTX(dt_from: str, dt_to: str) -> list:
     ]
 
     page_index = 0
-    page_size  = 100
-    found_old  = False  # flag to stop paging once we're past our date window
+    page_size  = 200  # get everything in one shot - date filter is server-side
 
-    while not found_old:
+    while page_index <= 0:  # single page - server-side date filter handles scope
         payload = {
             "queryString":            "*",
             "pageSize":               page_size,
@@ -460,10 +459,21 @@ def _scrape_probate_researchTX(dt_from: str, dt_to: str) -> list:
                 {
                     "facetKey":        "Location",
                     "excludeSelf":     False,
-                    "selectedBuckets": [{"bucketKey": k} for k in probate_court_buckets],
+                    "selectedBuckets": [{"bucketKey": "dallas county - county clerk"}],
                 },
-                # NOTE: Case Category facet removed — bucket key was incorrect.
-                # Location filter alone scopes to county clerk probate cases.
+                {
+                    "facetKey":        "Case Category",
+                    "excludeSelf":     False,
+                    "selectedBuckets": [
+                        {"bucketKey": "probate"},
+                        {"bucketKey": "probate - other"},
+                    ],
+                },
+                {
+                    "facetKey":        "Case Filed Date",
+                    "excludeSelf":     False,
+                    "selectedBuckets": [{"bucketKey": "In The Last Week"}],
+                },
             ],
         }
 
@@ -558,20 +568,7 @@ def _scrape_probate_researchTX(dt_from: str, dt_to: str) -> list:
                         item.get("FiledDate") or item.get("FileDate") or ""
                     )
                     filed_norm = _normalise_date(filed)
-
-                    # Stop paging if we've gone past our date window
-                    if filed_norm and filed_norm < dt_from:
-                        log.info("Probate: reached case older than window (%s < %s), stopping",
-                                 filed_norm, dt_from)
-                        found_old = True
-                        break
-
-                    # Skip if outside our window — but only if we have a valid date
-                    if filed_norm and filed_norm > dt_to:
-                        continue
-                    # If no date found, include the record anyway
-                    if not filed_norm:
-                        log.debug("Probate: case has no date, including anyway")
+                    # No client-side date filter needed — server filters by "In The Last Week"
 
                     # Extract case details
                     case_num = str(
