@@ -519,13 +519,14 @@ def _scrape_probate_researchTX(dt_from: str, dt_to: str) -> list:
 
             log.info("Probate: page %d returned %d cases", page_index, len(cases))
 
-            # Log the first case's keys on page 0 so we can see field names
+            # Log the first case on page 0 so we can see field names
             if page_index == 0 and cases:
-                first = cases[0]
-                if isinstance(first, dict):
-                    log.info("Probate case sample keys: %s", list(first.keys()))
-                    log.info("Probate case sample values: %s",
-                             {k: str(v)[:60] for k, v in list(first.items())[:10]})
+                try:
+                    first = cases[0]
+                    log.info("Probate case[0] type: %s  value: %s",
+                             type(first).__name__, str(first)[:400])
+                except Exception as e:
+                    log.info("Probate case[0] log error: %s", e)
 
             for item in cases:
                 if not isinstance(item, dict):
