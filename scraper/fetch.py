@@ -604,7 +604,7 @@ def _scrape_probate_researchTX(dt_from: str, dt_to: str) -> list:
                     link = str(item.get("url") or item.get("link") or "")
                     if not link and case_num:
                         link = (f"https://research.txcourts.gov/CourtRecordsSearch/"
-                                f"ui/case/{case_num}/details")
+                                f"ui/cases/{case_num}/details")
 
                     if not case_num and not owner:
                         continue
@@ -837,6 +837,25 @@ def _download_with_retry(sess, url, **kwargs):
 def download_parcel_dbf() -> dict:
     log.info("=== Downloading Dallas CAD parcel DBF ===")
     sess = _session_with_retries()
+
+    # Try the direct ZIP URL first (found from a successful run)
+    direct_urls = [
+        "https://www.dallascad.org/ViewPDFs.aspx?type=3&id=\\\\DCAD.ORG\\WEB\\WEBDATA\\WEBFORMS\\DATA PRODUCTS\\2025_REAL_PROPERTY_CERT_APPR_ROLL.zip",
+        "https://www.dallascad.org/DataProducts/2025_REAL_PROPERTY_CERT_APPR_ROLL.zip",
+        "https://www.dallascad.org/DataProducts/REAL_PROPERTY_CERT_APPR_ROLL.zip",
+    ]
+    for direct_url in direct_urls:
+        try:
+            log.info("Trying direct parcel URL: %s", direct_url[:80])
+            r = sess.get(direct_url, timeout=60, stream=True)
+            if r.status_code == 200:
+                ct = r.headers.get("Content-Type","")
+                if "zip" in ct or "octet" in ct or int(r.headers.get("Content-Length",0) or 0) > 10000:
+                    log.info("Direct download succeeded")
+                    return _parse_parcel_zip(r.content)
+        except Exception as exc:
+            log.debug("Direct URL failed: %s", exc)
+            continue
 
     resp = _download_with_retry(sess, CAD_URL)
     if resp is None:
