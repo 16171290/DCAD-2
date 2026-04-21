@@ -497,7 +497,8 @@ def _scrape_probate_researchTX(dt_from: str, dt_to: str) -> list:
 
             cases = (data.get("cases") or data.get("results") or
                      data.get("data") or data.get("items") or
-                     data.get("searchResults") or [])
+                     data.get("searchResults") or
+                     (data.get("result") or {}).get("searchResults") or [])
             if isinstance(data, list):
                 cases = data
 
