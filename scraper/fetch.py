@@ -469,16 +469,27 @@ def _scrape_probate_researchTX(dt_from: str, dt_to: str) -> list:
 
         try:
             r = sess.post(url, json=payload, timeout=30)
-            log.info("re:SearchTX page %d status: %d", page_index, r.status_code)
+            log.info("re:SearchTX page %d status: %d content-type: %s",
+                     page_index, r.status_code, r.headers.get("Content-Type",""))
 
-            if r.status_code == 401:
+            if r.status_code == 401 or r.status_code == 403:
                 log.warning("Probate: re:SearchTX cookie expired — update RESEARCH_TX_COOKIE secret")
                 break
             if r.status_code != 200:
-                log.warning("Probate: re:SearchTX returned %d", r.status_code)
+                log.warning("Probate: re:SearchTX returned %d body: %s",
+                            r.status_code, r.text[:300])
                 break
 
-            data = r.json()
+            if not r.text or not r.text.strip():
+                log.warning("Probate: re:SearchTX returned empty body — cookie likely expired — update RESEARCH_TX_COOKIE secret")
+                break
+
+            try:
+                data = r.json()
+            except Exception as json_exc:
+                log.warning("Probate: re:SearchTX JSON parse failed: %s — body snippet: %s",
+                            json_exc, r.text[:400])
+                break
 
             # Log top-level keys to understand response structure
             if isinstance(data, dict):
