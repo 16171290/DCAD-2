@@ -506,12 +506,32 @@ def _scrape_probate_researchTX(dt_from: str, dt_to: str) -> list:
             elif isinstance(data, list):
                 log.info("re:SearchTX response is list len=%d", len(data))
 
-            cases = (data.get("cases") or data.get("results") or
-                     data.get("data") or data.get("items") or
-                     data.get("searchResults") or
-                     (data.get("result") or {}).get("searchResults") or [])
-            if isinstance(data, list):
-                cases = data
+            # searchResults is a dict — log its keys and structure
+            search_results = (data.get("result") or {}).get("searchResults") or {}
+            if isinstance(search_results, dict):
+                log.info("searchResults keys: %s", list(search_results.keys()))
+                for k, v in list(search_results.items())[:6]:
+                    if isinstance(v, list):
+                        log.info("  searchResults['%s'] = list len=%d", k, len(v))
+                        if v:
+                            log.info("    first item: %s", str(v[0])[:300])
+                    elif isinstance(v, dict):
+                        log.info("  searchResults['%s'] = dict keys=%s", k, list(v.keys())[:6])
+                    else:
+                        log.info("  searchResults['%s'] = %s", k, str(v)[:80])
+                cases = []
+                for k, v in search_results.items():
+                    if isinstance(v, list) and v:
+                        cases = v
+                        log.info("Using searchResults['%s'] as cases list (len=%d)", k, len(v))
+                        break
+            elif isinstance(search_results, list):
+                cases = search_results
+                log.info("searchResults is list len=%d", len(cases))
+            else:
+                log.info("searchResults type=%s value=%s",
+                         type(search_results).__name__, str(search_results)[:200])
+                cases = []
 
             if not cases:
                 log.info("Probate: no more cases at page %d", page_index)
