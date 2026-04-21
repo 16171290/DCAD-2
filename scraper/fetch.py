@@ -519,24 +519,38 @@ def _scrape_probate_researchTX(dt_from: str, dt_to: str) -> list:
 
             log.info("Probate: page %d returned %d cases", page_index, len(cases))
 
+            # Log the first case's keys on page 0 so we can see field names
+            if page_index == 0 and cases:
+                first = cases[0]
+                if isinstance(first, dict):
+                    log.info("Probate case sample keys: %s", list(first.keys()))
+                    log.info("Probate case sample values: %s",
+                             {k: str(v)[:60] for k, v in list(first.items())[:10]})
+
             for item in cases:
                 if not isinstance(item, dict):
                     continue
                 try:
                     filed = str(
                         item.get("filedDate") or item.get("fileDate") or
-                        item.get("caseFiledDate") or item.get("date") or ""
+                        item.get("caseFiledDate") or item.get("date") or
+                        item.get("FiledDate") or item.get("FileDate") or ""
                     )
                     filed_norm = _normalise_date(filed)
 
                     # Stop paging if we've gone past our date window
                     if filed_norm and filed_norm < dt_from:
+                        log.info("Probate: reached case older than window (%s < %s), stopping",
+                                 filed_norm, dt_from)
                         found_old = True
                         break
 
-                    # Skip if outside our window
-                    if filed_norm and (filed_norm < dt_from or filed_norm > dt_to):
+                    # Skip if outside our window — but only if we have a valid date
+                    if filed_norm and filed_norm > dt_to:
                         continue
+                    # If no date found, include the record anyway
+                    if not filed_norm:
+                        log.debug("Probate: case has no date, including anyway")
 
                     # Extract case details
                     case_num = str(
