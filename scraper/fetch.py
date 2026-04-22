@@ -563,9 +563,9 @@ def _scrape_probate_researchTX(dt_from: str, dt_to: str) -> list:
                     continue
                 try:
                     filed = str(
+                        item.get("dateFiled") or item.get("dateFiledOn") or
                         item.get("filedDate") or item.get("fileDate") or
-                        item.get("caseFiledDate") or item.get("date") or
-                        item.get("FiledDate") or item.get("FileDate") or ""
+                        item.get("caseFiledDate") or item.get("date") or ""
                     )
                     filed_norm = _normalise_date(filed)
                     # No client-side date filter needed — server filters by "In The Last Week"
@@ -575,14 +575,23 @@ def _scrape_probate_researchTX(dt_from: str, dt_to: str) -> list:
                         item.get("caseNumber") or item.get("causeNumber") or
                         item.get("id") or ""
                     )
+                    # description = case style / decedent name; decode HTML entities
                     style = str(
-                        item.get("caseStyle") or item.get("style") or
-                        item.get("name") or item.get("description") or ""
+                        item.get("description") or item.get("caseStyle") or
+                        item.get("style") or item.get("name") or ""
                     )
+                    style = (style.replace("&#x2F;", "/")
+                                  .replace("&amp;", "&")
+                                  .replace("&#39;", "'"))
+
                     case_type = str(
-                        item.get("caseType") or item.get("type") or "Probate"
+                        item.get("caseTypeCode") or item.get("caseType") or
+                        item.get("type") or "Probate"
                     )
-                    court = str(item.get("court") or item.get("location") or "")
+                    court = str(
+                        item.get("jurisdiction") or item.get("court") or
+                        item.get("location") or ""
+                    )
 
                     # Extract party name
                     owner = ""
@@ -601,10 +610,16 @@ def _scrape_probate_researchTX(dt_from: str, dt_to: str) -> list:
                     if not owner:
                         owner = style
 
+                    # Use caseDataID for the re:SearchTX link (more reliable than caseNumber)
+                    case_data_id = str(item.get("caseDataID") or "")
                     link = str(item.get("url") or item.get("link") or "")
-                    if not link and case_num:
-                        link = (f"https://research.txcourts.gov/CourtRecordsSearch/"
-                                f"ui/cases/{case_num}/details")
+                    if not link:
+                        if case_data_id:
+                            link = (f"https://research.txcourts.gov/CourtRecordsSearch/"
+                                    f"ui/cases/{case_data_id}/details")
+                        elif case_num:
+                            link = (f"https://research.txcourts.gov/CourtRecordsSearch/"
+                                    f"ui/cases/{case_num}/details")
 
                     if not case_num and not owner:
                         continue
