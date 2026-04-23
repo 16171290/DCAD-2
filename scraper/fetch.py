@@ -938,7 +938,51 @@ def _build_lookup_from_csv(csv_path: str) -> dict:
 
     return lookup
 
-def _name_variants(name: str) -> list:
+def _extract_probate_name(description: str) -> str:
+    """
+    Extract the actual person name from a probate case description.
+    Examples:
+      'IN RE: THE ESTATE OF GARY B. LAYTON, DECEASED' -> 'GARY B. LAYTON'
+      'ESTATE OF CANTU CARMEN LUNA, JR. a/k/a KEN LUNA' -> 'CANTU CARMEN LUNA'
+      'LETITIA NADINE DYER, PETITIONER VS. NORM...' -> 'LETITIA NADINE DYER'
+    """
+    if not description:
+        return description
+
+    name = description.upper().strip()
+
+    # Strip common prefixes
+    for prefix in [
+        r"^IN RE:\s*THE ESTATE OF\s*",
+        r"^IN RE:\s*ESTATE OF\s*",
+        r"^THE ESTATE OF\s*",
+        r"^ESTATE OF\s*",
+        r"^IN RE:\s*",
+        r"^IN THE MATTER OF\s*",
+    ]:
+        name = re.sub(prefix, "", name, flags=re.I).strip()
+
+    # Strip common suffixes
+    for suffix in [
+        r",?\s*DECEASED\.?$",
+        r",?\s*DECEDENT\.?$",
+        r",?\s*PETITIONER.*$",
+        r"\s+A/K/A\s+.*$",
+        r"\s+AKA\s+.*$",
+        r",?\s*JR\.?$",
+        r",?\s*SR\.?$",
+        r",?\s*III\.?$",
+        r",?\s*II\.?$",
+    ]:
+        name = re.sub(suffix, "", name, flags=re.I).strip()
+
+    # Remove trailing punctuation
+    name = name.rstrip(".,;").strip()
+
+    return name if name else description.upper().strip()
+
+
+
     name = name.strip().upper()
     variants = {name}
     clean = re.sub(r"\s+(LLC|INC|CORP|LTD|L\.L\.C\.|TRUST|ETAL|ET AL|ET UX)\.?$","",name).strip()
@@ -1208,7 +1252,17 @@ def calc_score(rec: dict, flags: list) -> int:
 
 def enrich_record(raw: dict, parcel_lookup: dict, week_ago: str) -> dict:
     owner  = (raw.get("owner") or "").strip()
-    parcel = lookup_owner(owner, parcel_lookup)
+
+    # For probate records, extract the actual person name from estate descriptions
+    lookup_name = owner
+    if raw.get("cat") == "PRO":
+        lookup_name = _extract_probate_name(owner)
+        log.debug("Probate name extraction: '%s' -> '%s'", owner[:60], lookup_name[:60])
+
+    parcel    = lookup_owner(lookup_name, parcel_lookup)
+    # If no match with extracted name, try original
+    if not parcel and lookup_name != owner:
+        parcel = lookup_owner(owner, parcel_lookup)
     prop_addr = (raw.get("prop_address","") or
                  parcel.get("prop_address","") or
                  _extract_address_from_legal(raw.get("legal","")))
