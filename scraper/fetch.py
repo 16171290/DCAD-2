@@ -850,152 +850,93 @@ def _download_with_retry(sess, url, **kwargs):
 
 
 def download_parcel_dbf() -> dict:
-    log.info("=== Downloading Dallas CAD parcel DBF ===")
+    log.info("=== Downloading Dallas CAD parcel CSV from Google Drive ===")
     sess = _session_with_retries()
 
-    # Try the direct ZIP URL first (found from a successful run)
-    direct_urls = [
-        "https://www.dallascad.org/ViewPDFs.aspx?type=3&id=\\\\DCAD.ORG\\WEB\\WEBDATA\\WEBFORMS\\DATA PRODUCTS\\2025_REAL_PROPERTY_CERT_APPR_ROLL.zip",
-        "https://www.dallascad.org/DataProducts/2025_REAL_PROPERTY_CERT_APPR_ROLL.zip",
-        "https://www.dallascad.org/DataProducts/REAL_PROPERTY_CERT_APPR_ROLL.zip",
-    ]
-    for direct_url in direct_urls:
+    # Google Drive direct download URL
+    # File ID extracted from sharing link
+    file_id  = "1oQlyyab02U5kFJhsOZKE4esukfzSgY_D"
+    gd_url   = f"https://drive.google.com/uc?export=download&id={file_id}"
+    tmp_path = ROOT / "scraper/tmp/parcel.csv"
+    tmp_path.parent.mkdir(parents=True, exist_ok=True)
+
+    for attempt in range(1, MAX_RETRIES + 1):
         try:
-            log.info("Trying direct parcel URL: %s", direct_url[:80])
-            r = sess.get(direct_url, timeout=60, stream=True)
-            if r.status_code == 200:
-                ct = r.headers.get("Content-Type","")
-                if "zip" in ct or "octet" in ct or int(r.headers.get("Content-Length",0) or 0) > 10000:
-                    log.info("Direct download succeeded")
-                    return _parse_parcel_zip(r.content)
+            log.info("Downloading parcel CSV attempt %d...", attempt)
+            r = sess.get(gd_url, timeout=120, allow_redirects=True)
+
+            # Google Drive shows a virus-scan confirmation page for large files
+            # Check for confirmation token and re-request if needed
+            if "confirm=" in r.url or "confirm=" in r.text[:500]:
+                import re as _re
+                token = _re.search(r'confirm=([0-9A-Za-z_\-]+)', r.text)
+                if token:
+                    confirm_url = f"{gd_url}&confirm={token.group(1)}"
+                    r = sess.get(confirm_url, timeout=120, allow_redirects=True)
+
+            # Also handle the newer Google Drive download warning page
+            if b"Google Drive - Virus scan warning" in r.content[:1000] or \
+               b"download_warning" in r.content[:1000]:
+                # Extract confirm token from cookie or response
+                confirm = r.cookies.get("download_warning", "")
+                if not confirm:
+                    import re as _re
+                    m = _re.search(rb'confirm=([^&"]+)', r.content[:2000])
+                    confirm = m.group(1).decode() if m else "t"
+                r = sess.get(f"{gd_url}&confirm={confirm}", timeout=120)
+
+            if r.status_code == 200 and len(r.content) > 1000:
+                tmp_path.write_bytes(r.content)
+                log.info("Parcel CSV downloaded: %d bytes", len(r.content))
+                return _build_lookup_from_csv(str(tmp_path))
+            else:
+                log.warning("Unexpected response: status=%d size=%d",
+                            r.status_code, len(r.content))
+
         except Exception as exc:
-            log.debug("Direct URL failed: %s", exc)
-            continue
+            log.warning("Parcel download attempt %d failed: %s", attempt, exc)
+            if attempt < MAX_RETRIES:
+                time.sleep(RETRY_WAIT * attempt)
 
-    resp = _download_with_retry(sess, CAD_URL)
-    if resp is None:
-        log.warning("Cannot reach Dallas CAD; parcel lookup will be empty.")
-        return {}
-
-    soup = BeautifulSoup(resp.text, "lxml")
-    dbf_url = None
-
-    for a in soup.find_all("a", href=True):
-        href = a["href"].lower()
-        text = a.get_text(strip=True).lower()
-        if any(k in href or k in text for k in ["parcel","appraisal","res_","residential","all_prop"]):
-            if any(ext in href for ext in [".zip",".dbf"]):
-                dbf_url = a["href"] if a["href"].startswith("http") \
-                    else "https://www.dallascad.org/" + a["href"].lstrip("/")
-                break
-
-    if not dbf_url:
-        for a in soup.find_all("a", href=True):
-            if "__doPostBack" in (a.get("href") or ""):
-                text = a.get_text(strip=True).lower()
-                if any(k in text for k in ["parcel","appraisal","property","download"]):
-                    m = re.search(r"__doPostBack\('([^']+)','([^']*)'\)", a["href"])
-                    if m:
-                        viewstate = soup.find("input", {"id":"__VIEWSTATE"})
-                        eventval  = soup.find("input", {"id":"__EVENTVALIDATION"})
-                        post_data = {
-                            "__EVENTTARGET":     m.group(1),
-                            "__EVENTARGUMENT":   m.group(2),
-                            "__VIEWSTATE":       viewstate["value"] if viewstate else "",
-                            "__EVENTVALIDATION": eventval["value"] if eventval else "",
-                        }
-                        for attempt in range(1, MAX_RETRIES + 1):
-                            try:
-                                pr = sess.post(CAD_URL, data=post_data, timeout=180)
-                                pr.raise_for_status()
-                                ct = pr.headers.get("Content-Type","")
-                                if "zip" in ct or "octet" in ct or len(pr.content) > 10_000:
-                                    return _parse_parcel_zip(pr.content)
-                            except Exception as exc:
-                                log.warning("PostBack attempt %d: %s", attempt, exc)
-                                if attempt < MAX_RETRIES:
-                                    time.sleep(RETRY_WAIT * attempt)
-
-    if dbf_url:
-        log.info("Downloading parcel ZIP: %s", dbf_url)
-        r = _download_with_retry(sess, dbf_url, stream=True)
-        if r:
-            return _parse_parcel_zip(r.content)
-
-    log.warning("Could not locate parcel DBF.")
+    log.warning("Could not download parcel CSV; address lookup will be empty.")
     return {}
 
 
-def _parse_parcel_zip(raw_bytes: bytes) -> dict:
+def _build_lookup_from_csv(csv_path: str) -> dict:
+    """Build owner-name lookup from Dallas CAD CSV file."""
+    import csv as _csv
     lookup = {}
-    tmp_dir = ROOT / "scraper/tmp"
-    try:
-        buf = io.BytesIO(raw_bytes)
-        if zipfile.is_zipfile(buf):
-            buf.seek(0)
-            with zipfile.ZipFile(buf) as zf:
-                dbf_names = [n for n in zf.namelist() if n.lower().endswith(".dbf")]
-                if not dbf_names:
-                    return {}
-                zf.extract(dbf_names[0], tmp_dir)
-                dbf_path = tmp_dir / dbf_names[0]
-        else:
-            dbf_path = tmp_dir / "parcels.dbf"
-            dbf_path.write_bytes(raw_bytes)
-
-        lookup = _build_lookup_from_dbf(str(dbf_path))
-        log.info("Parcel lookup: %d entries", len(lookup))
-    except Exception as exc:
-        log.error("DBF parse error: %s", exc)
-    return lookup
-
-
-def _build_lookup_from_dbf(dbf_path: str) -> dict:
-    lookup = {}
-    OWNER_COLS  = ["OWNER_NAME1","OWNERNAME1","OWNER1","OWNER"]
-    MAIL_ADDR   = ["OWNER_ADDRESS_LINE2","MAIL_ADDR","MAILADDR","OWNER_ADDR"]
-    MAIL_CITY   = ["OWNER_CITY","MAIL_CITY","MAILCITY","CITY"]
-    MAIL_STATE  = ["OWNER_STATE","MAIL_STATE","MAILSTATE","STATE"]
-    MAIL_ZIP    = ["OWNER_ZIPCODE","MAIL_ZIP","MAILZIP","ZIP"]
-    PROP_NUM    = ["STREET_NUM","SITUS_NUM","PROP_NUM","STRNUM"]
-    PROP_STREET = ["FULL_STREET_NAME","SITUS_STREET","PROP_STREET","STREET"]
-    PROP_CITY   = ["PROPERTY_CITY","PROP_CITY","SITUSCITY","PCITY"]
-    PROP_ZIP    = ["PROPERTY_ZIPCODE","PROP_ZIP","SITUSZIP","PZIP"]
-
-    def pick(rec, cols):
-        for c in cols:
-            v = rec.get(c) or rec.get(c.lower()) or ""
-            if v and str(v).strip():
-                return str(v).strip()
-        return ""
 
     try:
-        table = DBF(dbf_path, encoding="latin-1", ignore_missing_memofile=True)
-        for row in table:
-            try:
-                rec = {k.upper(): v for k, v in row.items()}
-                owner_raw = pick(rec, OWNER_COLS)
-                if not owner_raw:
+        with open(csv_path, encoding="latin-1", newline="") as f:
+            reader = _csv.DictReader(f)
+            for row in reader:
+                try:
+                    owner_raw = (row.get("OWNER_NAME1") or "").strip()
+                    if not owner_raw:
+                        continue
+
+                    pnum  = (row.get("STREET_NUM") or "").strip()
+                    pstr  = (row.get("FULL_STREET_NAME") or "").strip()
+                    entry = {
+                        "mail_address": (row.get("OWNER_ADDRESS_LINE2") or "").strip(),
+                        "mail_city":    (row.get("OWNER_CITY") or "").strip(),
+                        "mail_state":   (row.get("OWNER_STATE") or "").strip(),
+                        "mail_zip":     (row.get("OWNER_ZIPCODE") or "").strip(),
+                        "prop_address": f"{pnum} {pstr}".strip() if pnum and pstr else "",
+                        "prop_city":    (row.get("PROPERTY_CITY") or "").strip(),
+                        "prop_zip":     (row.get("PROPERTY_ZIPCODE") or "").strip(),
+                    }
+                    for variant in _name_variants(owner_raw):
+                        lookup[variant] = entry
+                except Exception:
                     continue
-                pnum = pick(rec, PROP_NUM)
-                pstr = pick(rec, PROP_STREET)
-                entry = {
-                    "mail_address": pick(rec, MAIL_ADDR),
-                    "mail_city":    pick(rec, MAIL_CITY),
-                    "mail_state":   pick(rec, MAIL_STATE),
-                    "mail_zip":     pick(rec, MAIL_ZIP),
-                    "prop_address": f"{pnum} {pstr}".strip() if pnum and pstr else "",
-                    "prop_city":    pick(rec, PROP_CITY),
-                    "prop_zip":     pick(rec, PROP_ZIP),
-                }
-                for variant in _name_variants(owner_raw):
-                    lookup[variant] = entry
-            except Exception:
-                continue
-    except Exception as exc:
-        log.error("DBF read error: %s", exc)
-    return lookup
 
+        log.info("Parcel lookup built from CSV: %d entries", len(lookup))
+    except Exception as exc:
+        log.error("CSV read error: %s", exc)
+
+    return lookup
 
 def _name_variants(name: str) -> list:
     name = name.strip().upper()
