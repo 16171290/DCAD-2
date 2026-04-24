@@ -55,6 +55,12 @@ jobs:
           PYTHONUNBUFFERED:    "1"
           RESEARCH_TX_COOKIE:  ${{ secrets.RESEARCH_TX_COOKIE }}
 
+      # ── 6. Run parcel zip code export ────────────────────────────────────
+      - name: Export parcel data by zip code
+        run: python scraper/export_parcels.py
+        env:
+          PYTHONUNBUFFERED: "1"
+
       # ── 6. Email alert if cookie expired ────────────────────────────────
       - name: Send cookie expiry alert
         if: steps.scraper.outputs.cookie_expired == 'true'
