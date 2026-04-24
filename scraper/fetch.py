@@ -944,12 +944,14 @@ def _extract_probate_name(description: str) -> str:
     Examples:
       'IN RE: THE ESTATE OF GARY B. LAYTON, DECEASED' -> 'GARY B. LAYTON'
       'ESTATE OF CANTU CARMEN LUNA, JR. a/k/a KEN LUNA' -> 'CANTU CARMEN LUNA'
-      'LETITIA NADINE DYER, PETITIONER VS. NORM...' -> 'LETITIA NADINE DYER'
+      'ESTATE OF JOHN  ALEX BROWN' -> 'JOHN ALEX BROWN'
     """
     if not description:
         return description
 
     name = description.upper().strip()
+    # Collapse double spaces
+    name = re.sub(r'\s+', ' ', name)
 
     # Strip common prefixes
     for prefix in [
@@ -959,6 +961,7 @@ def _extract_probate_name(description: str) -> str:
         r"^ESTATE OF\s*",
         r"^IN RE:\s*",
         r"^IN THE MATTER OF\s*",
+        r"^GUARDIANSHIP OF\s*",
     ]:
         name = re.sub(prefix, "", name, flags=re.I).strip()
 
@@ -969,18 +972,48 @@ def _extract_probate_name(description: str) -> str:
         r",?\s*PETITIONER.*$",
         r"\s+A/K/A\s+.*$",
         r"\s+AKA\s+.*$",
-        r",?\s*JR\.?$",
-        r",?\s*SR\.?$",
-        r",?\s*III\.?$",
-        r",?\s*II\.?$",
     ]:
         name = re.sub(suffix, "", name, flags=re.I).strip()
 
-    # Remove trailing punctuation
+    # Remove trailing Jr/Sr/III but keep them for variant generation
+    name = re.sub(r",?\s*(JR\.?|SR\.?|III|II|IV)$", "", name, flags=re.I).strip()
     name = name.rstrip(".,;").strip()
 
     return name if name else description.upper().strip()
 
+
+def _probate_name_variants(description: str) -> list:
+    """
+    Generate all name variants for a probate case description.
+    Tries both 'FIRST LAST' and 'LAST FIRST' orderings since
+    parcel data stores names as 'LAST FIRST' or 'LAST, FIRST'.
+    """
+    clean = _extract_probate_name(description)
+    if not clean:
+        return []
+
+    variants = set()
+
+    # Add standard variants from the cleaned name
+    variants.update(_name_variants(clean))
+
+    # If name looks like "FIRST [MIDDLE] LAST" (no comma),
+    # also try flipping to "LAST FIRST" and "LAST, FIRST"
+    parts = clean.split()
+    if len(parts) >= 2 and "," not in clean:
+        last  = parts[-1]
+        first = " ".join(parts[:-1])
+        mid   = parts[1] if len(parts) >= 3 else ""
+
+        variants.add(f"{last} {first}")
+        variants.add(f"{last}, {first}")
+        variants.add(f"{last} {parts[0]}")       # LAST FIRST (no middle)
+        variants.add(f"{last}, {parts[0]}")      # LAST, FIRST (no middle)
+        if mid:
+            variants.add(f"{last} {parts[0]} {mid[0]}")   # LAST FIRST M
+            variants.add(f"{last} {parts[0]} {mid}")      # LAST FIRST MIDDLE
+
+    return [v for v in variants if v]
 
 
     name = name.strip().upper()
@@ -1253,15 +1286,15 @@ def calc_score(rec: dict, flags: list) -> int:
 def enrich_record(raw: dict, parcel_lookup: dict, week_ago: str) -> dict:
     owner  = (raw.get("owner") or "").strip()
 
-    # For probate records, extract the actual person name from estate descriptions
-    lookup_name = owner
-    if raw.get("cat") == "PRO":
-        lookup_name = _extract_probate_name(owner)
-        log.debug("Probate name extraction: '%s' -> '%s'", owner[:60], lookup_name[:60])
-
-    parcel    = lookup_owner(lookup_name, parcel_lookup)
-    # If no match with extracted name, try original
-    if not parcel and lookup_name != owner:
+    # For probate records, try all name variants from the estate description
+    parcel = {}
+    if raw.get("cat") == "PRO" and owner:
+        for variant in _probate_name_variants(owner):
+            if variant in parcel_lookup:
+                parcel = parcel_lookup[variant]
+                log.info("Probate match: '%s' -> '%s'", owner[:50], variant)
+                break
+    if not parcel:
         parcel = lookup_owner(owner, parcel_lookup)
     prop_addr = (raw.get("prop_address","") or
                  parcel.get("prop_address","") or
