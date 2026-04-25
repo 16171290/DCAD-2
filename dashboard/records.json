@@ -1,17 +1,17 @@
 {
-  "fetched_at": "2026-04-24T23:08:21.996453",
+  "fetched_at": "2026-04-25T00:22:00.290276",
   "source": "Dallas County Clerk + Dallas CAD + Courts Portal",
   "date_range": {
-    "from": "04/17/2026",
-    "to": "04/24/2026"
+    "from": "04/18/2026",
+    "to": "04/25/2026"
   },
-  "total": 487,
-  "with_address": 243,
+  "total": 488,
+  "with_address": 241,
   "records": [
     {
       "doc_num": "FC-Mesquite_2-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BENEFICIARY, AS NOMINEE FOR AMERICAN HERITAGE LENDING, INC. ITS SUCCESSORS AND",
@@ -38,7 +38,7 @@
     {
       "doc_num": "FC-Addison_1-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "INSTRUMENT BEING FORECLOSED AND MORTGAGE SERVICER INFORMATION",
@@ -64,7 +64,7 @@
     {
       "doc_num": "FC-Balch-Springs_1-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ADDITION TO TIIE CITY OF BALCH SPRINGS, DALLAS COUNTY, TEXAS, ACCORDING TO TIIE PLAT",
@@ -90,7 +90,7 @@
     {
       "doc_num": "FC-Balch-Springs_2-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BUILDING FACING COMMERCE STREET OR AS DESIGNATED BY THE COUNTY",
@@ -116,7 +116,7 @@
     {
       "doc_num": "FC-Balch-Springs_2-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BUILDING FACING COMMERCE STREET OR AS DESIGNATED BY THE COUNTY",
@@ -142,7 +142,7 @@
     {
       "doc_num": "FC-Cedar-Hill_1-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "/(P",
@@ -168,7 +168,7 @@
     {
       "doc_num": "FC-Cedar-Hill_1-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BUILDING FACING COMMERCE STREET ORAS DESIGNATED BY THE COUNTY",
@@ -194,7 +194,7 @@
     {
       "doc_num": "FC-Cedar-Hill_1-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BUILDING FACING COMMERCE STREET OR AS DESIGNATED BY THE COUNTY",
@@ -220,7 +220,7 @@
     {
       "doc_num": "FC-Cedar-Hill_2-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COMMERCE STREET BELOW THE OVERHANG OR AS DESIGNATED BY THE COUNTY",
@@ -246,7 +246,7 @@
     {
       "doc_num": "FC-Cedar-Hill_2-6",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ASSERT AND PROTECT YOUR RIGHTS AS A MEMBER OF THE ARMED FORCES OF THE UNITED STATES. IF",
@@ -272,7 +272,7 @@
     {
       "doc_num": "FC-Cedar-Hill_2-7",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ASSERT AND PROTECT YOUR RIGHTS AS A MEMBER OF THE ARMED FORCES OF THE UNITED STATES. IF",
@@ -298,7 +298,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-14",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BUILDING FACING COMMERCE STREET OR AS DESIGNATED BY THE COUNTY",
@@ -324,7 +324,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-23",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "T.S. #: 2026-20682-TX",
@@ -350,7 +350,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-29",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ATTACHED HERETO AND MADE A PART HEREOF",
@@ -376,7 +376,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "T.S. #: 25-1714_1",
@@ -402,7 +402,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-6",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "JOHN F. WARREN",
@@ -428,7 +428,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-10",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BUILDING FACING COMMERCE STREET OR AS DESIGNATED BY THE COUNTY",
@@ -454,7 +454,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-13",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BUILDING FACING COMMERCE STREET OR AS DESIGNATED BY THE COUNTY",
@@ -480,7 +480,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-20",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COMMERCE STREET BELOW THE OVERHANG OR AS DESIGNATED BY THE COUNTY",
@@ -506,7 +506,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-27",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "T.S. #: 2026-20940-TX",
@@ -532,7 +532,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-31",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "INSTRUMENT BEING FORECLOSED AND MORTGAGE SERVICER INFORMATION",
@@ -558,7 +558,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-33",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "JORN F. WARREN",
@@ -584,7 +584,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-35",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COMMERCE STREET BELOW THE OVERHANG OR AS DESIGNATED BY THE COUNTY",
@@ -610,7 +610,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-38",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COMMERCE STREET BELOW THE OVERHANG OR AS DESIGNATED BY THE COUNTY",
@@ -636,7 +636,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-41",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COUNTY CLERK",
@@ -662,7 +662,7 @@
     {
       "doc_num": "FC-Dallas_2-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "T.S. #: 2026-21312-TX",
@@ -688,7 +688,7 @@
     {
       "doc_num": "FC-Dallas_2-6",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BUILDING FACING COMMERCE STREET ORAS DESIGNATED BY THE COUNTY",
@@ -714,7 +714,7 @@
     {
       "doc_num": "FC-Dallas_2-22",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ELECTRONIC REGISTRATION SYSTEMS, NATIONAL ASSOCIATION, NOT IN ITS",
@@ -740,7 +740,7 @@
     {
       "doc_num": "FC-Dallas_2-30",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE AND",
@@ -766,7 +766,7 @@
     {
       "doc_num": "FC-Dallas_2-35",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "RECORDING REQUESTED BY:",
@@ -792,7 +792,7 @@
     {
       "doc_num": "FC-DeSoto_1-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESOTO, DALLAS COUNIY, TEXAS, ACCORDING TO THE MAP OR PLAT THEREOF RECORDED.",
@@ -818,7 +818,7 @@
     {
       "doc_num": "FC-DeSoto_1-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "INSTRUMENT BEING FORECLOSED AND MORTGAGE SERVICER INFORMATION",
@@ -844,7 +844,7 @@
     {
       "doc_num": "FC-DeSoto_1-6",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF ACCELERATION AND NOTICE OF TRUSTEE'S SALE",
@@ -870,7 +870,7 @@
     {
       "doc_num": "FC-DeSoto_1-10",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -896,7 +896,7 @@
     {
       "doc_num": "FC-DeSoto_1-12",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "'",
@@ -922,7 +922,7 @@
     {
       "doc_num": "FC-DeSoto_1-14",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "CODE AS THE PLACE WHERE FORECLOSURE SALES ARE TO TAKE PLACE ORAS",
@@ -948,7 +948,7 @@
     {
       "doc_num": "FC-DeSoto_1-17",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COMMERCE STREET BELOW THE OVERHANG OR AS DESIGNATED BY THE COUNTY",
@@ -974,7 +974,7 @@
     {
       "doc_num": "FC-DeSoto_1-20",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "~0",
@@ -1000,7 +1000,7 @@
     {
       "doc_num": "FC-DeSoto_1-23",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COMMERCE STREET BELOW THE OVERHANG OR AS DESIGNATED BY THE COUNTY",
@@ -1026,7 +1026,7 @@
     {
       "doc_num": "FC-DeSoto_2-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "T.S. #: 2025-18801-TX",
@@ -1052,7 +1052,7 @@
     {
       "doc_num": "FC-DeSoto_2-6",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BUILDING FACING COMMERCE STREET OR AS DESIGNATED BY THE COUNTY",
@@ -1078,7 +1078,7 @@
     {
       "doc_num": "FC-Duncanville_1-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BUILDING FACING COMMERCE STREET OR AS DESIGNATED BY THE COUNTY",
@@ -1104,7 +1104,7 @@
     {
       "doc_num": "FC-Glenn-Heights_2-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COUNTY CLERK",
@@ -1130,7 +1130,7 @@
     {
       "doc_num": "FC-Grand-Prairie_2-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "T.S. #: 2026-21417-TX",
@@ -1156,7 +1156,7 @@
     {
       "doc_num": "FC-Irving_1-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "SALE INFORMATION",
@@ -1182,7 +1182,7 @@
     {
       "doc_num": "FC-Irving_1-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COMMERCE STREET BELOW THE OVERHANG OR AS DESIGNATED BY THE COUNTY",
@@ -1208,7 +1208,7 @@
     {
       "doc_num": "FC-Irving_1-8",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "CODE AS THE PLACE WHERE FORECLOSURE SALES ARE TO TAKE PLACE ORAS",
@@ -1234,7 +1234,7 @@
     {
       "doc_num": "FC-Irving_1-11",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "CODEASTHEPLACEWHEREFORECLOSURESALESARETOTAKEPLACEORAS",
@@ -1260,7 +1260,7 @@
     {
       "doc_num": "FC-Irving_2-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "JOHN F. WARREN",
@@ -1286,7 +1286,7 @@
     {
       "doc_num": "FC-Lancaster_1-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE .AND",
@@ -1312,7 +1312,7 @@
     {
       "doc_num": "FC-Lancaster_1-8",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COMMERCE STREET BELOW THE OVERHANG OR AS DESIGNATED BY THE COUNTY",
@@ -1338,7 +1338,7 @@
     {
       "doc_num": "FC-Mesquite_1-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "PUBLIC RECORDS, DALLAS COUNTY, TEXAS.",
@@ -1364,7 +1364,7 @@
     {
       "doc_num": "FC-Mesquite_1-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COMMERCE STREET BELOW THE OVERHANG OR AS DESIGNATED BY THE COUNTY",
@@ -1390,7 +1390,7 @@
     {
       "doc_num": "FC-Mesquite_1-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COMMERCE STREET BELOW THE OVERHANG OR AS DESIGNATED BY THE COUNTY",
@@ -1416,7 +1416,7 @@
     {
       "doc_num": "FC-Mesquite_1-10",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COMMERCE STREET BELOW THE OVERHANG OR AS DESIGNATED BY THE COUNTY",
@@ -1442,7 +1442,7 @@
     {
       "doc_num": "FC-Mesquite_2-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BUILDING FACING COMMERCE STREET ORAS DESIGNATED BY THE COUNTY",
@@ -1468,7 +1468,7 @@
     {
       "doc_num": "FC-Mesquite_2-9",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "AND ANDRENAJONES",
@@ -1494,7 +1494,7 @@
     {
       "doc_num": "FC-Other_1-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BUILDING FACING COMMERCE STREET OR AS DESIGNATED BY THE COUNTY",
@@ -1520,7 +1520,7 @@
     {
       "doc_num": "FC-Rowlett_1-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "OFFICIAL PUBLIC RECORDS, DALLAS COUNTY, TEXAS.",
@@ -1546,7 +1546,7 @@
     {
       "doc_num": "FC-Rowlett_1-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "8305 Woodside Rd. Rowlett, TX 75088 26-000097.",
@@ -1572,7 +1572,7 @@
     {
       "doc_num": "FC-Rowlett_2-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": ". \u2022 The sale will be made expressly subject to any title _matters set forth.in the deed of tr\u00b5st,",
@@ -1598,7 +1598,7 @@
     {
       "doc_num": "FC-Seagoville_1-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COMMERCE STREET BELOW THE OVERHANG OR AS DESIGNATED BY THE COUNTY",
@@ -1624,7 +1624,7 @@
     {
       "doc_num": "FC-Dallas_1-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COMMERCE STREET BELOW THE . OVERHANG OR AS DESIGNATED BY THE COUNTY",
@@ -1650,7 +1650,7 @@
     {
       "doc_num": "FC-Dallas_1-6",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COUNTY CLERK",
@@ -1676,7 +1676,7 @@
     {
       "doc_num": "FC-Cedar-Hill_1-8",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -1702,7 +1702,7 @@
     {
       "doc_num": "FC-Cedar-Hill_2-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -1728,7 +1728,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-9",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COUNTY CLERK",
@@ -1754,7 +1754,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-17",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "YOU MAY REMOVE OR STRIKE ANY OR ALL OF THE FOLLOWING",
@@ -1780,7 +1780,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-44",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BUILDING FACING COMMERCE STREET ORAS DESIGNATED BY THE COUNTY",
@@ -1806,7 +1806,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-17",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COMMERCE STREET BELOW THE OVERHANG OR AS DESIGNATED BY THE COUNTY",
@@ -1832,7 +1832,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-23",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COMMERCE STREET BELOW THE OVERHANG OR AS DESIGNATED BY THE COUNTY",
@@ -1858,7 +1858,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-45",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ASSERT AND PROTECT YOUR RIGHTS AS A MEMBER OF THE ARMED FORCES OF THE UNITED STATES.",
@@ -1884,7 +1884,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-47",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -1910,7 +1910,7 @@
     {
       "doc_num": "FC-Dallas_2-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "FILED",
@@ -1936,7 +1936,7 @@
     {
       "doc_num": "FC-Dallas_2-9",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "STATE OR AS A MEMBER OF A RESERVE COMPONENT OF THE ARMED FORCES OF THE UNITED",
@@ -1962,7 +1962,7 @@
     {
       "doc_num": "FC-Dallas_2-12",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "IF YOU ARE OR YOUR SPOUSE IS SERVING ON ACTIVE MILITARY DUTY,.INCLUDING ACTIVE MILITARY",
@@ -1988,7 +1988,7 @@
     {
       "doc_num": "FC-Dallas_2-15",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ASSERT AND PROTECT YOUR RIGHTS AS A MEMBER OF THE ARMED FORCES OF THE UNITED STATES.",
@@ -2014,7 +2014,7 @@
     {
       "doc_num": "FC-Dallas_2-24",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TEMPLETON",
@@ -2040,7 +2040,7 @@
     {
       "doc_num": "FC-Dallas_2-28",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "OF DALLAS, DALLAS COUNTY, TEXAS, ACCORDING TO THE MAP OR PLAT RECORDED IN VOLUME",
@@ -2066,7 +2066,7 @@
     {
       "doc_num": "FC-DeSoto_1-34",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -2092,7 +2092,7 @@
     {
       "doc_num": "FC-Duncanville_1-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "SHANNON FABRY, AN UNMARRIED WOMAN",
@@ -2118,7 +2118,7 @@
     {
       "doc_num": "FC-Garland_1-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "GARLAND, DALLAS COUNTY, TEXAS, ACCORDING TO THE MAP OR",
@@ -2144,7 +2144,7 @@
     {
       "doc_num": "FC-Garland_1-7",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COMMERCE STREET BELOW THE OVERHANG OR AS DESIGNATED BY THE COUNTY",
@@ -2170,7 +2170,7 @@
     {
       "doc_num": "FC-Grand-Prairie_1-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "JOHN E WARREN",
@@ -2196,7 +2196,7 @@
     {
       "doc_num": "FC-Irving_1-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COMMERCE STREET BELOW THE OVERHANG OR AS DESIGNATED BY THE COUNTY",
@@ -2222,7 +2222,7 @@
     {
       "doc_num": "FC-Irving_2-6",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -2248,7 +2248,7 @@
     {
       "doc_num": "FC-Lancaster_1-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ASSERT AND PROTECT YOUR RIGHTS AS A MEMBER OF THE ARMED FORCES OF THE UNITED STATES.",
@@ -2274,7 +2274,7 @@
     {
       "doc_num": "FC-Lancaster_1-13",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -2300,7 +2300,7 @@
     {
       "doc_num": "FC-Lancaster_1-14",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -2326,7 +2326,7 @@
     {
       "doc_num": "FC-Lancaster_1-15",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -2352,7 +2352,7 @@
     {
       "doc_num": "FC-Lancaster_2-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COMMERCE STREET BELOW THE OVERHANG OR AS DESJGNATED BY THE COUNTY",
@@ -2378,7 +2378,7 @@
     {
       "doc_num": "FC-Lancaster_2-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ASSERT AND PROTECT YOUR RIGHTS AS A MEMBER OF THE ARMED FORCES OF THE UNITED STATES.",
@@ -2404,7 +2404,7 @@
     {
       "doc_num": "FC-Mesquite_1-13",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE AND",
@@ -2430,7 +2430,7 @@
     {
       "doc_num": "FC-Mesquite_1-15",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -2456,7 +2456,7 @@
     {
       "doc_num": "FC-Mesquite_1-16",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -2482,7 +2482,7 @@
     {
       "doc_num": "FC-Mesquite_1-17",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -2508,7 +2508,7 @@
     {
       "doc_num": "FC-Mesquite_2-6",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BUILDING FACING COMMERCE STREET ORAS DESIGNATED BY THE COUNTY",
@@ -2534,7 +2534,7 @@
     {
       "doc_num": "FC-Mesquite_2-13",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TRUSTEE",
@@ -2560,7 +2560,7 @@
     {
       "doc_num": "FC-Mesquite_2-15",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -2586,7 +2586,7 @@
     {
       "doc_num": "FC-Other_2-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ASSERT AND PROTECT YOUR RIGHTS AS A MEMBER OF THE ARMED FORCES OF THE UNITED STATES.",
@@ -2612,7 +2612,7 @@
     {
       "doc_num": "FC-Other_2-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE AND",
@@ -2638,7 +2638,7 @@
     {
       "doc_num": "FC-Other_2-8",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ASSERT AND PROTECT YOUR RIGHTS AS A MEMBER OF THE ARMED FORCES OF THE UNITED STATES.",
@@ -2664,7 +2664,7 @@
     {
       "doc_num": "FC-Rowlett_1-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -2690,7 +2690,7 @@
     {
       "doc_num": "FC-Rowlett_1-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -2716,7 +2716,7 @@
     {
       "doc_num": "FC-Sachse_1-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -2742,7 +2742,7 @@
     {
       "doc_num": "FC-Sachse_2-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "T.S. #: 25-17791",
@@ -2768,7 +2768,7 @@
     {
       "doc_num": "FC-Dallas_1-8",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -2794,7 +2794,7 @@
     {
       "doc_num": "FC-Dallas_1-9",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -2820,7 +2820,7 @@
     {
       "doc_num": "FC-Dallas_1-10",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -2846,7 +2846,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-8",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "FILED",
@@ -2872,7 +2872,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-32",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "YOU MAY REMOVE OR STRIKE ANY OR ALL OF THE FOLLOWING",
@@ -2898,7 +2898,7 @@
     {
       "doc_num": "FC-DeSoto_1-33",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -2924,7 +2924,7 @@
     {
       "doc_num": "FC-Duncanville_2-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "IF YOU ARE OR YOUR SPOUSE IS SERVING ON ACTIVE MILITARY DUTY, INCLUDING ACTIVE MILITARY",
@@ -2950,7 +2950,7 @@
     {
       "doc_num": "FC-Garland_2-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "INSTRUMENT",
@@ -2976,7 +2976,7 @@
     {
       "doc_num": "FC-Irving_1-16",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF FORECLOSURE SALE",
@@ -3002,7 +3002,7 @@
     {
       "doc_num": "FC-Dallas_1-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "FILED",
@@ -3028,7 +3028,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-27",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DALLAS COUNTY",
@@ -3054,7 +3054,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-50",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "LLC",
@@ -3080,7 +3080,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-29",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "INSTRUMENT BEING FORECLOSED AND MORTGAGE SERVICER INFORMATION",
@@ -3106,7 +3106,7 @@
     {
       "doc_num": "FC-Dallas_2-33",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "T.S. #: 25-17456",
@@ -3132,7 +3132,7 @@
     {
       "doc_num": "FC-Dallas_2-37",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "LEGAL DESCRIPTION",
@@ -3158,7 +3158,7 @@
     {
       "doc_num": "FC-DeSoto_1-9",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ACTIVE MILITARYSERVICENOTJCE",
@@ -3184,7 +3184,7 @@
     {
       "doc_num": "FC-DeSoto_1-21",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ts No T)(070M723~2~ii' \u2022 APN 20244020120320000 to No 2507i2914-TX;.RWI",
@@ -3210,7 +3210,7 @@
     {
       "doc_num": "FC-DeSoto_1-26",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TSNQ.;\u00b7'2023--0J(jJ4~TX",
@@ -3236,7 +3236,7 @@
     {
       "doc_num": "FC-DeSoto_2-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "'i'S l-fo;: 2P'Z?>..OQ 1'31-'l'X",
@@ -3262,7 +3262,7 @@
     {
       "doc_num": "FC-Duncanville_1-6",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "SERVICER",
@@ -3288,7 +3288,7 @@
     {
       "doc_num": "FC-Garland_1-10",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "SALE.INFORMATION",
@@ -3314,7 +3314,7 @@
     {
       "doc_num": "FC-Garland_1-12",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "JOHN F. WARREH",
@@ -3340,7 +3340,7 @@
     {
       "doc_num": "FC-Garland_1-13",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "LLC",
@@ -3366,7 +3366,7 @@
     {
       "doc_num": "FC-Irving_2-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "CODE AS THE PLACE WHERE FORECLOSURE SALES ARE TO TAKE PLACE ORAS",
@@ -3392,7 +3392,7 @@
     {
       "doc_num": "FC-Lancaster_2-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ELECTRONIC REGISTRATION SYSTEMS, INC., TRUST NATIONAL ASSOCIATION, NOT IN ITS",
@@ -3418,7 +3418,7 @@
     {
       "doc_num": "FC-Lancaster_2-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "CAPA CITY BUT SOLELY AS OWNER TRUSTEE FOR RCAF ACQUIS/1/ON TRUST bid may be by credit against",
@@ -3444,7 +3444,7 @@
     {
       "doc_num": "FC-Mesquite_2-11",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "RECORDS, DALLAS COUNTY, TEXAS.",
@@ -3470,7 +3470,7 @@
     {
       "doc_num": "FC-Other_2-6",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "APPOINTMENT OFSOBS'flTUTE TRUSTEE",
@@ -3496,7 +3496,7 @@
     {
       "doc_num": "FC-Sachse_2-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "~",
@@ -3522,7 +3522,7 @@
     {
       "doc_num": "FC-Sachse_2-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "J,{()\\V;c 1JlEREf\u25caRE;, tq('}TJCE .~s I:IE.RE,BY'GIVEN jhah>n TUESJ)A.Y, ;\\PRJ.L7, 2:(ll6betwe:en,fen o'c1ockAM ,m:d four",
@@ -3548,7 +3548,7 @@
     {
       "doc_num": "FC-Seagoville_2-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "T.S. #: 2026-21379-TX",
@@ -3574,7 +3574,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "YOU MAY REMOVE OR STJRIKE ANY OR ALL OF THE FOLLOWING",
@@ -3600,7 +3600,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "\u2022i uas omc:e",
@@ -3626,7 +3626,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-38",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "AU, THE",
@@ -3652,7 +3652,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-47",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "INFORMATION FROM ANY INSTRUMENT THAT TRANSFERS AN INTEREST IN",
@@ -3678,7 +3678,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-48",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BY THE HOLDER OF THE DEED OF TRUST.",
@@ -3704,7 +3704,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COUNTY OFDALLAS",
@@ -3730,7 +3730,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "LLC",
@@ -3756,7 +3756,7 @@
     {
       "doc_num": "FC-DeSoto_1-28",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "MORTGAGE SERVICER",
@@ -3782,7 +3782,7 @@
     {
       "doc_num": "FC-Grand-Prairie_1-6",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TRUSTEE",
@@ -3808,7 +3808,7 @@
     {
       "doc_num": "FC-Grand-Prairie_1-8",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "INFORMATION FROM ANY INSTRUMENT THAT TRANSFERS AN INTEREST",
@@ -3834,7 +3834,7 @@
     {
       "doc_num": "FC-Lancaster_1-11",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BENEFICIARY, AS NOMINEE FOR MORTGAGEONE. INC. ITS",
@@ -3860,7 +3860,7 @@
     {
       "doc_num": "FC-Seagoville_1-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "FILED",
@@ -3886,7 +3886,7 @@
     {
       "doc_num": "FC-Balch-Springs_1-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "THE PROPERTY DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS",
@@ -3911,7 +3911,7 @@
     {
       "doc_num": "FC-Balch-Springs_1-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ACTIVE MILITARY SERVICE NOTICE",
@@ -3936,7 +3936,7 @@
     {
       "doc_num": "FC-Balch-Springs_2-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TS No.: 2026-00190-TX",
@@ -3961,7 +3961,7 @@
     {
       "doc_num": "FC-Cedar-Hill_1-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "CERTIFICATEOF POSTING",
@@ -3986,7 +3986,7 @@
     {
       "doc_num": "FC-Cedar-Hill_1-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TS No.: 2025--00659\"TX",
@@ -4011,7 +4011,7 @@
     {
       "doc_num": "FC-Cedar-Hill_1-6",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TS No.: 2O25-01214-TX",
@@ -4036,7 +4036,7 @@
     {
       "doc_num": "FC-Cedar-Hill_2-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -4061,7 +4061,7 @@
     {
       "doc_num": "FC-Cedar-Hill_2-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "RECORDS, DALLAS COUNTY, TEXAS.",
@@ -4086,7 +4086,7 @@
     {
       "doc_num": "FC-Cedar-Hill_2-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "450 Tranquility Ln, Cedar Hill, TX 75\u00b7 104 26-000547",
@@ -4111,7 +4111,7 @@
     {
       "doc_num": "FC-Cedar-Hill_2-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "SALE. THE PERSON SIGNING TIDS NOTICE IS THE ATTORNEY OR AUTHORIZED AGENT OF",
@@ -4136,7 +4136,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "Substitute Trustee's Mailing Address:",
@@ -4161,7 +4161,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-10",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "CATTANEO",
@@ -4186,7 +4186,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-11",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "''AS,",
@@ -4211,7 +4211,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-12",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "APPOINTMENT OF SUBSTITUTE TRUSTEE. JOHN F. WARREN",
@@ -4236,7 +4236,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-13",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "i",
@@ -4261,7 +4261,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-15",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TS No.: 2025-00061-TX",
@@ -4286,7 +4286,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-19",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ASSERT AND PROTECT YOUR RIGHTS AS A MEMBER OF THE ARMED FORCES OF",
@@ -4311,7 +4311,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-22",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BUILDING FACING COMMERCE STREET",
@@ -4336,7 +4336,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-24",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "T.S. #: 2026-20682-TX",
@@ -4361,7 +4361,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-30",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ASSERT AND PROTECT YOUR RIGHTS AS A MEMBER OF THE ARMED FORCES OF THE UNITED",
@@ -4386,7 +4386,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-31",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DALLAS, DALLAS COUNTY, TEXAS, ACCORDING TO THE MAP THEREOF RECORDED IN VOLUME",
@@ -4411,7 +4411,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-37",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "EXHIBIT A",
@@ -4436,7 +4436,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BENEFICIARY, AS NOMINEE",
@@ -4461,7 +4461,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-7",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -4486,7 +4486,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-8",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "THE MAP RECORDS OF DALLAS COUNTY, TEXAS.",
@@ -4511,7 +4511,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-9",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ADDITION, AN ADDITION TO TIIE CITY OF DALLAS, DALLAS COUNTY, TEXAS, ACCORDING TO THE MAP OR",
@@ -4536,7 +4536,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-18",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -4561,7 +4561,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-19",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COUNTY, TEXAS.",
@@ -4586,7 +4586,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-21",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED .IN THE SECURITY INSTRUMENT IDENTTFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -4611,7 +4611,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-22",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COUNTY, TEXAS.",
@@ -4636,7 +4636,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-24",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -4661,7 +4661,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-25",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DALLAS COUNTY, TEXAS.",
@@ -4686,7 +4686,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-34",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "..:;;K'.,rd11J111 ~d1!ti1",
@@ -4711,7 +4711,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-36",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -4736,7 +4736,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-37",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TEXAS.",
@@ -4761,7 +4761,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-39",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -4786,7 +4786,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-40",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TEXAS.",
@@ -4811,7 +4811,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-44",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ALDRIDGE PITE, LLP",
@@ -4836,7 +4836,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-46",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "AS ATIORNEY FOR THE HEREIN",
@@ -4861,7 +4861,7 @@
     {
       "doc_num": "FC-Dallas_2-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "MAP RECORDS OF DALLAS COUNTY, TEXAS.",
@@ -4886,7 +4886,7 @@
     {
       "doc_num": "FC-Dallas_2-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "T.S. #: 2026-21312-TX",
@@ -4911,7 +4911,7 @@
     {
       "doc_num": "FC-Dallas_2-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COMMISSIONERS COURT",
@@ -4936,7 +4936,7 @@
     {
       "doc_num": "FC-Dallas_2-10",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE. THE PERSON SIGNING THIS NOTICE IS THE",
@@ -4961,7 +4961,7 @@
     {
       "doc_num": "FC-Dallas_2-13",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE. THE PERSON SIGNING THIS NOTICE IS THE",
@@ -4986,7 +4986,7 @@
     {
       "doc_num": "FC-Dallas_2-14",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "EXHIBIT\"A\"",
@@ -5011,7 +5011,7 @@
     {
       "doc_num": "FC-Dallas_2-16",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "THE SECURITY INSTRUMENT IDENTIFIED IN TWS NOTICE OF SALE. THE PERSON SIGNING TIIIS NOTICE IS THE",
@@ -5036,7 +5036,7 @@
     {
       "doc_num": "FC-Dallas_2-20",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "LIABILITY COMP ANY",
@@ -5061,7 +5061,7 @@
     {
       "doc_num": "FC-Dallas_2-23",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "OR AS DESIGNATED BY THE COUNTY COMMISSIONER'S OFFICE OR IN THE AREA DESIGNATED BY",
@@ -5086,7 +5086,7 @@
     {
       "doc_num": "FC-Dallas_2-25",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "OF SALE. THE PERSON SIGNING TWS NOTICE IS THE ATTORNEY OR AUTHORIZED",
@@ -5111,7 +5111,7 @@
     {
       "doc_num": "FC-Dallas_2-26",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "....",
@@ -5136,7 +5136,7 @@
     {
       "doc_num": "FC-Dallas_2-29",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "PROPERTY DESCRIBED IN THE SECURITY INSTRUMENT IDENTIBIED IN THIS NOTICE OF",
@@ -5161,7 +5161,7 @@
     {
       "doc_num": "FC-Dallas_2-31",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "i",
@@ -5186,7 +5186,7 @@
     {
       "doc_num": "FC-Dallas_2-32",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BY",
@@ -5211,7 +5211,7 @@
     {
       "doc_num": "FC-Dallas_2-34",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "T.S. #: 25-17456",
@@ -5236,7 +5236,7 @@
     {
       "doc_num": "FC-Dallas_2-36",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ASSERT AND PROTECT YOUR RIGHTS AS A MEMBER OF THE ARMED FORCES OF THE UNITED",
@@ -5261,7 +5261,7 @@
     {
       "doc_num": "FC-DeSoto_1-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "SELL THE PROPERTY DESCRIBED IN THE SECURITY INSTRUMENT",
@@ -5286,7 +5286,7 @@
     {
       "doc_num": "FC-DeSoto_1-8",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "CERTIFICATE OF POSTING",
@@ -5311,7 +5311,7 @@
     {
       "doc_num": "FC-DeSoto_1-15",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TS No.: 2026-00067-TX",
@@ -5336,7 +5336,7 @@
     {
       "doc_num": "FC-DeSoto_1-18",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -5361,7 +5361,7 @@
     {
       "doc_num": "FC-DeSoto_1-19",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DALLAS COUNTY, TEXAS.",
@@ -5386,7 +5386,7 @@
     {
       "doc_num": "FC-DeSoto_1-22",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "EXHIBI.T A",
@@ -5411,7 +5411,7 @@
     {
       "doc_num": "FC-DeSoto_1-25",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COUNTY, TEXAS.",
@@ -5436,7 +5436,7 @@
     {
       "doc_num": "FC-DeSoto_1-29",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "I... I ,",
@@ -5461,7 +5461,7 @@
     {
       "doc_num": "FC-DeSoto_1-32",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "MntterNo.: 144811.;,TX",
@@ -5486,7 +5486,7 @@
     {
       "doc_num": "FC-DeSoto_2-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF SUBSTITUTE TRUSTEE'S SALE",
@@ -5511,7 +5511,7 @@
     {
       "doc_num": "FC-DeSoto_2-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "rs No.;; io26.i\u00aet1:s~n",
@@ -5536,7 +5536,7 @@
     {
       "doc_num": "FC-DeSoto_2-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TS No;: 2026--00131-TX",
@@ -5561,7 +5561,7 @@
     {
       "doc_num": "FC-DeSoto_2-7",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TS No.: 2026-00168-TX",
@@ -5586,7 +5586,7 @@
     {
       "doc_num": "FC-DeSoto_2-9",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TEXAS.",
@@ -5611,7 +5611,7 @@
     {
       "doc_num": "FC-Duncanville_1-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "\u00b7FIL~ED",
@@ -5636,7 +5636,7 @@
     {
       "doc_num": "FC-Duncanville_1-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "The Mortgage Servicer is authorized to represent the Mortgagee by virtue of a servicing agreement",
@@ -5661,7 +5661,7 @@
     {
       "doc_num": "FC-Duncanville_2-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "THE SECURITY INSTRUMENT IDENTIFIED IN TIDS NOTICE OF SALE. THE PERSON SIGNING THIS NOTICE IS THE",
@@ -5686,7 +5686,7 @@
     {
       "doc_num": "FC-Garland_1-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "GARLAND, DALLAS COUNTY, TEXAS, ACCORDING TO THE MAP THEREOF RECORDED IN VOLUME",
@@ -5711,7 +5711,7 @@
     {
       "doc_num": "FC-Garland_1-6",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "FEET",
@@ -5736,7 +5736,7 @@
     {
       "doc_num": "FC-Garland_1-8",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -5761,7 +5761,7 @@
     {
       "doc_num": "FC-Garland_1-9",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "1606 CARROLL DRIVE 00000010707479",
@@ -5786,7 +5786,7 @@
     {
       "doc_num": "FC-Garland_2-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF SALE THE PERSON SIGNING THIS NOTICE IS THE ATTORNEY",
@@ -5811,7 +5811,7 @@
     {
       "doc_num": "FC-Garland_2-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "MORTGAGE SERVICER",
@@ -5836,7 +5836,7 @@
     {
       "doc_num": "FC-Garland_2-6",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "HOME EQUITY FORECLOSURE ORDER",
@@ -5861,7 +5861,7 @@
     {
       "doc_num": "FC-Garland_2-7",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "RECORDSOFDALLASCOUNTYTEXAS",
@@ -5886,7 +5886,7 @@
     {
       "doc_num": "FC-Garland_2-8",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ATTORNEYS FOR PETITIONER",
@@ -5911,7 +5911,7 @@
     {
       "doc_num": "FC-Garland_2-9",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": ".C ERTIFICATE OF POSTING",
@@ -5936,7 +5936,7 @@
     {
       "doc_num": "FC-Glenn-Heights_1-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "r",
@@ -5961,7 +5961,7 @@
     {
       "doc_num": "FC-Glenn-Heights_1-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTlCE OF SUBSTITUTE TRUSTEE SALE",
@@ -5986,7 +5986,7 @@
     {
       "doc_num": "FC-Grand-Prairie_1-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DALLAS COUNTY, TEXAS,ACCORDINGTO THE MAPORPLATTHEREOFRECORDED IN VOLUME",
@@ -6011,7 +6011,7 @@
     {
       "doc_num": "FC-Grand-Prairie_1-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -6036,7 +6036,7 @@
     {
       "doc_num": "FC-Grand-Prairie_1-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COUNTY, TEXAS.",
@@ -6061,7 +6061,7 @@
     {
       "doc_num": "FC-Grand-Prairie_1-11",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "3333 Lee Parkway, 8th Floor",
@@ -6086,7 +6086,7 @@
     {
       "doc_num": "FC-Grand-Prairie_1-13",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE\u00b7O.FSUBSTITUTETRUSTEESALE",
@@ -6111,7 +6111,7 @@
     {
       "doc_num": "FC-Grand-Prairie_1-14",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OFSU8STITUTE:TRUSTEESALE:",
@@ -6136,7 +6136,7 @@
     {
       "doc_num": "FC-Grand-Prairie_2-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DALU,S COUNTY",
@@ -6161,7 +6161,7 @@
     {
       "doc_num": "FC-Irving_1-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED JN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -6186,7 +6186,7 @@
     {
       "doc_num": "FC-Irving_1-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COUNTY, TEXAS.",
@@ -6211,7 +6211,7 @@
     {
       "doc_num": "FC-Irving_1-6",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -6236,7 +6236,7 @@
     {
       "doc_num": "FC-Irving_1-7",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "RECORDS, DALLAS COUNTY, TEXAS.",
@@ -6261,7 +6261,7 @@
     {
       "doc_num": "FC-Irving_1-9",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TS No.: 2026-00044-TX",
@@ -6286,7 +6286,7 @@
     {
       "doc_num": "FC-Irving_1-12",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TS No.: 2026--00101-TX",
@@ -6311,7 +6311,7 @@
     {
       "doc_num": "FC-Irving_1-14",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICEOF SUBSTITUTE TRUSTJ!fE SALE",
@@ -6336,7 +6336,7 @@
     {
       "doc_num": "FC-Irving_2-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TS No.: 2026-00154-TX",
@@ -6361,7 +6361,7 @@
     {
       "doc_num": "FC-Lancaster_1-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "De Cubas & Lewis, .t>.C. : Joh_n Beazley, Logan Thomas,",
@@ -6386,7 +6386,7 @@
     {
       "doc_num": "FC-Lancaster_1-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ATTORNEY OR AUTHORIZED AGENT OF THE MORTGAGEE OR MORTGAGE SERVICER.",
@@ -6411,7 +6411,7 @@
     {
       "doc_num": "FC-Lancaster_1-6",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BENEFICIARY, AS NOMINEE FOR QUICKEN",
@@ -6436,7 +6436,7 @@
     {
       "doc_num": "FC-Lancaster_1-7",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ALDRIDGE PITE, LLP",
@@ -6461,7 +6461,7 @@
     {
       "doc_num": "FC-Lancaster_1-9",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -6486,7 +6486,7 @@
     {
       "doc_num": "FC-Lancaster_1-10",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "1307 PRAIRIE DRIVE 0000001059417 4",
@@ -6511,7 +6511,7 @@
     {
       "doc_num": "FC-Lancaster_1-12",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ALDRIDGE PITE, LLP",
@@ -6536,7 +6536,7 @@
     {
       "doc_num": "FC-Lancaster_2-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "SIGNING THIS NOTICE IS THE ATTORNEY OR AUTHORIZED AGENT OF THE MORTGAGEE OR",
@@ -6561,7 +6561,7 @@
     {
       "doc_num": "FC-Lancaster_2-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COUNTY, TEXAS",
@@ -6586,7 +6586,7 @@
     {
       "doc_num": "FC-Lancaster_2-6",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "AS ATTORNEY FOR THE HEREIN",
@@ -6611,7 +6611,7 @@
     {
       "doc_num": "FC-Mesquite_1-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -6636,7 +6636,7 @@
     {
       "doc_num": "FC-Mesquite_1-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COUNTY, TEXAS.",
@@ -6661,7 +6661,7 @@
     {
       "doc_num": "FC-Mesquite_1-6",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -6686,7 +6686,7 @@
     {
       "doc_num": "FC-Mesquite_1-7",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "2808 TIJRTLE DOVE LANE 00000008910671",
@@ -6711,7 +6711,7 @@
     {
       "doc_num": "FC-Mesquite_1-8",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTlCEOFSliBSTITUTE TRUSTEE SALE",
@@ -6736,7 +6736,7 @@
     {
       "doc_num": "FC-Mesquite_1-11",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -6761,7 +6761,7 @@
     {
       "doc_num": "FC-Mesquite_1-12",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DALLAS COUNTY, TEXAS.",
@@ -6786,7 +6786,7 @@
     {
       "doc_num": "FC-Mesquite_1-14",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "De Cubas &\u00b7Lewis, P.C. Substitute Trustee(s): J",
@@ -6811,7 +6811,7 @@
     {
       "doc_num": "FC-Mesquite_2-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "T.S. #: 26-18109",
@@ -6836,7 +6836,7 @@
     {
       "doc_num": "FC-Mesquite_2-10",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "THE PROPERTY DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS",
@@ -6861,7 +6861,7 @@
     {
       "doc_num": "FC-Other_2-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE. THE PERSON SIGNING .THIS NOTICE IS. THE",
@@ -6886,7 +6886,7 @@
     {
       "doc_num": "FC-Other_2-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BEGINNING AT THE INTERSECTION OF THE SOUTH LINE OF PENROD A VENUE WITH THE WEST LINE OF OGDEN",
@@ -6911,7 +6911,7 @@
     {
       "doc_num": "FC-Other_2-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": ". De Cubas & Lewis, P.C. hn Beazley, Logan Thomas,",
@@ -6936,7 +6936,7 @@
     {
       "doc_num": "FC-Other_2-9",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "AS ATTORNEY FOR THE HEREIN",
@@ -6961,7 +6961,7 @@
     {
       "doc_num": "FC-Rowlett_1-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "PROPERTY DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF",
@@ -6986,7 +6986,7 @@
     {
       "doc_num": "FC-Rowlett_2-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "l. Property to Be Sold: The property to be sold is described as follows:",
@@ -7011,7 +7011,7 @@
     {
       "doc_num": "FC-Rowlett_2-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "8. Assert and protect your rights as a member of the armed forces of the United States.",
@@ -7036,7 +7036,7 @@
     {
       "doc_num": "FC-Sachse_2-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "PROPERTY CODE",
@@ -7061,7 +7061,7 @@
     {
       "doc_num": "FC-Sachse_2-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "T.S. #: 25-17791",
@@ -7086,7 +7086,7 @@
     {
       "doc_num": "FC-Seagoville_1-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED .IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -7111,7 +7111,7 @@
     {
       "doc_num": "FC-Seagoville_1-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DALLAS COUNTY, TEXAS.",
@@ -7136,7 +7136,7 @@
     {
       "doc_num": "FC-Seagoville_1-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "/~",
@@ -7161,7 +7161,7 @@
     {
       "doc_num": "FC-Seagoville_2-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "COUNTY CLERK",
@@ -7186,7 +7186,7 @@
     {
       "doc_num": "FC-Seagoville_2-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "T.S. #: 2026-21379-TX",
@@ -7211,7 +7211,7 @@
     {
       "doc_num": "FC-Dallas_1-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -7236,7 +7236,7 @@
     {
       "doc_num": "FC-Dallas_1-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "RECORDS OF DALLAS COUNTY, TEXAS.",
@@ -7261,7 +7261,7 @@
     {
       "doc_num": "FC-Dallas_1-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -7286,7 +7286,7 @@
     {
       "doc_num": "FC-Dallas_1-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": ".i",
@@ -7311,7 +7311,7 @@
     {
       "doc_num": "FC-Glenn-Heights_1-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN . THIS NOTICE OF SALE THE PERSON",
@@ -7336,7 +7336,7 @@
     {
       "doc_num": "FC-Glenn-Heights_1-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "RECORDS, DALLAS COUNTY, TEXAS.",
@@ -7354,31 +7354,6 @@
       "clerk_url": "https://www.dallascounty.org/department/countyclerk/media/foreclosure/May/Glenn-Heights_1.pdf",
       "flags": [
         "Pre-foreclosure",
-        "New this week"
-      ],
-      "score": 60
-    },
-    {
-      "doc_num": "PR-26-01260-2",
-      "doc_type": "Muniment of Title",
-      "filed": "2026-04-17",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "ESTATE OF ROSA DIAZ a/k/a ROSA ALVAREZ DIAZ",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF ROSA DIAZ a/k/a ROSA ALVAREZ DIAZ",
-      "prop_address": "1520 POPLAR DR",
-      "prop_city": "MESQUITE (DALLAS CO)",
-      "prop_state": "TX",
-      "prop_zip": "751495648",
-      "mail_address": "1520 POPLAR DR",
-      "mail_city": "MESQUITE",
-      "mail_state": "TEXAS",
-      "mail_zip": "751495648",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/920fa17c502647e49235c8795903de71/details",
-      "flags": [
-        "Probate / estate",
         "New this week"
       ],
       "score": 60
@@ -7402,31 +7377,6 @@
       "mail_state": "TEXAS",
       "mail_zip": "750428439",
       "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/e25bad79bb0a47b392626ccc7b565917/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 60
-    },
-    {
-      "doc_num": "PR-26-01298-1",
-      "doc_type": "Muniment of Title",
-      "filed": "2026-04-21",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "ARMALAVAGE , CHRISTIAN",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF PEGGY  ZIMMERMAN-WILSON",
-      "prop_address": "3829 PALLOS VERDAS DR",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "752292743",
-      "mail_address": "3829 PALLOS VERDAS DR",
-      "mail_city": "DALLAS",
-      "mail_state": "TEXAS",
-      "mail_zip": "752292743",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/3b7e7942715941deaf814d56db304cb4/details",
       "flags": [
         "Probate / estate",
         "New this week"
@@ -7486,7 +7436,7 @@
     {
       "doc_num": "FC-Addison_1-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "PROPERTY DESCRJBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF",
@@ -7511,7 +7461,7 @@
     {
       "doc_num": "FC-Balch-Springs_1-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TH",
@@ -7536,7 +7486,7 @@
     {
       "doc_num": "FC-Balch-Springs_2-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "MAP RECORDS OF DALLAS COUNTY, TEXAS.",
@@ -7561,7 +7511,7 @@
     {
       "doc_num": "FC-Balch-Springs_2-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE. THE PERSON",
@@ -7586,7 +7536,7 @@
     {
       "doc_num": "FC-Balch-Springs_2-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE. THE PERSON",
@@ -7611,7 +7561,7 @@
     {
       "doc_num": "FC-Cedar-Hill_1-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "SIGNING THIS NOTICE IS THE ATTORNEY OR AUTHORIZED AGENT OF THE MORTGAGEE OR",
@@ -7636,7 +7586,7 @@
     {
       "doc_num": "FC-Cedar-Hill_1-7",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "MORTGAGE SERVICER.",
@@ -7661,7 +7611,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "THE PROPERTY LOCATED IN DALLAS COUNTY, TEXAS, INCLUDING",
@@ -7686,7 +7636,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ASSERT AND PROTECT YOUR RIGHTS AS A MEMBER OF THE ARMED",
@@ -7711,7 +7661,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "EXHIBIT A",
@@ -7736,7 +7686,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-6",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "There will bcrn<l pro:tc1tion of tax~s, r.ents or <>tn!miJ:u;om~ Qt ijapiliti~s, ~xpeptthatthe",
@@ -7761,7 +7711,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-7",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": ".\u2022",
@@ -7786,7 +7736,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-16",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE. THE PERSON",
@@ -7811,7 +7761,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-18",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "EXCEPT ANY AND ALL LOTS OR PORTIONS THEREOF THAT HAVE BEEN",
@@ -7836,7 +7786,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-20",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "BUSEY BANK",
@@ -7861,7 +7811,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-21",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "EXHIBIT A",
@@ -7886,7 +7836,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-25",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "THE STATE .OFTEXAS",
@@ -7911,7 +7861,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-26",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "MICHAEL.SCHULZ",
@@ -7936,7 +7886,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-28",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "MORTGAGE SERVICER.",
@@ -7961,7 +7911,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-33",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TIIE PROPERTY LOCATED IN DALLAS COUNTY, TEXAS, INCLUDING",
@@ -7986,7 +7936,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-34",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ASSERT AND PROTECT YOUR RIGHTS AS A MEMBER OF THE ARMED",
@@ -8011,7 +7961,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-35",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "Substitute Trustee's Mailing Address:",
@@ -8036,7 +7986,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-36",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "Notice of Sale executed by:",
@@ -8061,7 +8011,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-39",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "THE PROPERTY LOCATED IN DALLAS COUNTY, TEXAS, INCLUDING",
@@ -8086,7 +8036,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-40",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ASSERT AND PROTECT YOUR RIGHTS AJA MEMBER OF THE ARMED FORCES",
@@ -8111,7 +8061,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-41",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DAVID GARVIN.",
@@ -8136,7 +8086,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-42",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "Notice of Sale executed by:",
@@ -8161,7 +8111,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-43",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "EXBIB A",
@@ -8186,7 +8136,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-45",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "OF THE MAP REOCRDS, DALLAS COUNTY, TEXAS.",
@@ -8211,7 +8161,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-46",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "MORTGAGE SERVICER.",
@@ -8236,7 +8186,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-49",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ASSERT AND PROTECT YOUR RIGHTS A A MEMBER OF THE ARMED FORCES",
@@ -8261,7 +8211,7 @@
     {
       "doc_num": "FC-Dallas_1 (1)-51",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "EXHJBIT A",
@@ -8286,7 +8236,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ACTIVE MILITARY SERVICE NOTICE",
@@ -8311,7 +8261,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF SUBSTITUTE TRUSTEE SALE",
@@ -8336,7 +8286,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-11",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE. THE PERSON",
@@ -8361,7 +8311,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-12",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "EXHIBIT A",
@@ -8386,7 +8336,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-14",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE. THE PERSON",
@@ -8411,7 +8361,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-15",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "EXHIBIT A",
@@ -8436,7 +8386,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-16",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF SUBSTITUTE TRUSTEE SALE",
@@ -8461,7 +8411,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-26",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "FILED",
@@ -8486,7 +8436,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-28",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "T.S. #: 2026-20940-TX",
@@ -8511,7 +8461,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-30",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "SALE. THE PERSON SIGNING THIS NOTICE IS THE ATTORNEY OR AUTHORIZED AGENT OF",
@@ -8536,7 +8486,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-32",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "THE MORTGAGEE OR MORTGAGE SERVICER.",
@@ -8561,7 +8511,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-42",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ASSERT AND PROTECT YOUR RIGHTS AS A MEMBER OF THE ARMED FORCES OF THE UNITED",
@@ -8586,7 +8536,7 @@
     {
       "doc_num": "FC-Dallas_1 (2)-43",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "IDENTIFIED TO SELL THE PROPERTY DESCRIBED IN THE SECURITY",
@@ -8611,7 +8561,7 @@
     {
       "doc_num": "FC-Dallas_2-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TO SELL THE PROPERTY DESCRIBED IN THE SECURITY INSTRUMENT",
@@ -8636,7 +8586,7 @@
     {
       "doc_num": "FC-Dallas_2-7",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DALLAS COUNTY, TEXAS,ACCORDING TO THE MAP OR PLAT THEREOF RECORDED IN VOLUME",
@@ -8661,7 +8611,7 @@
     {
       "doc_num": "FC-Dallas_2-8",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "MORTGAGE SERVICER.",
@@ -8686,7 +8636,7 @@
     {
       "doc_num": "FC-Dallas_2-11",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "EXHIBIT ..A \"",
@@ -8711,7 +8661,7 @@
     {
       "doc_num": "FC-Dallas_2-17",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "EXIDBIT\"A\"",
@@ -8736,7 +8686,7 @@
     {
       "doc_num": "FC-Dallas_2-18",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF SUBSTITUTE TRUSTEE SALE",
@@ -8761,7 +8711,7 @@
     {
       "doc_num": "FC-Dallas_2-19",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF SUBSTITUTE TRUSTEE SALE",
@@ -8786,7 +8736,7 @@
     {
       "doc_num": "FC-Dallas_2-21",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "MORTGAGE CORPORATION. ITS SUCCESSORS AND ASSIGNS",
@@ -8811,7 +8761,7 @@
     {
       "doc_num": "FC-Dallas_2-27",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "THE PERSON SIGNING THIS NOTICE IS THE ATTORNEY OR AUTHORIZED AGENT OF THE",
@@ -8836,7 +8786,7 @@
     {
       "doc_num": "FC-Dallas_2-38",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ST ATE OF TEXAS",
@@ -8861,7 +8811,7 @@
     {
       "doc_num": "FC-DeSoto_1-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "S TETR",
@@ -8886,7 +8836,7 @@
     {
       "doc_num": "FC-DeSoto_1-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "I,'",
@@ -8911,7 +8861,7 @@
     {
       "doc_num": "FC-DeSoto_1-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "THE MORTGAGEE OR MORTGAGE SERVICER.",
@@ -8936,7 +8886,7 @@
     {
       "doc_num": "FC-DeSoto_1-7",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "PROPERTY DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE",
@@ -8961,7 +8911,7 @@
     {
       "doc_num": "FC-DeSoto_1-11",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "PROPERTY DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN IBIS NOTICE OF SALE",
@@ -8986,7 +8936,7 @@
     {
       "doc_num": "FC-DeSoto_1-13",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ASSERT AND PROTECT YOUR RIGHTS AS A MEMBER OF THE ARMED FORCES OF THE UNITED",
@@ -9011,7 +8961,7 @@
     {
       "doc_num": "FC-DeSoto_1-16",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE. THE PERSON",
@@ -9036,7 +8986,7 @@
     {
       "doc_num": "FC-DeSoto_1-24",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE THE PERSON",
@@ -9061,7 +9011,7 @@
     {
       "doc_num": "FC-DeSoto_1-27",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "'l'S }RtT 20234\u00a5161,h'JX",
@@ -9086,7 +9036,7 @@
     {
       "doc_num": "FC-DeSoto_1-30",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "PROPERTY DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF",
@@ -9111,7 +9061,7 @@
     {
       "doc_num": "FC-DeSoto_1-31",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "IDENTIFIED TO SELL THE PROPERTY DESCRIBED IN THE SECURITY",
@@ -9136,7 +9086,7 @@
     {
       "doc_num": "FC-DeSoto_2-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "T.S. #: 2025-18801-TX",
@@ -9161,7 +9111,7 @@
     {
       "doc_num": "FC-DeSoto_2-8",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED INTHE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE. THE PERSON",
@@ -9186,7 +9136,7 @@
     {
       "doc_num": "FC-DeSoto_2-10",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "PROPERTY DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE",
@@ -9211,7 +9161,7 @@
     {
       "doc_num": "FC-Duncanville_1-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "CITY OF DUNCANVILLE, DALLAS COUNTY, TEXAS, ACCORDING TOTHE MAP THEREOF RECORDED",
@@ -9236,7 +9186,7 @@
     {
       "doc_num": "FC-Duncanville_1-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE. THE PERSON",
@@ -9261,7 +9211,7 @@
     {
       "doc_num": "FC-Duncanville_1-7",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "RPLI",
@@ -9286,7 +9236,7 @@
     {
       "doc_num": "FC-Duncanville_2-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "i",
@@ -9311,7 +9261,7 @@
     {
       "doc_num": "FC-Garland_1-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "Telephone No: (713) 462-2565",
@@ -9336,7 +9286,7 @@
     {
       "doc_num": "FC-Garland_1-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "PROPERTY DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE",
@@ -9361,7 +9311,7 @@
     {
       "doc_num": "FC-Garland_1-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "CERTIFICATE OF POSTING",
@@ -9386,7 +9336,7 @@
     {
       "doc_num": "FC-Garland_1-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF SUBSTITUTE TRUSTEE SALE",
@@ -9411,7 +9361,7 @@
     {
       "doc_num": "FC-Garland_1-11",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "PROPERTY DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF",
@@ -9436,7 +9386,7 @@
     {
       "doc_num": "FC-Garland_2-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF SUBSTITUTE TRUSTEE SALE",
@@ -9461,7 +9411,7 @@
     {
       "doc_num": "FC-Garland_2-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "REPORTED",
@@ -9486,7 +9436,7 @@
     {
       "doc_num": "FC-Garland_2-4",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "FORCES OF THE UNITED STATES. IF YOU ARE OR YOUR SPOUSE IS",
@@ -9511,7 +9461,7 @@
     {
       "doc_num": "FC-Glenn-Heights_1-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "IDENTIFIED TO SELL THE PROPERTY DESCRIBED IN THE SECURITY",
@@ -9536,7 +9486,7 @@
     {
       "doc_num": "FC-Glenn-Heights_2-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "STATES. IF YOU ARE OR YOUR SPOUSE IS SERVING ON ACTIVE MILITARY DUTY, INCLUDING",
@@ -9561,7 +9511,7 @@
     {
       "doc_num": "FC-Grand-Prairie_1-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "MORTGAGEE OR MORTGAGE SERVICER.",
@@ -9586,7 +9536,7 @@
     {
       "doc_num": "FC-Grand-Prairie_1-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF SUBSTITUTE TRUSTEE SALE",
@@ -9611,7 +9561,7 @@
     {
       "doc_num": "FC-Grand-Prairie_1-7",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "THIS",
@@ -9636,7 +9586,7 @@
     {
       "doc_num": "FC-Grand-Prairie_1-9",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "EXCEPT ANY AND ALL LOTS OR PORTIONS THEREOF THAT HA VE BEES",
@@ -9661,7 +9611,7 @@
     {
       "doc_num": "FC-Grand-Prairie_1-10",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ANOTHER STATE OR AS A MEMBER OF A RESERVE COMPONENT OF THE",
@@ -9686,7 +9636,7 @@
     {
       "doc_num": "FC-Grand-Prairie_1-12",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "EXHIBIT A",
@@ -9711,7 +9661,7 @@
     {
       "doc_num": "FC-Grand-Prairie_2-0",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF SUBSTITUTE TRUSTEE SALE",
@@ -9736,7 +9686,7 @@
     {
       "doc_num": "FC-Grand-Prairie_2-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "T.S. #: 2026-21417-TX",
@@ -9761,7 +9711,7 @@
     {
       "doc_num": "FC-Irving_1-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "THIS",
@@ -9786,7 +9736,7 @@
     {
       "doc_num": "FC-Irving_1-10",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "SIGNING THIS NOTICE IS THE ATTORNEY OR AUTHORIZED AGENT OF THE MORTGAGEE OR",
@@ -9811,7 +9761,7 @@
     {
       "doc_num": "FC-Irving_1-13",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN TIDS NOTICE OF SALE. THE PERSON",
@@ -9836,7 +9786,7 @@
     {
       "doc_num": "FC-Irving_1-15",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF SUBSTITUTE TRUSTEE SALE",
@@ -9861,7 +9811,7 @@
     {
       "doc_num": "FC-Irving_2-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN TIDS NOTICE OF SALE. THE PERSON",
@@ -9886,7 +9836,7 @@
     {
       "doc_num": "FC-Irving_2-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF SUBSTITUTE TRUSTEE SALE",
@@ -9911,7 +9861,7 @@
     {
       "doc_num": "FC-Irving_2-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "Terms of Sale: The Foreclosure Sale will be conducted as a public auction and the",
@@ -9936,7 +9886,7 @@
     {
       "doc_num": "FC-Lancaster_1-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "TRULY ..",
@@ -9961,7 +9911,7 @@
     {
       "doc_num": "FC-Lancaster_1-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "EXHIBIT \"A\"",
@@ -9986,7 +9936,7 @@
     {
       "doc_num": "FC-Mesquite_1-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "MORTGAGE SERVICER.",
@@ -10011,7 +9961,7 @@
     {
       "doc_num": "FC-Mesquite_1-9",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "NOTICE OF SUBSTITUTE TRUSTEE SALE",
@@ -10036,7 +9986,7 @@
     {
       "doc_num": "FC-Mesquite_2-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE. THE PERSON",
@@ -10061,7 +10011,7 @@
     {
       "doc_num": "FC-Mesquite_2-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "EXHIBIT A",
@@ -10086,7 +10036,7 @@
     {
       "doc_num": "FC-Mesquite_2-3",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "PPP",
@@ -10111,7 +10061,7 @@
     {
       "doc_num": "FC-Mesquite_2-7",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DALLAS COUNTY, TEXAS, ACCORDING TO THE MAP OR PLAT THEREOF RECORDED IN VOLUME",
@@ -10136,7 +10086,7 @@
     {
       "doc_num": "FC-Mesquite_2-8",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE. THE PERSON",
@@ -10161,7 +10111,7 @@
     {
       "doc_num": "FC-Mesquite_2-12",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "PROPERTY DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE",
@@ -10186,7 +10136,7 @@
     {
       "doc_num": "FC-Mesquite_2-14",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "SALE. THE PERSON SIGNING THIS NOTICE IS THE ATTORNEY OR AUTHORIZED AGENT OF",
@@ -10211,7 +10161,7 @@
     {
       "doc_num": "FC-Other_1-1",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "DESCRIBED IN THE SECURITY INSTRUMENT IDENTIFIED IN THIS NOTICE OF SALE. THE PERSON",
@@ -10236,7 +10186,7 @@
     {
       "doc_num": "FC-Other_1-2",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "EXHIBIT A",
@@ -10261,7 +10211,7 @@
     {
       "doc_num": "FC-Other_2-5",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ii",
@@ -10286,7 +10236,7 @@
     {
       "doc_num": "FC-Other_2-7",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ACTIVEMILITARYSERVICE NOTICE",
@@ -10311,7 +10261,7 @@
     {
       "doc_num": "FC-Dallas_1-7",
       "doc_type": "Notice of Substitute Trustee Sale",
-      "filed": "2026-04-24",
+      "filed": "2026-04-25",
       "cat": "NOFC",
       "cat_label": "Notice of Foreclosure",
       "owner": "ASSERT AND PROTECT YOUR RIGHTS AS AM EMBER OF THE ARMED FORCES OF THE UNITED",
@@ -10384,15 +10334,15 @@
       "score": 55
     },
     {
-      "doc_num": "PR-26-01300-3",
+      "doc_num": "PR-26-01318-3",
       "doc_type": "Independent Administration",
-      "filed": "2026-04-21",
+      "filed": "2026-04-22",
       "cat": "PRO",
       "cat_label": "Probate / Estate",
-      "owner": "MODY, BHARAT",
+      "owner": "WARDE , SHARON",
       "grantee": "Dallas County - County Clerk",
       "amount": 0,
-      "legal": "ESTATE OF PRAFULATA B. MODY",
+      "legal": "ESTATE OF CAROL  J. HARRISON",
       "prop_address": "",
       "prop_city": "DALLAS",
       "prop_state": "TX",
@@ -10401,32 +10351,7 @@
       "mail_city": "",
       "mail_state": "TX",
       "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/375578bc9d184fcf8a782d7e4c48bc0a/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "PR-26-01271-1",
-      "doc_type": "Independent Administration",
-      "filed": "2026-04-17",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "SKRAPITS, GAYLE",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF JOYCE RAE REYNOLDS",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/3ff44599eaa746059a3d0c35f1b78e97/details",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/4e775eb9cb394b2fb03e04c9d208c2b2/details",
       "flags": [
         "Probate / estate",
         "New this week"
@@ -10459,15 +10384,15 @@
       "score": 55
     },
     {
-      "doc_num": "PR-26-01297-1",
-      "doc_type": "INDEPENDENT ADMINISTRATION",
+      "doc_num": "PR-26-01300-3",
+      "doc_type": "Independent Administration",
       "filed": "2026-04-21",
       "cat": "PRO",
       "cat_label": "Probate / Estate",
-      "owner": "TUCKER , JANE  ELLEN",
+      "owner": "MODY, BHARAT",
       "grantee": "Dallas County - County Clerk",
       "amount": 0,
-      "legal": "ESTATE OF MORRIS  UHLES",
+      "legal": "ESTATE OF PRAFULATA B. MODY",
       "prop_address": "",
       "prop_city": "DALLAS",
       "prop_state": "TX",
@@ -10476,32 +10401,7 @@
       "mail_city": "",
       "mail_state": "TX",
       "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/5f64247997b240f798320855558d2e50/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "PR-26-01275-1",
-      "doc_type": "Independent Administration",
-      "filed": "2026-04-20",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "CADE, TERRENCE D.",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF CHARLES CADE, JR.",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/e7055cabfb8f4634a7d8e73f16629a52/details",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/375578bc9d184fcf8a782d7e4c48bc0a/details",
       "flags": [
         "Probate / estate",
         "New this week"
@@ -10534,65 +10434,15 @@
       "score": 55
     },
     {
-      "doc_num": "PR-26-01334-2",
-      "doc_type": "INDEPENDENT ADMINISTRATION",
-      "filed": "2026-04-23",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "GAINES , TANAYA",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF MARTHA  HORTON",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/59889aeff3484121a28987d194e3913e/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "PR-26-01280-1",
-      "doc_type": "Independent Administration",
-      "filed": "2026-04-20",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "TSIRIGOTIS, BARBARA LANCASTER",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF PATRICIA ANN LANCASTER BRADFIELD",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/54c8634a708847fa89aa9d1fab895a23/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "PR-26-01304-1",
+      "doc_num": "PR-26-01306-1",
       "doc_type": "Independent Administration",
       "filed": "2026-04-21",
       "cat": "PRO",
       "cat_label": "Probate / Estate",
-      "owner": "WILLIS, KEVIN JERMAINE",
+      "owner": "BRANDON REGAN",
       "grantee": "Dallas County - County Clerk",
       "amount": 0,
-      "legal": "ESTATE OF ISSOM WILLIS, Jr",
+      "legal": "ESTATE OF MICHAEL  ALAN  REGAN",
       "prop_address": "",
       "prop_city": "DALLAS",
       "prop_state": "TX",
@@ -10601,7 +10451,7 @@
       "mail_city": "",
       "mail_state": "TX",
       "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/e9c84de956194d029988bd1238114861/details",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/af81fcb01d2243e7849cb8db79c2440f/details",
       "flags": [
         "Probate / estate",
         "New this week"
@@ -10609,15 +10459,15 @@
       "score": 55
     },
     {
-      "doc_num": "PR-26-01333-2",
-      "doc_type": "Independent Administration",
-      "filed": "2026-04-23",
+      "doc_num": "PR-26-01297-1",
+      "doc_type": "INDEPENDENT ADMINISTRATION",
+      "filed": "2026-04-21",
       "cat": "PRO",
       "cat_label": "Probate / Estate",
-      "owner": "DARRYL LANCE HENDERSON",
+      "owner": "TUCKER , JANE  ELLEN",
       "grantee": "Dallas County - County Clerk",
       "amount": 0,
-      "legal": "ESTATE OF GEORGE KENNETH HENDERSON",
+      "legal": "ESTATE OF MORRIS  UHLES",
       "prop_address": "",
       "prop_city": "DALLAS",
       "prop_state": "TX",
@@ -10626,32 +10476,7 @@
       "mail_city": "",
       "mail_state": "TX",
       "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/6571a82b643e4798b7cfb5785d8465e4/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "PR-26-01318-3",
-      "doc_type": "Independent Administration",
-      "filed": "2026-04-22",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "WARDE , SHARON",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF CAROL  J. HARRISON",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/4e775eb9cb394b2fb03e04c9d208c2b2/details",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/5f64247997b240f798320855558d2e50/details",
       "flags": [
         "Probate / estate",
         "New this week"
@@ -10684,6 +10509,131 @@
       "score": 55
     },
     {
+      "doc_num": "PR-26-01304-1",
+      "doc_type": "Independent Administration",
+      "filed": "2026-04-21",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "WILLIS, KEVIN JERMAINE",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF ISSOM WILLIS, Jr",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/e9c84de956194d029988bd1238114861/details",
+      "flags": [
+        "Probate / estate",
+        "New this week"
+      ],
+      "score": 55
+    },
+    {
+      "doc_num": "PR-26-01295-1",
+      "doc_type": "Independent Administration",
+      "filed": "2026-04-21",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "WHITE, RICHARD E.",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF JOHN  HENRY  COLEMAN , III",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/055364a181bf4d0790396037f938906c/details",
+      "flags": [
+        "Probate / estate",
+        "New this week"
+      ],
+      "score": 55
+    },
+    {
+      "doc_num": "PR-26-01333-2",
+      "doc_type": "Independent Administration",
+      "filed": "2026-04-23",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "DARRYL LANCE HENDERSON",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF GEORGE KENNETH HENDERSON",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/6571a82b643e4798b7cfb5785d8465e4/details",
+      "flags": [
+        "Probate / estate",
+        "New this week"
+      ],
+      "score": 55
+    },
+    {
+      "doc_num": "PR-26-01275-1",
+      "doc_type": "Independent Administration",
+      "filed": "2026-04-20",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "CADE, TERRENCE D.",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF CHARLES CADE, JR.",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/e7055cabfb8f4634a7d8e73f16629a52/details",
+      "flags": [
+        "Probate / estate",
+        "New this week"
+      ],
+      "score": 55
+    },
+    {
+      "doc_num": "PR-26-01284-2",
+      "doc_type": "Independent Administration",
+      "filed": "2026-04-20",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "JOHNSON, JACQUELINE BARBER",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF OPHERS BARBER",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/b9d97a33217c4b63932cd13c7ec5857f/details",
+      "flags": [
+        "Probate / estate",
+        "New this week"
+      ],
+      "score": 55
+    },
+    {
       "doc_num": "PR-26-01278-1",
       "doc_type": "INDEPENDENT ADMINISTRATION",
       "filed": "2026-04-20",
@@ -10702,31 +10652,6 @@
       "mail_state": "TX",
       "mail_zip": "",
       "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/11328b8d35924cbd8d1378ef6984bb5c/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "PR-26-01259-2",
-      "doc_type": "Muniment of Title",
-      "filed": "2026-04-17",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "WOODHAM, ROSIE",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF DONATO N. DIAZ a/k/a DONATO NORBERTO DIAZ",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/44432d5a9d8f4c3b88113f6171212afc/details",
       "flags": [
         "Probate / estate",
         "New this week"
@@ -10784,40 +10709,15 @@
       "score": 55
     },
     {
-      "doc_num": "PR-26-01295-1",
-      "doc_type": "Independent Administration",
-      "filed": "2026-04-21",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "WHITE, RICHARD E.",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF JOHN  HENRY  COLEMAN , III",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/055364a181bf4d0790396037f938906c/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "PR-26-01284-2",
+      "doc_num": "PR-26-01294-3",
       "doc_type": "Independent Administration",
       "filed": "2026-04-20",
       "cat": "PRO",
       "cat_label": "Probate / Estate",
-      "owner": "JOHNSON, JACQUELINE BARBER",
+      "owner": "ROSS, BARRY  JAY",
       "grantee": "Dallas County - County Clerk",
       "amount": 0,
-      "legal": "ESTATE OF OPHERS BARBER",
+      "legal": "ESTATE OF JONI LERNER ROSS",
       "prop_address": "",
       "prop_city": "DALLAS",
       "prop_state": "TX",
@@ -10826,7 +10726,7 @@
       "mail_city": "",
       "mail_state": "TX",
       "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/b9d97a33217c4b63932cd13c7ec5857f/details",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/4c0f26af2fdf473a8ec95fd15b2aaceb/details",
       "flags": [
         "Probate / estate",
         "New this week"
@@ -10859,15 +10759,15 @@
       "score": 55
     },
     {
-      "doc_num": "PR-26-01294-3",
-      "doc_type": "Independent Administration",
-      "filed": "2026-04-20",
+      "doc_num": "PR-26-01334-2",
+      "doc_type": "INDEPENDENT ADMINISTRATION",
+      "filed": "2026-04-23",
       "cat": "PRO",
       "cat_label": "Probate / Estate",
-      "owner": "ROSS, BARRY  JAY",
+      "owner": "GAINES , TANAYA",
       "grantee": "Dallas County - County Clerk",
       "amount": 0,
-      "legal": "ESTATE OF JONI LERNER ROSS",
+      "legal": "ESTATE OF MARTHA  HORTON",
       "prop_address": "",
       "prop_city": "DALLAS",
       "prop_state": "TX",
@@ -10876,7 +10776,7 @@
       "mail_city": "",
       "mail_state": "TX",
       "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/4c0f26af2fdf473a8ec95fd15b2aaceb/details",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/59889aeff3484121a28987d194e3913e/details",
       "flags": [
         "Probate / estate",
         "New this week"
@@ -10884,15 +10784,15 @@
       "score": 55
     },
     {
-      "doc_num": "PR-26-01263-3",
-      "doc_type": "INDEPENDENT ADMINISTRATION",
-      "filed": "2026-04-17",
+      "doc_num": "PR-26-01280-1",
+      "doc_type": "Independent Administration",
+      "filed": "2026-04-20",
       "cat": "PRO",
       "cat_label": "Probate / Estate",
-      "owner": "PULIDO , MATTHEW",
+      "owner": "TSIRIGOTIS, BARBARA LANCASTER",
       "grantee": "Dallas County - County Clerk",
       "amount": 0,
-      "legal": "ESTATE OF JOSE  PULIDO",
+      "legal": "ESTATE OF PATRICIA ANN LANCASTER BRADFIELD",
       "prop_address": "",
       "prop_city": "DALLAS",
       "prop_state": "TX",
@@ -10901,7 +10801,7 @@
       "mail_city": "",
       "mail_state": "TX",
       "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/047096197e9542139d4658b96cf69614/details",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/54c8634a708847fa89aa9d1fab895a23/details",
       "flags": [
         "Probate / estate",
         "New this week"
@@ -11009,6 +10909,131 @@
       "score": 55
     },
     {
+      "doc_num": "PR-26-01283-3",
+      "doc_type": "Muniment of Title",
+      "filed": "2026-04-20",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "NAGORZANSKI, ALAN FRANCIS",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF DONALD CURTIS SMITH",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/4b12bd6bfc64467489db9d788d16d56a/details",
+      "flags": [
+        "Probate / estate",
+        "New this week"
+      ],
+      "score": 55
+    },
+    {
+      "doc_num": "PR-26-01298-1",
+      "doc_type": "Muniment of Title",
+      "filed": "2026-04-21",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "ESTATE OF PEGGY  ZIMMERMAN-WILSON",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF PEGGY  ZIMMERMAN-WILSON",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/3b7e7942715941deaf814d56db304cb4/details",
+      "flags": [
+        "Probate / estate",
+        "New this week"
+      ],
+      "score": 55
+    },
+    {
+      "doc_num": "PR-26-01293-1",
+      "doc_type": "Muniment of Title",
+      "filed": "2026-04-20",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "ESTATE OF IRMA  CELIA  SANTESTEBAN",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF IRMA  CELIA  SANTESTEBAN",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/1a36747ddb244e2abc472044ae5b917c/details",
+      "flags": [
+        "Probate / estate",
+        "New this week"
+      ],
+      "score": 55
+    },
+    {
+      "doc_num": "PR-26-01287-2",
+      "doc_type": "Muniment of Title",
+      "filed": "2026-04-20",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "ESTATE OF ROBERT  HENRY  SANTILLON , Jr",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF ROBERT  HENRY  SANTILLON , Jr",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/4857ddaf00bc4bd1bba99bc0e0beeb72/details",
+      "flags": [
+        "Probate / estate",
+        "New this week"
+      ],
+      "score": 55
+    },
+    {
+      "doc_num": "PR-26-01312-1",
+      "doc_type": "Muniment of Title",
+      "filed": "2026-04-22",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "ESTATE OF JOHN  FERGUSON",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF JOHN  FERGUSON",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/82937cc2bbc144e49e98073f5484a951/details",
+      "flags": [
+        "Probate / estate",
+        "New this week"
+      ],
+      "score": 55
+    },
+    {
       "doc_num": "PR-26-01296-3",
       "doc_type": "Muniment of Title",
       "filed": "2026-04-21",
@@ -11034,15 +11059,15 @@
       "score": 55
     },
     {
-      "doc_num": "PR-26-01293-1",
+      "doc_num": "PR-26-01313-2",
       "doc_type": "Muniment of Title",
-      "filed": "2026-04-20",
+      "filed": "2026-04-22",
       "cat": "PRO",
       "cat_label": "Probate / Estate",
-      "owner": "SANTESTEBAN , ARIEL  ROBERTO",
+      "owner": "BRACKEN, CATHERINE  E",
       "grantee": "Dallas County - County Clerk",
       "amount": 0,
-      "legal": "ESTATE OF IRMA  CELIA  SANTESTEBAN",
+      "legal": "ESTATE OF CLYDE  EARL  BRACKEN , Jr",
       "prop_address": "",
       "prop_city": "DALLAS",
       "prop_state": "TX",
@@ -11051,7 +11076,7 @@
       "mail_city": "",
       "mail_state": "TX",
       "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/1a36747ddb244e2abc472044ae5b917c/details",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/3d8255a52b024a18acd04fe15f282c78/details",
       "flags": [
         "Probate / estate",
         "New this week"
@@ -11059,40 +11084,15 @@
       "score": 55
     },
     {
-      "doc_num": "PR-26-01265-2",
-      "doc_type": "Muniment of Title",
-      "filed": "2026-04-17",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "LEVERITT , THOMAS  MICHAEL JAMES",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF THOMAS  CHRISTOPHER MICAHEL  LEVERITT",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/028503ea7e3d4a56a2c9343ee75b9709/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "PR-26-01283-3",
+      "doc_num": "PR-26-01276-2",
       "doc_type": "Muniment of Title",
       "filed": "2026-04-20",
       "cat": "PRO",
       "cat_label": "Probate / Estate",
-      "owner": "NAGORZANSKI, ALAN FRANCIS",
+      "owner": "ESTATE OF JANICE  DEE  GRUPE-NEAL",
       "grantee": "Dallas County - County Clerk",
       "amount": 0,
-      "legal": "ESTATE OF DONALD CURTIS SMITH",
+      "legal": "ESTATE OF JANICE  DEE  GRUPE-NEAL",
       "prop_address": "",
       "prop_city": "DALLAS",
       "prop_state": "TX",
@@ -11101,7 +11101,7 @@
       "mail_city": "",
       "mail_state": "TX",
       "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/4b12bd6bfc64467489db9d788d16d56a/details",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/031c6fd8268d4b5fa2bd3adc473d0f63/details",
       "flags": [
         "Probate / estate",
         "New this week"
@@ -11159,206 +11159,6 @@
       "score": 55
     },
     {
-      "doc_num": "PR-26-01312-1",
-      "doc_type": "Muniment of Title",
-      "filed": "2026-04-22",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "ESTATE OF JOHN  FERGUSON",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF JOHN  FERGUSON",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/82937cc2bbc144e49e98073f5484a951/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "PR-26-01313-2",
-      "doc_type": "Muniment of Title",
-      "filed": "2026-04-22",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "BRACKEN, CATHERINE  E",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF CLYDE  EARL  BRACKEN , Jr",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/3d8255a52b024a18acd04fe15f282c78/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "PR-26-01277-3",
-      "doc_type": "Muniment of Title",
-      "filed": "2026-04-17",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "ESTATE OF WILLIAM C. SLOCUM",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF WILLIAM C. SLOCUM",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/d46aee94f1ec4c9f86aa3dab93bdcd61/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "PR-26-01287-2",
-      "doc_type": "Muniment of Title",
-      "filed": "2026-04-20",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "ESTATE OF ROBERT  HENRY  SANTILLON , Jr",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF ROBERT  HENRY  SANTILLON , Jr",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/4857ddaf00bc4bd1bba99bc0e0beeb72/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "PR-26-01276-2",
-      "doc_type": "Muniment of Title",
-      "filed": "2026-04-20",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "ESTATE OF JANICE  DEE  GRUPE-NEAL",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF JANICE  DEE  GRUPE-NEAL",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/031c6fd8268d4b5fa2bd3adc473d0f63/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "PR-26-01269-3",
-      "doc_type": "Muniment of Title",
-      "filed": "2026-04-17",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "ESTATE OF JANIE L POOLE",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF JANIE L POOLE",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/7fcbd4c479f14368bfde4b2669d5cc79/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "PR-26-01305-1",
-      "doc_type": "Muniment of Title",
-      "filed": "2026-04-21",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "ESTATE OF ROBERT  WAYNE  MOODY",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF ROBERT  WAYNE  MOODY",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/65833bbcdbee48e0b99da4d244c789c3/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "PR-26-01266-1",
-      "doc_type": "Muniment of Title",
-      "filed": "2026-04-17",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "ESTATE OF CAROLYN  ANN CREEL",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF CAROLYN  ANN CREEL",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/35e89f3c45734994897cc98bd2153921/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
       "doc_num": "PR-26-01289-2",
       "doc_type": "Muniment of Title",
       "filed": "2026-04-20",
@@ -11384,15 +11184,15 @@
       "score": 55
     },
     {
-      "doc_num": "PR-26-01255-2",
+      "doc_num": "PR-26-01305-1",
       "doc_type": "Muniment of Title",
-      "filed": "2026-04-17",
+      "filed": "2026-04-21",
       "cat": "PRO",
       "cat_label": "Probate / Estate",
-      "owner": "ESTATE OF ESMOND DAPHNEY  ROSENBLOOM",
+      "owner": "ESTATE OF ROBERT  WAYNE  MOODY",
       "grantee": "Dallas County - County Clerk",
       "amount": 0,
-      "legal": "ESTATE OF ESMOND DAPHNEY  ROSENBLOOM",
+      "legal": "ESTATE OF ROBERT  WAYNE  MOODY",
       "prop_address": "",
       "prop_city": "DALLAS",
       "prop_state": "TX",
@@ -11401,7 +11201,7 @@
       "mail_city": "",
       "mail_state": "TX",
       "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/772f5b854643463da456da8e7a1ba218/details",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/65833bbcdbee48e0b99da4d244c789c3/details",
       "flags": [
         "Probate / estate",
         "New this week"
@@ -11452,31 +11252,6 @@
       "mail_state": "TX",
       "mail_zip": "",
       "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/ae3aea9858c34753b9886e400355fc41/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "PR-26-01264-1",
-      "doc_type": "Other Probate",
-      "filed": "2026-04-17",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "CHERYL JEANNINE DOWNS, Plaintiff  v. MARIAM SOPHIA RAHMAN, DAVID ALLEN RAHMAN, and EDWARD ANTHONY RAHMAN",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "CHERYL JEANNINE DOWNS, Plaintiff  v. MARIAM SOPHIA RAHMAN, DAVID ALLEN RAHMAN, and EDWARD ANTHONY RAHMAN",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/c4ff001d79bd4bbebaa498c1a3851649/details",
       "flags": [
         "Probate / estate",
         "New this week"
@@ -11559,56 +11334,6 @@
       "score": 55
     },
     {
-      "doc_num": "PR-26-01267-2",
-      "doc_type": "INDEPENDENT ADMINISTRATION",
-      "filed": "2026-04-17",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "HILL, TAISON  DOMINIC",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF ALBERT  HILL",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/307837b4a3be422993310492cc7ad230/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "PR-26-01270-3",
-      "doc_type": "Independent Administration",
-      "filed": "2026-04-17",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "MORALES, DAN",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF ROGELIO MORALES, Sr.",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/eeb6931c2db845f7a53e400cfda6528e/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
       "doc_num": "PR-26-01325-1",
       "doc_type": "Independent Administration",
       "filed": "2026-04-22",
@@ -11634,31 +11359,6 @@
       "score": 55
     },
     {
-      "doc_num": "PR-26-01251-3",
-      "doc_type": "Other Probate",
-      "filed": "2026-04-17",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "VAN MATHIS, Plaintiff, vs. DAVID ANDERSON, CHARLES ANDERSON, BOBBY ANDERSON, SAMUEL ANDERSON, DEBRA ANDERSON",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "VAN MATHIS, Plaintiff, vs. DAVID ANDERSON, CHARLES ANDERSON, BOBBY ANDERSON, SAMUEL ANDERSON, DEBRA ANDERSON",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/9ae2166b002a4de7bb4148b302fe7950/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
       "doc_num": "WD-26-00091-1",
       "doc_type": "OTHER PROBATE",
       "filed": "2026-04-20",
@@ -11677,31 +11377,6 @@
       "mail_state": "TX",
       "mail_zip": "",
       "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/8614df7178a44f64ab3f7e492ef1ea9d/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "WD-26-00090-PC",
-      "doc_type": "OTHER PROBATE",
-      "filed": "2026-04-17",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "HALEY, CANDICE",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "LAST WILL AND DEPOSIT FOR \nEARL TRAMEL",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/264bcaddd0c64d1098998c378c568095/details",
       "flags": [
         "Probate / estate",
         "New this week"
@@ -11809,40 +11484,15 @@
       "score": 55
     },
     {
-      "doc_num": "PR-26-01268-3",
-      "doc_type": "Muniment of Title",
-      "filed": "2026-04-17",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "ESTATE OF ELY  EDWARDS",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF ELY  EDWARDS",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/c096611dce3143958cb3566d5560d695/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "SE-26-00150-3",
+      "doc_num": "SE-26-00154-1",
       "doc_type": "Small Estate Proceedings",
-      "filed": "2026-04-17",
+      "filed": "2026-04-21",
       "cat": "PRO",
       "cat_label": "Probate / Estate",
-      "owner": "THE ESTATE OF ROBERT DUANE ASBRIDGE, Jr",
+      "owner": "THE ESTATE OF YUNPENG WU",
       "grantee": "Dallas County - County Clerk",
       "amount": 0,
-      "legal": "THE ESTATE OF ROBERT DUANE ASBRIDGE, Jr",
+      "legal": "THE ESTATE OF YUNPENG WU",
       "prop_address": "",
       "prop_city": "DALLAS",
       "prop_state": "TX",
@@ -11851,7 +11501,7 @@
       "mail_city": "",
       "mail_state": "TX",
       "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/c5f7951399d548f8ba6b73efe4bb098a/details",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/cd3e1097bf7e4c4a8138f5416e735128/details",
       "flags": [
         "Probate / estate",
         "New this week"
@@ -11909,49 +11559,24 @@
       "score": 55
     },
     {
-      "doc_num": "SE-26-00154-1",
-      "doc_type": "Small Estate Proceedings",
-      "filed": "2026-04-21",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "THE ESTATE OF YUNPENG WU",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "THE ESTATE OF YUNPENG WU",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/cd3e1097bf7e4c4a8138f5416e735128/details",
-      "flags": [
-        "Probate / estate",
-        "New this week"
-      ],
-      "score": 55
-    },
-    {
-      "doc_num": "PR-26-01262-1",
+      "doc_num": "PR-26-01260-2",
       "doc_type": "Muniment of Title",
-      "filed": "2026-04-16",
+      "filed": "2026-04-17",
       "cat": "PRO",
       "cat_label": "Probate / Estate",
-      "owner": "ESTATE OF CYNTHIA  FRANCES  THORNTON",
+      "owner": "ESTATE OF ROSA DIAZ a/k/a ROSA ALVAREZ DIAZ",
       "grantee": "Dallas County - County Clerk",
       "amount": 0,
-      "legal": "ESTATE OF CYNTHIA  FRANCES  THORNTON",
-      "prop_address": "220 S CARMACK ST",
+      "legal": "ESTATE OF ROSA DIAZ a/k/a ROSA ALVAREZ DIAZ",
+      "prop_address": "1520 POPLAR DR",
       "prop_city": "MESQUITE (DALLAS CO)",
       "prop_state": "TX",
-      "prop_zip": "751494006",
-      "mail_address": "220 S CARMACK ST",
+      "prop_zip": "751495648",
+      "mail_address": "1520 POPLAR DR",
       "mail_city": "MESQUITE",
       "mail_state": "TEXAS",
-      "mail_zip": "751494006",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/f1e6b01860a8405b9f868bcdaf624283/details",
+      "mail_zip": "751495648",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/920fa17c502647e49235c8795903de71/details",
       "flags": [
         "Probate / estate"
       ],
@@ -11982,6 +11607,54 @@
       "score": 45
     },
     {
+      "doc_num": "PR-26-01271-1",
+      "doc_type": "Independent Administration",
+      "filed": "2026-04-17",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "SKRAPITS, GAYLE",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF JOYCE RAE REYNOLDS",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/3ff44599eaa746059a3d0c35f1b78e97/details",
+      "flags": [
+        "Probate / estate"
+      ],
+      "score": 40
+    },
+    {
+      "doc_num": "PR-26-01259-2",
+      "doc_type": "Muniment of Title",
+      "filed": "2026-04-17",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "WOODHAM, ROSIE",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF DONATO N. DIAZ a/k/a DONATO NORBERTO DIAZ",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/44432d5a9d8f4c3b88113f6171212afc/details",
+      "flags": [
+        "Probate / estate"
+      ],
+      "score": 40
+    },
+    {
       "doc_num": "PR-26-01244-2",
       "doc_type": "INDEPENDENT ADMINISTRATION",
       "filed": "2026-04-16",
@@ -12000,6 +11673,54 @@
       "mail_state": "TX",
       "mail_zip": "",
       "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/58f3e6884b4b4dfb81bde683398f7841/details",
+      "flags": [
+        "Probate / estate"
+      ],
+      "score": 40
+    },
+    {
+      "doc_num": "PR-26-01263-3",
+      "doc_type": "INDEPENDENT ADMINISTRATION",
+      "filed": "2026-04-17",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "PULIDO , MATTHEW",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF JOSE  PULIDO",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/047096197e9542139d4658b96cf69614/details",
+      "flags": [
+        "Probate / estate"
+      ],
+      "score": 40
+    },
+    {
+      "doc_num": "PR-26-01265-2",
+      "doc_type": "Muniment of Title",
+      "filed": "2026-04-17",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "LEVERITT , THOMAS  MICHAEL JAMES",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF THOMAS  CHRISTOPHER MICAHEL  LEVERITT",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/028503ea7e3d4a56a2c9343ee75b9709/details",
       "flags": [
         "Probate / estate"
       ],
@@ -12078,6 +11799,30 @@
       "score": 40
     },
     {
+      "doc_num": "PR-26-01242-2",
+      "doc_type": "Muniment of Title",
+      "filed": "2026-04-16",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "ESTATE OF TOMMIE  FAYE  CASE",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF TOMMIE  FAYE  CASE",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/a87730ee590f4fafbc69589b13e62c93/details",
+      "flags": [
+        "Probate / estate"
+      ],
+      "score": 40
+    },
+    {
       "doc_num": "PR-26-01249-3",
       "doc_type": "Muniment of Title",
       "filed": "2026-04-16",
@@ -12126,6 +11871,30 @@
       "score": 40
     },
     {
+      "doc_num": "PR-26-01262-1",
+      "doc_type": "Muniment of Title",
+      "filed": "2026-04-16",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "CHRISTIAN , JAMES  WEST",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF CYNTHIA  FRANCES  THORNTON",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/f1e6b01860a8405b9f868bcdaf624283/details",
+      "flags": [
+        "Probate / estate"
+      ],
+      "score": 40
+    },
+    {
       "doc_num": "PR-26-01248-3",
       "doc_type": "Muniment of Title",
       "filed": "2026-04-16",
@@ -12144,78 +11913,6 @@
       "mail_state": "TX",
       "mail_zip": "",
       "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/3635e65cbfcc4d01aaac991b21e4981d/details",
-      "flags": [
-        "Probate / estate"
-      ],
-      "score": 40
-    },
-    {
-      "doc_num": "PR-26-01245-1",
-      "doc_type": "Muniment of Title",
-      "filed": "2026-04-16",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "ESTATE OF HAROLD  EUGENE WOODS",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF HAROLD  EUGENE WOODS",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/50089f61c5c146e9adbd0c181877fb6c/details",
-      "flags": [
-        "Probate / estate"
-      ],
-      "score": 40
-    },
-    {
-      "doc_num": "PR-26-01258-2",
-      "doc_type": "Muniment of Title",
-      "filed": "2026-04-16",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "ESTATE OF CONNIE S. JACKSON",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF CONNIE S. JACKSON",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/dac4224d1b7e4aa8a888d1801f486f00/details",
-      "flags": [
-        "Probate / estate"
-      ],
-      "score": 40
-    },
-    {
-      "doc_num": "PR-26-01242-2",
-      "doc_type": "Muniment of Title",
-      "filed": "2026-04-16",
-      "cat": "PRO",
-      "cat_label": "Probate / Estate",
-      "owner": "ESTATE OF TOMMIE  FAYE  CASE",
-      "grantee": "Dallas County - County Clerk",
-      "amount": 0,
-      "legal": "ESTATE OF TOMMIE  FAYE  CASE",
-      "prop_address": "",
-      "prop_city": "DALLAS",
-      "prop_state": "TX",
-      "prop_zip": "",
-      "mail_address": "",
-      "mail_city": "",
-      "mail_state": "TX",
-      "mail_zip": "",
-      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/a87730ee590f4fafbc69589b13e62c93/details",
       "flags": [
         "Probate / estate"
       ],
@@ -12246,6 +11943,102 @@
       "score": 40
     },
     {
+      "doc_num": "PR-26-01258-2",
+      "doc_type": "Muniment of Title",
+      "filed": "2026-04-16",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "ESTATE OF CONNIE S. JACKSON",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF CONNIE S. JACKSON",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/dac4224d1b7e4aa8a888d1801f486f00/details",
+      "flags": [
+        "Probate / estate"
+      ],
+      "score": 40
+    },
+    {
+      "doc_num": "PR-26-01269-3",
+      "doc_type": "Muniment of Title",
+      "filed": "2026-04-17",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "ESTATE OF JANIE L POOLE",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF JANIE L POOLE",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/7fcbd4c479f14368bfde4b2669d5cc79/details",
+      "flags": [
+        "Probate / estate"
+      ],
+      "score": 40
+    },
+    {
+      "doc_num": "PR-26-01245-1",
+      "doc_type": "Muniment of Title",
+      "filed": "2026-04-16",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "ESTATE OF HAROLD  EUGENE WOODS",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF HAROLD  EUGENE WOODS",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/50089f61c5c146e9adbd0c181877fb6c/details",
+      "flags": [
+        "Probate / estate"
+      ],
+      "score": 40
+    },
+    {
+      "doc_num": "PR-26-01266-1",
+      "doc_type": "Muniment of Title",
+      "filed": "2026-04-17",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "ESTATE OF CAROLYN  ANN CREEL",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF CAROLYN  ANN CREEL",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/35e89f3c45734994897cc98bd2153921/details",
+      "flags": [
+        "Probate / estate"
+      ],
+      "score": 40
+    },
+    {
       "doc_num": "PR-26-01246-1",
       "doc_type": "Muniment of Title",
       "filed": "2026-04-16",
@@ -12270,6 +12063,174 @@
       "score": 40
     },
     {
+      "doc_num": "PR-26-01277-3",
+      "doc_type": "Muniment of Title",
+      "filed": "2026-04-17",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "ESTATE OF WILLIAM C. SLOCUM",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF WILLIAM C. SLOCUM",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/d46aee94f1ec4c9f86aa3dab93bdcd61/details",
+      "flags": [
+        "Probate / estate"
+      ],
+      "score": 40
+    },
+    {
+      "doc_num": "PR-26-01255-2",
+      "doc_type": "Muniment of Title",
+      "filed": "2026-04-17",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "ESTATE OF ESMOND DAPHNEY  ROSENBLOOM",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF ESMOND DAPHNEY  ROSENBLOOM",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/772f5b854643463da456da8e7a1ba218/details",
+      "flags": [
+        "Probate / estate"
+      ],
+      "score": 40
+    },
+    {
+      "doc_num": "PR-26-01264-1",
+      "doc_type": "Other Probate",
+      "filed": "2026-04-17",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "CHERYL JEANNINE DOWNS, Plaintiff  v. MARIAM SOPHIA RAHMAN, DAVID ALLEN RAHMAN, and EDWARD ANTHONY RAHMAN",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "CHERYL JEANNINE DOWNS, Plaintiff  v. MARIAM SOPHIA RAHMAN, DAVID ALLEN RAHMAN, and EDWARD ANTHONY RAHMAN",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/c4ff001d79bd4bbebaa498c1a3851649/details",
+      "flags": [
+        "Probate / estate"
+      ],
+      "score": 40
+    },
+    {
+      "doc_num": "PR-26-01267-2",
+      "doc_type": "INDEPENDENT ADMINISTRATION",
+      "filed": "2026-04-17",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "HILL, TAISON  DOMINIC",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF ALBERT  HILL",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/307837b4a3be422993310492cc7ad230/details",
+      "flags": [
+        "Probate / estate"
+      ],
+      "score": 40
+    },
+    {
+      "doc_num": "PR-26-01270-3",
+      "doc_type": "Independent Administration",
+      "filed": "2026-04-17",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "MORALES, DAN",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF ROGELIO MORALES, Sr.",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/eeb6931c2db845f7a53e400cfda6528e/details",
+      "flags": [
+        "Probate / estate"
+      ],
+      "score": 40
+    },
+    {
+      "doc_num": "PR-26-01251-3",
+      "doc_type": "Other Probate",
+      "filed": "2026-04-17",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "VAN MATHIS, Plaintiff, vs. DAVID ANDERSON, CHARLES ANDERSON, BOBBY ANDERSON, SAMUEL ANDERSON, DEBRA ANDERSON",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "VAN MATHIS, Plaintiff, vs. DAVID ANDERSON, CHARLES ANDERSON, BOBBY ANDERSON, SAMUEL ANDERSON, DEBRA ANDERSON",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/9ae2166b002a4de7bb4148b302fe7950/details",
+      "flags": [
+        "Probate / estate"
+      ],
+      "score": 40
+    },
+    {
+      "doc_num": "WD-26-00090-PC",
+      "doc_type": "OTHER PROBATE",
+      "filed": "2026-04-17",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "HALEY, CANDICE",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "LAST WILL AND DEPOSIT FOR \nEARL TRAMEL",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/264bcaddd0c64d1098998c378c568095/details",
+      "flags": [
+        "Probate / estate"
+      ],
+      "score": 40
+    },
+    {
       "doc_num": "SE-26-00151-1",
       "doc_type": "Small Estate Proceedings",
       "filed": "2026-04-16",
@@ -12288,6 +12249,54 @@
       "mail_state": "TX",
       "mail_zip": "",
       "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/f0faedd4dd3642beb725403895c82fc4/details",
+      "flags": [
+        "Probate / estate"
+      ],
+      "score": 40
+    },
+    {
+      "doc_num": "PR-26-01268-3",
+      "doc_type": "Muniment of Title",
+      "filed": "2026-04-17",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "ESTATE OF ELY  EDWARDS",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "ESTATE OF ELY  EDWARDS",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/c096611dce3143958cb3566d5560d695/details",
+      "flags": [
+        "Probate / estate"
+      ],
+      "score": 40
+    },
+    {
+      "doc_num": "SE-26-00150-3",
+      "doc_type": "Small Estate Proceedings",
+      "filed": "2026-04-17",
+      "cat": "PRO",
+      "cat_label": "Probate / Estate",
+      "owner": "THE ESTATE OF ROBERT DUANE ASBRIDGE, Jr",
+      "grantee": "Dallas County - County Clerk",
+      "amount": 0,
+      "legal": "THE ESTATE OF ROBERT DUANE ASBRIDGE, Jr",
+      "prop_address": "",
+      "prop_city": "DALLAS",
+      "prop_state": "TX",
+      "prop_zip": "",
+      "mail_address": "",
+      "mail_city": "",
+      "mail_state": "TX",
+      "mail_zip": "",
+      "clerk_url": "https://research.txcourts.gov/CourtRecordsSearch/ui/cases/c5f7951399d548f8ba6b73efe4bb098a/details",
       "flags": [
         "Probate / estate"
       ],
