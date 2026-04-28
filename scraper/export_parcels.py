@@ -117,40 +117,51 @@ def export_parcels():
 
     log.info("Filtering to target zip codes: %s", sorted(TARGET_ZIPS))
 
+    # Collect all rows first, then sort
+    rows = []
+
+    text    = raw.decode("latin-1")
+    reader  = csv.DictReader(io.StringIO(text))
+
+    for row in reader:
+        total_rows += 1
+
+        prop_zip = clean_zip(row.get("PROPERTY_ZIPCODE") or "")
+        if prop_zip not in TARGET_ZIPS:
+            continue
+
+        matched_rows += 1
+        zip_counts[prop_zip] = zip_counts.get(prop_zip, 0) + 1
+
+        street_num  = (row.get("STREET_NUM") or "").strip()
+        street_name = (row.get("FULL_STREET_NAME") or "").strip()
+        prop_addr   = f"{street_num} {street_name}".strip()
+        prop_city   = (row.get("PROPERTY_CITY") or "").strip()
+
+        rows.append({
+            "Owner Name":         (row.get("OWNER_NAME1") or "").strip(),
+            "Mailing Address":    (row.get("OWNER_ADDRESS_LINE2") or "").strip(),
+            "Mailing City":       (row.get("OWNER_CITY") or "").strip(),
+            "Mailing State":      (row.get("OWNER_STATE") or "").strip(),
+            "Mailing Zip":        clean_zip(row.get("OWNER_ZIPCODE") or ""),
+            "Property Address":   prop_addr,
+            "Property City":      prop_city,
+            "Property Zip":       prop_zip,
+            "Last Transfer Date": (row.get("DEED_TXFR_DATE") or "").strip(),
+            # Sort keys
+            "_street_num":        int(street_num) if street_num.isdigit() else 0,
+            "_street_name":       street_name,
+            "_city":              prop_city,
+        })
+
+    # Sort by city, then street name, then street number
+    rows.sort(key=lambda r: (r["_city"], r["_street_name"], r["_street_num"]))
+
     with open(out_path, "w", newline="", encoding="utf-8") as out_f:
         writer = csv.DictWriter(out_f, fieldnames=OUTPUT_COLS)
         writer.writeheader()
-
-        text    = raw.decode("latin-1")
-        reader  = csv.DictReader(io.StringIO(text))
-
-        for row in reader:
-            total_rows += 1
-
-            # Check property zip against target list
-            prop_zip = clean_zip(row.get("PROPERTY_ZIPCODE") or "")
-            if prop_zip not in TARGET_ZIPS:
-                continue
-
-            matched_rows += 1
-            zip_counts[prop_zip] = zip_counts.get(prop_zip, 0) + 1
-
-            # Build property address
-            street_num  = (row.get("STREET_NUM") or "").strip()
-            street_name = (row.get("FULL_STREET_NAME") or "").strip()
-            prop_addr   = f"{street_num} {street_name}".strip()
-
-            writer.writerow({
-                "Owner Name":        (row.get("OWNER_NAME1") or "").strip(),
-                "Mailing Address":   (row.get("OWNER_ADDRESS_LINE2") or "").strip(),
-                "Mailing City":      (row.get("OWNER_CITY") or "").strip(),
-                "Mailing State":     (row.get("OWNER_STATE") or "").strip(),
-                "Mailing Zip":       clean_zip(row.get("OWNER_ZIPCODE") or ""),
-                "Property Address":  prop_addr,
-                "Property City":     (row.get("PROPERTY_CITY") or "").strip(),
-                "Property Zip":      prop_zip,
-                "Last Transfer Date": (row.get("DEED_TXFR_DATE") or "").strip(),
-            })
+        for row in rows:
+            writer.writerow({k: row[k] for k in OUTPUT_COLS})
 
     log.info("━━━ Export Complete ━━━")
     log.info("Total rows scanned:  %d", total_rows)
