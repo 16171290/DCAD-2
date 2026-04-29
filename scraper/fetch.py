@@ -56,48 +56,277 @@ for d in ["dashboard", "data", "scraper/tmp"]:
 
 
 # ═══════════════════════════════════════════════════════════════════════════
-# SECTION 1 – LIS PENDENS  (dallas.tx.publicsearch.us)
+# SECTION 1 – LIS PENDENS + TAX DEEDS  (dallas.tx.publicsearch.us)
+# URL format discovered from browser:
+# https://dallas.tx.publicsearch.us/results?department=RP&keywordSearch=false
+#   &recordedDateRange=YYYYMMDD,YYYYMMDD&searchOcrText=false
+#   &searchType=quickSearch&searchValue=lis+pendens
+# The page loads results via an internal API — we intercept it with Playwright
 # ═══════════════════════════════════════════════════════════════════════════
 
 def scrape_lis_pendens(date_from: str, date_to: str) -> list:
     """
-    Try REST API first; fall back to Playwright.
-    LP is reliably on the publicsearch.us portal.
+    Use the quickSearch URL format discovered from the browser.
+    Try the internal JSON API first, then fall back to Playwright.
     """
-    log.info("=== Scraping Lis Pendens ===")
+    log.info("=== Scraping Lis Pendens + Tax Deeds ===")
     sess = _session_with_retries()
 
+    # Convert dates to YYYYMMDD format used by this portal
     try:
-        dt_from = datetime.strptime(date_from, "%m/%d/%Y").strftime("%Y-%m-%d")
-        dt_to   = datetime.strptime(date_to,   "%m/%d/%Y").strftime("%Y-%m-%d")
+        dt_from_fmt = datetime.strptime(date_from, "%m/%d/%Y").strftime("%Y%m%d")
+        dt_to_fmt   = datetime.strptime(date_to,   "%m/%d/%Y").strftime("%Y%m%d")
     except Exception:
-        dt_from, dt_to = date_from, date_to
+        dt_from_fmt = date_from.replace("-", "").replace("/", "")
+        dt_to_fmt   = date_to.replace("-", "").replace("/", "")
 
-    # Try known API endpoints
-    for endpoint in [
+    all_records = []
+
+    # Search terms — LP and Tax Deed
+    searches = [
+        ("lis pendens", "LP",  "Lis Pendens"),
+        ("tax deed",    "TD",  "Tax Deed"),
+    ]
+
+    for search_value, cat_key, cat_label in searches:
+        records = _search_publicsearch(
+            sess, search_value, cat_key, cat_label,
+            dt_from_fmt, dt_to_fmt, date_from, date_to
+        )
+        log.info("%s: %d records", cat_label, len(records))
+        all_records.extend(records)
+
+    return all_records
+
+
+def _search_publicsearch(sess, search_value: str, cat_key: str, cat_label: str,
+                          dt_from_fmt: str, dt_to_fmt: str,
+                          date_from: str, date_to: str) -> list:
+    """
+    Try multiple API endpoint patterns for dallas.tx.publicsearch.us.
+    The portal is Tyler Technologies / publicsearch.us platform.
+    """
+    records = []
+
+    # Known API endpoint patterns for this platform
+    api_endpoints = [
+        f"{CLERK_BASE}/api/instruments",
         f"{CLERK_BASE}/api/instrument/search",
-        f"{CLERK_BASE}/api/search/instrument",
-        f"{CLERK_BASE}/search/api/instrument",
-    ]:
-        for code in ["LP", "LISP", "LIS PENDENS"]:
-            for params in [
-                {"countyId":"dallas","state":"TX","docTypeCode":code,
-                 "startDate":dt_from,"endDate":dt_to,"page":1,"pageSize":500},
-                {"county":"dallas","documentType":code,
-                 "recordedDateFrom":dt_from,"recordedDateTo":dt_to,"page":1,"size":500},
-            ]:
-                try:
-                    r = sess.get(endpoint, params=params, timeout=30)
-                    if r.status_code == 200 and "json" in r.headers.get("Content-Type",""):
-                        records = _parse_api_results(r.json(), "LP", "Lis Pendens")
-                        if records:
-                            log.info("LP API: %d records via %s code=%s", len(records), endpoint, code)
-                            return records
-                except Exception as exc:
-                    log.debug("LP API attempt: %s", exc)
+        f"{CLERK_BASE}/api/search",
+        f"{CLERK_BASE}/api/records",
+    ]
 
-    log.info("LP: API returned 0, using Playwright...")
-    return []   # Playwright fallback handled in main
+    # Parameter sets to try
+    param_sets = [
+        # Format 1 — quickSearch style matching the URL we found
+        {
+            "department":       "RP",
+            "keywordSearch":    "false",
+            "recordedDateRange": f"{dt_from_fmt},{dt_to_fmt}",
+            "searchOcrText":    "false",
+            "searchType":       "quickSearch",
+            "searchValue":      search_value,
+            "size":             500,
+            "offset":           0,
+        },
+        # Format 2 — docType search
+        {
+            "department":   "RP",
+            "docType":      search_value,
+            "startDate":    dt_from_fmt,
+            "endDate":      dt_to_fmt,
+            "size":         500,
+            "offset":       0,
+        },
+        # Format 3 — keyword search
+        {
+            "q":            search_value,
+            "dateFrom":     dt_from_fmt,
+            "dateTo":       dt_to_fmt,
+            "department":   "RP",
+            "size":         500,
+        },
+    ]
+
+    for endpoint in api_endpoints:
+        for params in param_sets:
+            try:
+                r = sess.get(endpoint, params=params, timeout=30)
+                if r.status_code == 200:
+                    ct = r.headers.get("Content-Type", "")
+                    if "json" in ct:
+                        data = r.json()
+                        parsed = _parse_publicsearch_response(data, cat_key, cat_label)
+                        if parsed:
+                            log.info("%s API hit: %s → %d records",
+                                     cat_label, endpoint, len(parsed))
+                            return parsed
+                    elif "html" in ct:
+                        # HTML response — try to parse results table
+                        parsed = _parse_clerk_html(r.text, cat_key, cat_label)
+                        if parsed:
+                            log.info("%s HTML hit: %s → %d records",
+                                     cat_label, endpoint, len(parsed))
+                            return parsed
+            except Exception as exc:
+                log.debug("%s API attempt failed: %s", cat_label, exc)
+                continue
+
+    return records
+
+
+def _parse_publicsearch_response(data: Any, cat_key: str, cat_label: str) -> list:
+    """Parse JSON response from publicsearch.us API."""
+    records = []
+    items = []
+
+    if isinstance(data, list):
+        items = data
+    elif isinstance(data, dict):
+        for key in ["instruments", "results", "records", "data",
+                    "items", "hits", "content", "documents"]:
+            if key in data and isinstance(data[key], list):
+                items = data[key]
+                break
+
+    for item in items:
+        if not isinstance(item, dict):
+            continue
+        try:
+            doc_num  = str(item.get("instrumentNumber") or item.get("docNumber") or
+                           item.get("recordingNumber") or item.get("id") or "")
+            doc_type = str(item.get("documentType") or item.get("docType") or
+                           item.get("instrumentType") or cat_label)
+            filed    = str(item.get("recordedDate") or item.get("filedDate") or
+                           item.get("instrumentDate") or item.get("date") or "")
+            grantor  = str(item.get("grantor") or item.get("grantorName") or
+                           item.get("party1") or "")
+            grantee  = str(item.get("grantee") or item.get("granteeName") or
+                           item.get("party2") or "")
+            legal    = str(item.get("legalDescription") or item.get("legal") or
+                           item.get("description") or "")
+            amount   = _parse_amount(item.get("amount") or item.get("consideration") or "")
+            link     = str(item.get("url") or item.get("imageUrl") or item.get("link") or "")
+            if not link and doc_num:
+                link = f"{CLERK_BASE}/results/index?doc={doc_num}"
+
+            if not doc_num and not grantor:
+                continue
+
+            records.append({
+                "doc_num":   doc_num,
+                "doc_type":  doc_type,
+                "filed":     _normalise_date(filed),
+                "cat":       cat_key,
+                "cat_label": cat_label,
+                "owner":     grantor,
+                "grantee":   grantee,
+                "amount":    amount,
+                "legal":     legal,
+                "clerk_url": link,
+            })
+        except Exception:
+            continue
+
+    return records
+
+
+async def scrape_lis_pendens_playwright(date_from: str, date_to: str) -> list:
+    """
+    Use Playwright to load the search results page directly and intercept
+    the internal API calls the portal makes to fetch results.
+    """
+    records = []
+
+    # Convert dates to YYYYMMDD format
+    try:
+        dt_from_fmt = datetime.strptime(date_from, "%m/%d/%Y").strftime("%Y%m%d")
+        dt_to_fmt   = datetime.strptime(date_to,   "%m/%d/%Y").strftime("%Y%m%d")
+    except Exception:
+        dt_from_fmt = date_from.replace("/", "").replace("-", "")
+        dt_to_fmt   = date_to.replace("/", "").replace("-", "")
+
+    searches = [
+        ("lis+pendens", "LP",  "Lis Pendens"),
+        ("tax+deed",    "TD",  "Tax Deed"),
+    ]
+
+    async with async_playwright() as pw:
+        browser = await pw.chromium.launch(
+            headless=True,
+            args=["--no-sandbox", "--disable-dev-shm-usage"]
+        )
+        ctx = await browser.new_context(
+            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                       "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+            viewport={"width": 1280, "height": 900},
+        )
+        page = await ctx.new_page()
+        captured: list = []
+
+        async def on_response(resp):
+            try:
+                ct = resp.headers.get("content-type", "")
+                if "json" in ct and resp.status == 200:
+                    # Skip tiny responses (tracking pixels etc)
+                    if "bugsnag" in resp.url or "google" in resp.url:
+                        return
+                    data = await resp.json()
+                    captured.append((resp.url, data))
+                    log.debug("Captured: %s", resp.url[:80])
+            except Exception:
+                pass
+
+        page.on("response", on_response)
+
+        for search_val, cat_key, cat_label in searches:
+            captured.clear()
+            url = (f"{CLERK_BASE}/results?department=RP&keywordSearch=false"
+                   f"&recordedDateRange={dt_from_fmt},{dt_to_fmt}"
+                   f"&searchOcrText=false&searchType=quickSearch"
+                   f"&searchValue={search_val}")
+
+            log.info("Playwright: loading %s", url[:100])
+
+            for attempt in range(1, MAX_RETRIES + 1):
+                try:
+                    await page.goto(url, wait_until="networkidle", timeout=30_000)
+                    await asyncio.sleep(3)
+
+                    # Log all captured responses
+                    log.info("%s: captured %d JSON responses", cat_label, len(captured))
+                    for cap_url, cap_data in captured:
+                        if isinstance(cap_data, dict):
+                            keys = list(cap_data.keys())[:5]
+                            log.info("  %s keys=%s", cap_url[-60:], keys)
+
+                    # Try to parse captured API responses
+                    for cap_url, cap_data in captured:
+                        parsed = _parse_publicsearch_response(cap_data, cat_key, cat_label)
+                        if parsed:
+                            log.info("%s Playwright API: %d records", cat_label, len(parsed))
+                            records.extend(parsed)
+                            break
+
+                    # Fall back to HTML parsing
+                    if not any(r.get("cat") == cat_key for r in records):
+                        content = await page.content()
+                        parsed  = _parse_clerk_html(content, cat_key, cat_label)
+                        if parsed:
+                            log.info("%s Playwright HTML: %d records", cat_label, len(parsed))
+                            records.extend(parsed)
+
+                    break
+
+                except Exception as exc:
+                    log.warning("%s Playwright attempt %d: %s", cat_label, attempt, exc)
+                    if attempt < MAX_RETRIES:
+                        await asyncio.sleep(RETRY_WAIT * attempt)
+
+        await browser.close()
+
+    log.info("LP+TD Playwright total: %d records", len(records))
+    return records
 
 
 async def scrape_lis_pendens_playwright(date_from: str, date_to: str) -> list:
@@ -1263,6 +1492,7 @@ def build_flags(rec: dict, week_ago: str) -> list:
     if cat == "LP":   flags.append("Lis pendens")
     if cat == "NOFC": flags.append("Pre-foreclosure")
     if cat == "PRO":  flags.append("Probate / estate")
+    if cat == "TD":   flags.append("Tax deed")
     if amt > 0:       flags.append("Tax lien")
     if re.search(r"\b(LLC|INC|CORP|LTD|L\.L\.C\.|TRUST)\b", owner):
         flags.append("LLC / corp owner")
@@ -1448,8 +1678,10 @@ async def main() -> None:
         elif not k:
             deduped.append(r)
 
-    log.info("Combined: LP=%d  NOFC=%d  PRO=%d  Total=%d",
-             len(lp_records), len(nofc_records), len(pro_records), len(deduped))
+    log.info("Combined: LP=%d  TD=%d  NOFC=%d  PRO=%d  Total=%d",
+             len(lp_records),
+             sum(1 for r in lp_records if r.get("cat") == "TD"),
+             len(nofc_records), len(pro_records), len(deduped))
 
     # 6. Enrich
     enriched = []
