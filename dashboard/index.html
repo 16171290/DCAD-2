@@ -149,6 +149,7 @@ main{padding:0 28px 48px;position:relative;z-index:1}
 .cat-LP{background:rgba(229,82,82,.15);color:var(--red);border:1px solid rgba(229,82,82,.3)}
 .cat-NOFC{background:rgba(245,124,53,.15);color:var(--accent2);border:1px solid rgba(245,124,53,.3)}
 .cat-PRO{background:rgba(91,144,245,.15);color:var(--blue);border:1px solid rgba(91,144,245,.3)}
+.cat-TD{background:rgba(155,89,182,.15);color:#b07fd4;border:1px solid rgba(155,89,182,.3)}
 
 .card-addr{font-size:12px;color:var(--text2);font-family:var(--mono)}
 .card-addr span{color:var(--text3)}
@@ -239,6 +240,7 @@ main{padding:0 28px 48px;position:relative;z-index:1}
       <option value="LP">Lis Pendens</option>
       <option value="NOFC">Notice of Foreclosure</option>
       <option value="PRO">Probate</option>
+      <option value="TD">Tax Deed</option>
     </select>
     <select id="score-filter">
       <option value="0">Any Score</option>
@@ -287,6 +289,7 @@ function renderMeta(d){
     d.date_range?.from ? d.date_range.from + ' → ' + d.date_range.to : '—';
 
   const lp   = ALL.filter(r=>r.cat==='LP').length;
+  const td   = ALL.filter(r=>r.cat==='TD').length;
   const nofc = ALL.filter(r=>r.cat==='NOFC').length;
   const pro  = ALL.filter(r=>r.cat==='PRO').length;
   const avg  = ALL.length ? Math.round(ALL.reduce((s,r)=>s+(r.score||0),0)/ALL.length) : 0;
@@ -295,6 +298,7 @@ function renderMeta(d){
     <div class="stat"><span class="stat-label">Total Leads</span><span class="stat-value">${ALL.length}</span></div>
     <div class="stat"><span class="stat-label">With Address</span><span class="stat-value green">${d.with_address||0}</span></div>
     <div class="stat"><span class="stat-label">Lis Pendens</span><span class="stat-value orange">${lp}</span></div>
+    <div class="stat"><span class="stat-label">Tax Deed</span><span class="stat-value" style="color:#b07fd4">${td}</span></div>
     <div class="stat"><span class="stat-label">Foreclosure</span><span class="stat-value orange">${nofc}</span></div>
     <div class="stat"><span class="stat-label">Probate</span><span class="stat-value blue">${pro}</span></div>
     <div class="stat"><span class="stat-label">Avg Score</span><span class="stat-value">${avg}</span></div>
